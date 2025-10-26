@@ -1,0 +1,128 @@
+###############################
+# SO (Windows / macOS / misc) #
+###############################
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+######################
+# Solución de VS/IDE #
+######################
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+*.code-workspace
+
+############################
+# Salidas de compilación   #
+############################
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+*.obj
+*.pdb
+*.idb
+*.ilk
+*.pch
+*.tmp
+*.tmp_proj
+*.log
+*.tlog
+*.lastcodeanalysissucceeded
+*.cache
+*.exe
+*.dll
+*.appx
+*.appxrecipe
+*.msi
+*.msix
+*.msm
+*.msp
+*.binlog
+
+##########################
+# ASP.NET (.NET Framework)
+##########################
+# Bases locales (LocalDB)
+App_Data/*.mdf
+App_Data/*.ldf
+*.dbmdl
+
+# Publicaciones/paquetes web
+**/obj/Release/Package/**
+**/obj/Release/TransformWebConfig/**
+*.Publish.xml
+*.pubxml
+*.publishproj
+
+# Temp ASP.NET
+**/App_Data/TEMP/**
+
+# IIS Express (gran parte ya cae en .vs/)
+iisexpress/
+
+#####################################
+# NuGet y paquetes (con restauración)
+#####################################
+# Paquetes descargados (se restauran)
+packages/*
+# EXCEPCIONES: mantener metadatos necesarios
+!packages/build/
+!packages/repositories.config
+!**/packages.config
+!**/packages.lock.json
+
+# Artefactos NuGet
+*.nupkg
+# Herramientas de solución (opcional mantener config)
+.nuget/*
+!/.nuget/NuGet.Config
+!/.nuget/NuGet.exe
+
+#########################
+# Roslyn (evitar errores)
+#########################
+**/packages/Microsoft.Net.Compilers.*/tools/**
+**/roslyn/**
+**/App_Data/Roslyn/**
+
+##########################
+# Herramientas / Plugins #
+##########################
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+.idea/
+*.sln.iml
+
+########################
+# Tests y Cobertura    #
+########################
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+########################
+# Node / Frontend misc #
+########################
+node_modules/
+bower_components/
+
+##############################
+# Otros archivos a ignorar   #
+##############################
+*.svclog
+*.scc
+*.orig
+*.rej
+*.bak
+*.psess
+*.vsp
+*.vspx
