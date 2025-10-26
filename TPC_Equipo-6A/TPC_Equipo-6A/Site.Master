@@ -46,9 +46,16 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Productos">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Clientes">Clientes</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Proveedores">Proveedores</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Ventas">Ventas</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Compras">Compras</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Marcas">Marcas</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Categorias">Categorias</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Consultas">Consultas</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>

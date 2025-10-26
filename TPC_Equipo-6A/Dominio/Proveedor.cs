@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace dominio
+{
+    internal class Proveedor
+    {
+        public int IdProveedor { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public int Cuit { get; set; }
+        public int Telefono { get; set; }
+        public string Email { get; set; }
+        public bool Estado { get; set; }
+    }
+}
