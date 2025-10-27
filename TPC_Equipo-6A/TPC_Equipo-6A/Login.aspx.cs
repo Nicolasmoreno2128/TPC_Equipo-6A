@@ -11,7 +11,20 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {            
+            Response.Redirect("~/Default.aspx");
+        }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
 
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Registro.aspx");
         }
     }
 }
