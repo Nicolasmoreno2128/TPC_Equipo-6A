@@ -19,7 +19,7 @@ namespace negocio
         }
         public AccesoDatos()
         {
-            //conexion = new SqlConnection("server=localhost\\SQLEXPRESS; database=XXXXXXXX; integrated security=true");
+            conexion = new SqlConnection("server=localhost\\SQLEXPRESS; database=ComercioColchones; integrated security=true");
             //conexion = new SqlConnection("server=.\\localhost,1433; database=XXXXXXXX; integrated security=false; user=sa; password= Passw0rd2025!");
             comando = new SqlCommand();
         }

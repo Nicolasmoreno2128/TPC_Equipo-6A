@@ -4,4 +4,7 @@
 <p>
     <a class="btn btn-primary" href="Default">Volver</a>
 </p>
+
+    <asp:GridView ID="DgvMarca"  runat="server" CssClass="table" ></asp:GridView>
+
 </asp:Content>
