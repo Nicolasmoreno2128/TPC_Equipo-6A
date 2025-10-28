@@ -17,12 +17,12 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Id,Nombre, Descripcion, Estado from MARCA");
+                datos.setearConsulta("select IdProducto, Nombre, Descripcion, Estado from Marcas");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Marca aux = new Marca();
-                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Id = (long)datos.Lector["IdProducto"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Estado = (bool)datos.Lector["Estado"];
