@@ -13,5 +13,13 @@ namespace TPC_Equipo_6A
         {
 
         }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
+        protected void btnCrear_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
     }
 }
