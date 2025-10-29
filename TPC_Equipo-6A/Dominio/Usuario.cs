@@ -17,5 +17,6 @@ namespace dominio
         public string Email { get; set; }
         public int Telefono { get; set; }
         public bool Estado { get; set; }
+        
     }
 }

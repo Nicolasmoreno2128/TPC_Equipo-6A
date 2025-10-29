@@ -19,8 +19,8 @@ namespace negocio
         }
         public AccesoDatos()
         {
-            //conexion = new SqlConnection("server=localhost\\SQLEXPRESS; database=ComercioColchones; integrated security=true");
-            conexion = new SqlConnection("server=.\\localhost,1433; database=ComercioColchones; integrated security=false; user=sa; password= Passw0rd2025!");
+            conexion = new SqlConnection("server=localhost\\SQLEXPRESS; database=ComercioColchones; integrated security=true");
+            //conexion = new SqlConnection("server=.\\localhost,1433; database=ComercioColchones; integrated security=false; user=sa; password= Passw0rd2025!");
             comando = new SqlCommand();
         }
         public void setearConsulta(string consulta)

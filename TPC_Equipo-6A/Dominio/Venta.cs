@@ -15,6 +15,8 @@ namespace dominio
         public Producto Producto { get; set; }
         public int Cantidad { get; set; }
         public bool Estado { get; set; }
+        public Usuario Vendedor { get; set; }
+
 
 
     }
