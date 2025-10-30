@@ -12,11 +12,7 @@ namespace dominio
         public DateTime FechaCompra { get; set; }
         public DateTime FechaRecepcion { get; set; }
         public Proveedor Proveedor { get; set; }
-        public Producto Producto { get; set; }
-        public int Cantidad { get; set; }
         public bool Estado { get; set; }
-
-
-
+        public List<DetalleCompra> Detalles { get; set; }
     }
 }
