@@ -9,11 +9,13 @@
                     <h2 class="text-center mb-4">Categorias</h2>
 
                     <asp:GridView ID="DgvCategoria" runat="server" CssClass="table"></asp:GridView>
-
-                    <div class="col-4 col-md-3">
-                        <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" OnClick="btnVolver_Click" />
+                    
+                    <div class="d-flex gap-3 mt-3">
+                        <asp:Button ID="btnNueva" runat="server" CssClass="btn btn-dark" Text="Nueva"
+                            CausesValidation="false" OnClick="btnNueva_Click" />
+                        <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
+                            CausesValidation="false" OnClick="btnVolver_Click" />
                     </div>
-
                 </div>
             </div>
         </div>
@@ -25,7 +27,7 @@
 
 
 
-    
+
 
 
 </asp:Content>

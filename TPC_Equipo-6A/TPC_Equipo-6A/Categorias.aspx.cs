@@ -23,5 +23,9 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("Default");
         }
+        protected void btnNueva_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarCategoria");
+        }
     }
 }
