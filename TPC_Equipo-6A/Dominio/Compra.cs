@@ -11,6 +11,7 @@ namespace dominio
         public int idCompra { get; set; }
         public DateTime FechaCompra { get; set; }
         public DateTime FechaRecepcion { get; set; }
+        public decimal TotalCompra { get; set; }
         public Proveedor Proveedor { get; set; }
         public bool Estado { get; set; }
         public List<DetalleCompra> Detalles { get; set; }
