@@ -15,7 +15,7 @@ namespace TPC_Equipo_6A
         protected void Page_Load(object sender, EventArgs e)
         {
             CategoriaNegocio negocio = new CategoriaNegocio();
-            DgvCategoria.DataSource = negocio.Listar();
+            DgvCategoria.DataSource = negocio.ListarCategoria();
             DgvCategoria.DataBind();
         }
 

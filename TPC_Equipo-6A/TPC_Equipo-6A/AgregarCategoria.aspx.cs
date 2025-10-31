@@ -29,7 +29,7 @@ namespace TPC_Equipo_6A
                 categoria.Nombre = txtNombre.Text;
                 categoria.Descripcion = txtDescripcion.Text;
 
-                negocio.agregar(categoria);
+                negocio.agregarCategoria(categoria);
             }
             catch (Exception ex)
             {

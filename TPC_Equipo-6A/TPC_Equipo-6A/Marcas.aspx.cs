@@ -16,7 +16,7 @@ namespace TPC_Equipo_6A
         protected void Page_Load(object sender, EventArgs e)
         {
             MarcaNegocio negocio = new MarcaNegocio();
-            DgvMarca.DataSource = negocio.Listar();
+            DgvMarca.DataSource = negocio.ListarMarcas();
             DgvMarca.DataBind();
 
 

@@ -29,7 +29,7 @@ namespace TPC_Equipo_6A
                 marca.Nombre = txtNombre.Text;
                 marca.Descripcion = txtDescripcion.Text;
 
-                negocio.agregar(marca);               
+                negocio.agregarMarca(marca);               
             }
             catch (Exception ex)
             {
