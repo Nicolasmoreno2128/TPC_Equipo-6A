@@ -53,6 +53,25 @@ CREATE TABLE CLIENTE (
 	Estado BIT,
 	)
 
+CREATE TABLE USUARIO (
+	IdUsuario bigint primary key not null identity (1,1),
+	NombreUsuario varchar(50) not null,
+	Contrasena varchar (50) not null,
+	Nombre varchar (50),
+	Apellido varchar (50),
+	Rol integer not null,
+	Email varchar (100),
+	Telefono bigint,
+	Estado bit not null default 1
+)
+
+INSERT INTO USUARIO (NombreUsuario, Contrasena, Nombre, Apellido, Rol, Email, Telefono, Estado)
+VALUES
+('admin1', 'pasa123', 'Juan', 'Pérez', 0, 'juan.perez@cocos.com', 59891112222, 1),
+('vendedor1', 'pasa123', 'Ana', 'López', 1, 'ana.lopez@cocos.com', 59892223333, 1),
+('vendedor2', 'pasa123', 'Marcos', 'Fernández', 1, 'marcos.fernandez@cocos.com', 59893334444, 1),
+('admin2', 'pasa123', 'Lucía', 'Martínez', 0, 'lucia.martinez@cocos.com', 59894445555, 1),
+('vendedor3', 'pasa123', 'Diego', 'Gómez', 1, 'diego.gomez@cocos.com', NULL, 1);
 
 
 
