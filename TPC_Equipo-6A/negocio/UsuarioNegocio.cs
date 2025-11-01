@@ -16,13 +16,13 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT IdUsuario, NombreUsuario, Nombre, Apellido, Rol, Email, Telefono, Estado FROM Usuario");
+                datos.setearConsulta("SELECT IdUsuario, NombreUsuario, Nombre, Apellido, Rol, Email, Telefono, Estado FROM USUARIO");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
 
-                    aux.IdUsuario = Convert.ToInt64(datos.Lector["IdUsuario"]);
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
 
                     aux.NombreUsuario = datos.Lector["NombreUsuario"] != DBNull.Value
                         ? (string)datos.Lector["NombreUsuario"]
@@ -31,7 +31,7 @@ namespace negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Email = (string)datos.Lector["Email"];
-                    aux.Telefono = (long)datos.Lector["Telefono"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     // Rol: convierto primero a int y luego valido
                     int rolVal = datos.Lector["Rol"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Rol"]) : 1; // default Vendedor

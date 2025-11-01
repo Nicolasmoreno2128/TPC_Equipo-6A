@@ -1,69 +1,124 @@
-create database ComercioColchones
-go
-use ComercioColchones
-go
-create table Marcas (
-	IdMarca bigint primary key not null identity (1,1),
-	NombreMarca varchar (150) not null,
-	DescripcionMarca varchar (300) not null,
-	Estado bit not null
+
+
+----------------------
+--CREACION DE TABLAS--
+----------------------
+
+
+CREATE DATABASE ComercioColchones
+GO
+USE ComercioColchones
+GO
+CREATE TABLE MARCAS (
+	IdMarca INT PRIMARY KEY not null IDENTITY (1,1),
+	NombreMarca VARCHAR (150) not null,
+	DescripcionMarca VARCHAR (300) not null,
+	Estado BIT not null DEFAULT 1
 )
 go
 
-create table Categorias (
-	IdCategoria bigint primary key not null identity (1,1),
-	NombreCategoria varchar (150) not null,
-	DescripcionCategoria varchar (300) not null,
-	Estado bit not null
+CREATE TABLE CATEGORIAS (
+	IdCategoria INT PRIMARY KEY not null IDENTITY (1,1),
+	NombreCategoria VARCHAR (150) not null,
+	DescripcionCategoria VARCHAR (300) not null,
+	Estado BIT not null DEFAULT 1
 )
 go
 
 CREATE TABLE PRODUCTO (
-	IdProducto INTEGER NOT NULL IDENTITY (1,1) PRIMARY KEY,
-	NombreProducto VARCHAR(255) NOT NULL,
-	DescripcionProducto VARCHAR(255) NOT NULL,
+	IdProducto INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+	NombreProducto VARCHAR (150) NOT NULL,
+	DescripcionProducto VARCHAR(300) NOT NULL,
 	UrlImagen VARCHAR(255) NOT NULL,
 	PrecioProducto DECIMAL NOT NULL,
-	IdMarca INTEGER NOT NULL,
-	IdCategoria SMALLINT NOT NULL,
-	Stock INTEGER NOT NULL,
-	Estado BIT NOT NULL DEFAULT 1,
+	IdMarca INT NOT NULL FOREIGN KEY REFERENCES MARCAS(IdMarca),
+	IdCategoria INT NOT NULL FOREIGN KEY REFERENCES CATEGORIAS(IdCategoria),
+	Stock INT NOT NULL,
+	Estado BIT NOT NULL DEFAULT 1
 	)
 
 GO
-
 CREATE TABLE PROVEEDOR (
-	IdProveedor INTEGER NOT NULL IDENTITY (1,1) primary key,
-	Nombre VARCHAR(255) NOT NULL,
-	Descripcion VARCHAR(255) NOT NULL,
-	Cuit INTEGER NOT NULL,
-	Telefono INTEGER NOT NULL,
-	Email VARCHAR(255),
-	Estado BIT NOT NULL,
+	IdProveedor INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+	Nombre VARCHAR (150) NOT NULL,
+	Descripcion VARCHAR (300) NOT NULL,
+	Cuit VARCHAR (30) NOT NULL,
+	Telefono VARCHAR (30) NOT NULL,
+	Email VARCHAR (250),
+	Estado BIT NOT NULL DEFAULT 1
 	)
 GO
-
 CREATE TABLE CLIENTE (
-	IdCliente INTEGER NOT NULL IDENTITY (1,1) PRIMARY KEY,
+	IdCliente INT PRIMARY KEY NOT NULL IDENTITY (1,1) ,
 	Nombre VARCHAR(255),
-	Cuit INTEGER,
-	Descripcion VARCHAR(255),
-	Telefono INTEGER,
-	Email VARCHAR(255),
-	Estado BIT,
+	Cuit VARCHAR (30),
+	Descripcion VARCHAR(300),
+	Telefono VARCHAR (30),
+	Email VARCHAR(250),
+	Estado BIT NOT NULL DEFAULT 1
 	)
-
+GO
 CREATE TABLE USUARIO (
-	IdUsuario bigint primary key not null identity (1,1),
-	NombreUsuario varchar(50) not null,
-	Contrasena varchar (50) not null,
-	Nombre varchar (50),
-	Apellido varchar (50),
-	Rol integer not null,
-	Email varchar (100),
-	Telefono bigint,
-	Estado bit not null default 1
+	IdUsuario INT PRIMARY KEY not null IDENTITY (1,1),
+	NombreUsuario VARCHAR(50) not null,
+	Contrasena VARCHAR (50) not null,
+	Nombre VARCHAR (50) not null,
+	Apellido VARCHAR (50) not null,
+	Rol INT not null,
+	Email VARCHAR (250) not null,
+	Telefono VARCHAR (30) not null,
+	Estado BIT not null DEFAULT 1
 )
+GO
+
+
+CREATE TABLE VENTA (
+	IdVenta INT PRIMARY KEY not null IDENTITY (1,1),
+	IdCliente INT not null FOREIGN KEY REFERENCES CLIENTE (IdCliente),
+	FechaVenta DATETIME not null,
+	TotalVenta DECIMAL not null,
+	IdUsuario INT not null FOREIGN KEY REFERENCES USUARIO (IdUsuario),
+	Estado BIT not null DEFAULT 1
+)
+GO
+CREATE TABLE DETALLE_VENTA (
+	IdDetalleVenta INT PRIMARY KEY not null IDENTITY (1,1),
+	IdVenta INT not null FOREIGN KEY REFERENCES VENTA (IdVenta),
+	IdProducto INT not null FOREIGN KEY REFERENCES PRODUCTO (IdProducto),
+	Cantidad INT not null,
+	PrecioUnitario DECIMAL not null
+)
+GO
+CREATE TABLE COMPRA (
+	IdCompra INT PRIMARY KEY not null IDENTITY (1,1),
+	IdProveedor INT not null FOREIGN KEY REFERENCES PROVEEDOR (IdProveedor),
+	FechaCompra DATETIME not null,
+	FechaRecepcion DATETIME null,
+	TotalCompra DECIMAL not null,
+	Estado BIT not null DEFAULT 1
+)
+GO
+CREATE TABLE DETALLE_COMPRA (
+	IdDetalleCompra INT PRIMARY KEY not null IDENTITY (1,1),
+	IdCompra INT not null FOREIGN KEY REFERENCES COMPRA (IdCompra),
+	IdProducto INT not null FOREIGN KEY REFERENCES PRODUCTO (IdProducto),
+	Cantidad INT not null,
+	PrecioUnitario DECIMAL not null
+)
+GO
+CREATE TABLE PAGO (
+	IdPago INT PRIMARY KEY not null IDENTITY (1,1),
+	IdVenta INT not null FOREIGN KEY REFERENCES VENTA (IdVenta),
+	FechaPago DATETIME not null,
+	Monto DECIMAL not null,
+	MetodoPago VARCHAR (30),
+	Estado BIT not null DEFAULT 1
+)
+
+
+------------------------
+-- INSERCION DE DATOS --
+------------------------
 
 INSERT INTO USUARIO (NombreUsuario, Contrasena, Nombre, Apellido, Rol, Email, Telefono, Estado)
 VALUES
@@ -74,14 +129,11 @@ VALUES
 ('vendedor3', 'pasa123', 'Diego', 'Gómez', 1, 'diego.gomez@cocos.com', NULL, 1);
 
 
-
 insert into Categorias (NombreCategoria,DescripcionCategoria,Estado)
 Values 
 ('1 Plaza','La medida es 80 x 190',1),
 ('1 Plaza y Media','La medida es 100 x 190',1),
 ('2 Plazas','La medida es 140 x 190',1);
-
-
 
 insert into Marcas (NombreMarca,DescripcionMarca,Estado)
 Values 
@@ -92,16 +144,16 @@ Values
 
 insert into PRODUCTO (NombreProducto,DescripcionProducto,UrlImagen,PrecioProducto,IdMarca,IdCategoria,Stock)
 Values 
-('Canon Exclusive','29 cm de altura','aaa',20000,1,1,100);
+('Canon Exclusive','29 cm de altura','aaa',20000,1,1,100),
+('Piero Foam','23 cm de altura','aaa',2400000,3,1,4),
+('Gani Silver','25 cm de altura','aaa',304478,2,2,100);
 
-
-
+--------------------------
+-- CONSULTAS DE PRUEBAS --
+--------------------------
 
 select IdMarca, NombreMarca, DescripcionMarca, Estado from Marcas
 
 select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from Categorias
 
 select P.IdProducto, P.NombreProducto, P.DescripcionProducto, P.UrlImagen, P.PrecioProducto, M.NombreMarca, C.NombreCategoria, P.Stock FROM PRODUCTO P, Categorias C, Marcas M where C.IdCategoria = P.IdCategoria and M.IdMarca = P.IdMarca and P.Estado = 1
-
-
-select * from PRODUCTO
