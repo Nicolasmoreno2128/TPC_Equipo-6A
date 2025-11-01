@@ -21,7 +21,6 @@
             <div class="mb-3">
                 <asp:TextBox ID="txtEmail" CssClass="form-control mx-auto w-75" placeholder="Email del cliente" runat="server" />
             </div>
-
             <div class="d-flex justify-content-center gap-3 mt-3">
                 <asp:Button Text="Nuevo" ID="btnCrear" OnClick="btnNuevo_Click" CssClass="btn btn-dark" runat="server" />
                 <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />

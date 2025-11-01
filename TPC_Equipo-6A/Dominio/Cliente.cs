@@ -17,3 +17,4 @@ namespace dominio
         public bool Estado { get; set; }
     }
 }
+

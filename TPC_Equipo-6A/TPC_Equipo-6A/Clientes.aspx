@@ -8,7 +8,6 @@
                     <h2 class="text-center mb-4">Clientes</h2>
 
                     <asp:GridView ID="DgvCliente" runat="server" CssClass="table"></asp:GridView>
-
                     <div class="d-flex gap-3 mt-3">
                         <asp:Button ID="btnNuevo" runat="server" CssClass="btn btn-dark" Text="Nuevo"
                             CausesValidation="false" OnClick="btnNuevo_Click" />
