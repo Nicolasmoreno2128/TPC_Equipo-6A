@@ -8,6 +8,8 @@
                     <h2 class="text-center mb-4">Productos</h2>
 
 
+                    <asp:GridView ID="DgvProductos" runat="server" CssClass="table"></asp:GridView>
+
                     <div class="row justify-content-center mt-3">
                         <div class="col-4 col-md-3">
                             <asp:Button ID="btnAgregarProducto" runat="server" CssClass="btn btn-dark w-100" Text="Agregar" />

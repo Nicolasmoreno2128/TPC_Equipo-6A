@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ProductoNegocio negocio = new ProductoNegocio();
+            DgvProductos.DataSource = negocio.ListarProductos();
+            DgvProductos.DataBind();
         }
     }
 }
