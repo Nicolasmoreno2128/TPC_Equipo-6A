@@ -16,12 +16,9 @@
                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
                             CausesValidation="false" OnClick="btnVolver_Click" />
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 
 </asp:Content>

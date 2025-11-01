@@ -15,31 +15,22 @@ namespace TPC_Equipo_6A
     {
 
         /// <summary>
-        /// Control btnAgregarCliente.
+        /// Control DgvCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarCliente;
+        protected global::System.Web.UI.WebControls.GridView DgvCliente;
 
         /// <summary>
-        /// Control btnModificarCliente.
+        /// Control btnNuevo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarCliente;
-
-        /// <summary>
-        /// Control btnEliminarCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarCliente;
+        protected global::System.Web.UI.WebControls.Button btnNuevo;
 
         /// <summary>
         /// Control btnVolver.

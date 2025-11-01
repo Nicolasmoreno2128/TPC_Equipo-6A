@@ -11,8 +11,8 @@ namespace dominio
         public int IdCliente { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public int Cuit {  get; set; }
-        public int Telefono { get; set; }
+        public long Cuit {  get; set; }
+        public long Telefono { get; set; }
         public string Email { get; set; }
         public bool Estado { get; set; }
     }

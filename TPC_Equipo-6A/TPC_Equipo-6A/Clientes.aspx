@@ -7,20 +7,13 @@
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Clientes</h2>
 
+                    <asp:GridView ID="DgvCliente" runat="server" CssClass="table"></asp:GridView>
 
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-4 col-md-3">
-                            <asp:Button ID="btnAgregarCliente" runat="server" CssClass="btn btn-dark w-100" Text="Agregar" />
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <asp:Button ID="btnModificarCliente" runat="server" CssClass="btn btn-dark w-100" Text="Modificar" CausesValidation="false" />
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <asp:Button ID="btnEliminarCliente" runat="server" CssClass="btn btn-dark w-100" Text="Eliminar" CausesValidation="false" />
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" />
-                        </div>
+                    <div class="d-flex gap-3 mt-3">
+                        <asp:Button ID="btnNuevo" runat="server" CssClass="btn btn-dark" Text="Nuevo"
+                            CausesValidation="false" OnClick="btnNuevo_Click" />
+                        <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
+                            CausesValidation="false" OnClick="btnVolver_Click" />
                     </div>
                 </div>
             </div>
