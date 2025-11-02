@@ -33,7 +33,11 @@ namespace TPC_Equipo_6A
         {
             string id = DgvCategoria.SelectedDataKey.Value.ToString();
             Response.Redirect("ModificarCategoria.aspx?id=" + id);
+        }
 
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EliminarCategoria");
         }
     }
 }

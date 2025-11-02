@@ -11,17 +11,17 @@ namespace TPC_Equipo_6A
 {
 
 
-    public partial class Categorias
+    public partial class WebForm1
     {
 
         /// <summary>
-        /// Control btnNueva.
+        /// Control ddlCategorias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNueva;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategorias;
 
         /// <summary>
         /// Control btnEliminar.
@@ -33,21 +33,12 @@ namespace TPC_Equipo_6A
         protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
-        /// Control DgvCategoria.
+        /// Control btnCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DgvCategoria;
-
-        /// <summary>
-        /// Control btnVolver.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolver;
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
     }
 }

@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from CATEGORIAS");
+                datos.setearConsulta("select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from CATEGORIAS where Estado = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -61,6 +61,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        /*
         public void EliminarCategoria(int id)
         {
             try
@@ -73,6 +74,22 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }*/
+
+        public void eliminarCategoriaLogico(int id, bool activo = false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update CATEGORIAS set Estado = @activo Where IdCategoria = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
