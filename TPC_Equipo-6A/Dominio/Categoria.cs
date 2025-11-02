@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
+    [Serializable]
     public class Categoria
     {
         public int IdCategoria { get; set; }
