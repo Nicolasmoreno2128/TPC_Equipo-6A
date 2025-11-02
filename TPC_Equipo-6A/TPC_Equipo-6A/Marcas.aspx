@@ -8,8 +8,19 @@
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Marcas</h2>
 
-                    <asp:GridView ID="DgvMarca" runat="server" CssClass="table"></asp:GridView>
 
+                   <asp:GridView ID="DgvMarca" runat="server" CssClass="table table-striped"
+                            AutoGenerateColumns="False"
+                            DataKeyNames="IdMarca"
+                            OnSelectedIndexChanged="DgvMarca_SelectedIndexChanged">
+                            <Columns>
+                                <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
+                                <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
+                                <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
+                                <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
+                                <asp:CommandField HeaderText="Acciones" ShowSelectButton="True" SelectText=" Modificar 📝" />
+                            </Columns>
+                        </asp:GridView>
                     <div class="d-flex gap-3 mt-3">
                         <asp:Button ID="btnNueva" runat="server" CssClass="btn btn-dark" Text="Nueva"
                             CausesValidation="false" OnClick="btnNueva_Click" />

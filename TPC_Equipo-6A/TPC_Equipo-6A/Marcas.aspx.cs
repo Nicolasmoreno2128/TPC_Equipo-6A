@@ -15,10 +15,12 @@ namespace TPC_Equipo_6A
         public List<Marca> ListaMarca { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            MarcaNegocio negocio = new MarcaNegocio();
-            DgvMarca.DataSource = negocio.ListarMarcas();
-            DgvMarca.DataBind();
-
+            if (!IsPostBack)
+            {
+                MarcaNegocio negocio = new MarcaNegocio();
+                DgvMarca.DataSource = negocio.ListarMarcas();
+                DgvMarca.DataBind();
+            }
 
         }
 
@@ -29,6 +31,13 @@ namespace TPC_Equipo_6A
         protected void btnNueva_Click(object sender, EventArgs e)
         {
             Response.Redirect("AgregarMarca");
+        }
+
+        protected void DgvMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = DgvMarca.SelectedDataKey.Value.ToString();
+            Response.Redirect("ModificarMarca.aspx?id=" + id);
+
         }
     }
     

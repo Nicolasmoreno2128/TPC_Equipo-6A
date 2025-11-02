@@ -26,8 +26,8 @@ namespace TPC_Equipo_6A
 
             try
             {
-                marca.Nombre = txtNombre.Text;
-                marca.Descripcion = txtDescripcion.Text;
+                marca.NombreMarca = txtNombre.Text;
+                marca.DescripcionMarca = txtDescripcion.Text;
 
                 negocio.agregarMarca(marca);               
             }

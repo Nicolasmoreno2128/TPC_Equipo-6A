@@ -1,10 +1,10 @@
 ﻿using dominio;
+using negocio;  
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using negocio;  
 
 namespace negocio
 {
@@ -23,8 +23,8 @@ namespace negocio
                 {
                     Marca aux = new Marca();
                     aux.IdMarca = (int)datos.Lector["IdMarca"];
-                    aux.Nombre = (string)datos.Lector["NombreMarca"];
-                    aux.Descripcion = (string)datos.Lector["DescripcionMarca"];
+                    aux.NombreMarca = (string)datos.Lector["NombreMarca"];
+                    aux.DescripcionMarca = (string)datos.Lector["DescripcionMarca"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
@@ -48,8 +48,8 @@ namespace negocio
             try
             {
                 datos.setearConsulta("INSERT INTO MARCAS (NombreMarca, DescripcionMarca, Estado)values(@Nombre, @Descripcion, 1)");
-                datos.setearParametro("@Nombre", nueva.Nombre);
-                datos.setearParametro("@Descripcion", nueva.Descripcion);
+                datos.setearParametro("@Nombre", nueva.NombreMarca);
+                datos.setearParametro("@Descripcion", nueva.DescripcionMarca);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -84,10 +84,44 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update MARCAS set DescripcionMarca = @Descripcion where Id = @Id");
-                datos.setearParametro("@Descripcion", marca.Descripcion);
+                datos.setearConsulta("UPDATE Marcas SET NombreMarca = @nombre, DescripcionMarca = @descripcion WHERE IdMarca = @id");
+                datos.setearParametro("@nombre", marca.NombreMarca);
+                datos.setearParametro("@Descripcion", marca.DescripcionMarca);
                 datos.setearParametro("@Id", marca.IdMarca);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Marca ObtenerPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IdMarca, NombreMarca, DescripcionMarca  FROM Marcas WHERE IdMarca = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Marca marca = new Marca();
+                    marca.IdMarca = (int)datos.Lector["IdMarca"];
+                    marca.NombreMarca = (string)datos.Lector["NombreMarca"];
+                    marca.DescripcionMarca = datos.Lector["DescripcionMarca"] == DBNull.Value
+                              ? string.Empty
+                              : (string)datos.Lector["DescripcionMarca"];
+                    return marca;
+                }
+
+                return null; // si no encontró nada
             }
             catch (Exception ex)
             {
