@@ -23,9 +23,9 @@ namespace negocio
                     Cliente aux = new Cliente();
                     aux.IdCliente = (int)datos.Lector["IdCliente"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Cuit = (long)datos.Lector["Cuit"];
+                    aux.Cuit = (string)datos.Lector["Cuit"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Telefono = (long)datos.Lector["Telefono"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);

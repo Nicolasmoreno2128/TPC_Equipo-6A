@@ -126,7 +126,7 @@ VALUES
 ('vendedor1', 'pasa123', 'Ana', 'López', 1, 'ana.lopez@cocos.com', 59892223333, 1),
 ('vendedor2', 'pasa123', 'Marcos', 'Fernández', 1, 'marcos.fernandez@cocos.com', 59893334444, 1),
 ('admin2', 'pasa123', 'Lucía', 'Martínez', 0, 'lucia.martinez@cocos.com', 59894445555, 1),
-('vendedor3', 'pasa123', 'Diego', 'Gómez', 1, 'diego.gomez@cocos.com', NULL, 1);
+('vendedor3', 'pasa123', 'Diego', 'Gómez', 1, 'diego.gomez@cocos.com', 5491130323652, 1);
 
 
 insert into Categorias (NombreCategoria,DescripcionCategoria,Estado)

@@ -28,9 +28,9 @@ namespace TPC_Equipo_6A
             {
                 cliente.Nombre = txtNombre.Text;
                 cliente.Descripcion = txtDescripcion.Text;
-                cliente.Cuit = long.Parse(txtCuit.Text);
+                cliente.Cuit = txtCuit.Text;
                 cliente.Email = txtEmail.Text;
-                cliente.Telefono = long.Parse(txtTelefono.Text);
+                cliente.Telefono = txtTelefono.Text;
 
                 negocio.agregarCliente(cliente);
             }

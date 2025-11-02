@@ -24,8 +24,8 @@ namespace negocio
                     aux.IdProveedor = (int)datos.Lector["IdProveedor"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Cuit = (int)datos.Lector["Cuit"];                    
-                    aux.Telefono = (int)datos.Lector["Telefono"];
+                    aux.Cuit = (string)datos.Lector["Cuit"];                    
+                    aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);

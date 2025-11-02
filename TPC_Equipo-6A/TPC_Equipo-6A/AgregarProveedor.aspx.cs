@@ -28,9 +28,9 @@ namespace TPC_Equipo_6A
             {
                 proveedor.Nombre = txtNombre.Text;
                 proveedor.Descripcion = txtDescripcion.Text;
-                proveedor.Cuit = int.Parse(txtCuit.Text);
+                proveedor.Cuit = txtCuit.Text;
                 proveedor.Email = txtEmail.Text;
-                proveedor.Telefono = int.Parse(txtTelefono.Text);
+                proveedor.Telefono = txtTelefono.Text;
 
                 negocio.agregarProveedor(proveedor);
             }
