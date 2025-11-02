@@ -30,7 +30,7 @@ namespace negocio
                     aux.Marca = new Marca();
                     aux.Marca.NombreMarca = (string)datos.Lector["NombreMarca"];
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Nombre = (string)datos.Lector["NombreCategoria"];
+                    aux.Categoria.NombreCategoria = (string)datos.Lector["NombreCategoria"];
                     aux.Stock = (int)datos.Lector["Stock"];
 
 

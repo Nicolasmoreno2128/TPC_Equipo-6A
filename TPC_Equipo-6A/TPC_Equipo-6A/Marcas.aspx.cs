@@ -32,7 +32,6 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("AgregarMarca");
         }
-
         protected void DgvMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = DgvMarca.SelectedDataKey.Value.ToString();

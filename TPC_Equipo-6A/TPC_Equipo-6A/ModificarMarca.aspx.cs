@@ -31,9 +31,9 @@ namespace TPC_Equipo_6A
                     }
 
                     txtNombre.Text = marca.NombreMarca;
-                    txtDescripcion.Text = marca.DescripcionMarca;   // tu dominio la tiene
+                    txtDescripcion.Text = marca.DescripcionMarca;  
                 }
-                // si _id <= 0 => es alta, campos vacíos
+              
             }
         }
         protected void btnCancelarMarca_Click(object sender, EventArgs e)
@@ -44,28 +44,23 @@ namespace TPC_Equipo_6A
         {
             try
             {
-                // 1️⃣ Obtener el ID desde la URL
                 int id;
                 int.TryParse(Request.QueryString["id"], out id);
 
-                // 2️⃣ Crear la instancia de negocio
                 MarcaNegocio negocio = new MarcaNegocio();
 
-                // 3️⃣ Crear y llenar el objeto Marca con los datos del formulario
                 Marca marca = new Marca();
                 marca.IdMarca = id;
                 marca.NombreMarca = txtNombre.Text.Trim();
                 marca.DescripcionMarca = txtDescripcion.Text.Trim();
 
-                // 4️⃣ Ejecutar la actualización en base de datos
                 negocio.ModificarMarca(marca);
 
-                // 5️⃣ Redirigir al listado
                 Response.Redirect("Marcas.aspx");
             }
             catch (Exception ex)
             {
-                // 6️⃣ Mostrar cualquier error
+
                 lblMensaje.Text = "Error al modificar la marca: " + ex.Message;
             }
         }

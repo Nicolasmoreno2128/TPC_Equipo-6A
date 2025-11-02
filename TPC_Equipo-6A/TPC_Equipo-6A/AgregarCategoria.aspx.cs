@@ -26,8 +26,8 @@ namespace TPC_Equipo_6A
 
             try
             {
-                categoria.Nombre = txtNombre.Text;
-                categoria.Descripcion = txtDescripcion.Text;
+                categoria.NombreCategoria = txtNombre.Text;
+                categoria.DescripcionCategoria = txtDescripcion.Text;
 
                 negocio.agregarCategoria(categoria);
             }

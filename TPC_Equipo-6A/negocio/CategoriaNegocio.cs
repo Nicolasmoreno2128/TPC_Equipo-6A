@@ -23,8 +23,8 @@ namespace negocio
                 {
                     Categoria aux = new Categoria();
                     aux.IdCategoria = (int)datos.Lector["IdCategoria"];
-                    aux.Nombre = (string)datos.Lector["NombreCategoria"];
-                    aux.Descripcion = (string)datos.Lector["DescripcionCategoria"];
+                    aux.NombreCategoria = (string)datos.Lector["NombreCategoria"];
+                    aux.DescripcionCategoria = (string)datos.Lector["DescripcionCategoria"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
@@ -47,8 +47,8 @@ namespace negocio
             try
             {
                 datos.setearConsulta("INSERT INTO CATEGORIAS (NombreCategoria, DescripcionCategoria, Estado)values(@Nombre, @Descripcion, 1)");
-                datos.setearParametro("@Nombre", nueva.Nombre);
-                datos.setearParametro("@Descripcion", nueva.Descripcion);
+                datos.setearParametro("@Nombre", nueva.NombreCategoria);
+                datos.setearParametro("@Descripcion", nueva.DescripcionCategoria);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -82,10 +82,43 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update CATEGORIAS set DescripcionCategoria = @Descripcion where Id = @Id");
-                datos.setearParametro("@Descripcion", categoria.Descripcion);
+                datos.setearConsulta("update CATEGORIAS set NombreCategoria = @nombre, DescripcionCategoria = @Descripcion where IdCategoria = @Id");
+                datos.setearParametro("@nombre", categoria.NombreCategoria);
+                datos.setearParametro("@Descripcion", categoria.DescripcionCategoria);
                 datos.setearParametro("@Id", categoria.IdCategoria);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Categoria ObtenerPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IdCategoria, NombreCategoria, DescripcionCategoria  FROM Categorias WHERE IdCategoria = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Categoria categoria = new Categoria();
+                    categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    categoria.NombreCategoria = (string)datos.Lector["NombreCategoria"];
+                    categoria.DescripcionCategoria = datos.Lector["DescripcionCategoria"] == DBNull.Value
+                              ? string.Empty
+                              : (string)datos.Lector["DescripcionCategoria"];
+                    return categoria;
+                }
+
+                return null;
             }
             catch (Exception ex)
             {

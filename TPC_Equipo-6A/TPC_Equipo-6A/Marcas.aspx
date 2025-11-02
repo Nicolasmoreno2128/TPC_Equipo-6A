@@ -18,7 +18,7 @@
                                 <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
                                 <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
                                 <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
-                                <asp:CommandField HeaderText="Acciones" ShowSelectButton="True" SelectText=" Modificar 📝" />
+                                <asp:CommandField HeaderText="Acciones" ShowSelectButton="True" SelectText=" Modificar 📝"  />
                             </Columns>
                         </asp:GridView>
                     <div class="d-flex gap-3 mt-3">

@@ -121,7 +121,7 @@ namespace negocio
                     return marca;
                 }
 
-                return null; // si no encontró nada
+                return null;
             }
             catch (Exception ex)
             {
