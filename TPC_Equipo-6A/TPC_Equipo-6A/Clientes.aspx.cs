@@ -26,5 +26,11 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("AgregarCliente");
         }
+
+        protected void DgvCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = DgvCliente.SelectedDataKey.Value.ToString();
+            Response.Redirect("ModificarCliente.aspx?id=" + id);
+    }
     }
 }

@@ -7,10 +7,25 @@
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Clientes</h2>
 
-                    <asp:GridView ID="DgvCliente" runat="server" CssClass="table"></asp:GridView>
-                    <div class="d-flex gap-3 mt-3">
+                    <div class="d-flex justify-content gap-2">
                         <asp:Button ID="btnNuevo" runat="server" CssClass="btn btn-dark" Text="Nuevo"
                             CausesValidation="false" OnClick="btnNuevo_Click" />
+                    </div>
+
+                    <asp:GridView ID="DgvCliente" runat="server" CssClass="table table-striped"
+                        AutoGenerateColumns="False"
+                        DataKeyNames="IdCliente"
+                        OnSelectedIndexChanged="DgvCliente_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                            <asp:BoundField DataField="Cuit" HeaderText="CUIT" />
+                            <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:CommandField HeaderText="Acciones" ShowSelectButton="True" SelectText=" Modificar 📝" />
+                        </Columns>
+                    </asp:GridView>
+                    <div class="d-flex gap-3 mt-3">
                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
                             CausesValidation="false" OnClick="btnVolver_Click" />
                     </div>
