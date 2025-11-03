@@ -29,15 +29,28 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("AgregarCategoria");
         }
-        protected void DgvCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = DgvCategoria.SelectedDataKey.Value.ToString();
-            Response.Redirect("ModificarCategoria.aspx?id=" + id);
-        }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
+
+        protected void DgvCategoria_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Response.Redirect("EliminarCategoria");
+            if (e.CommandName == "Eliminar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value);
+
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.eliminarCategoriaLogico(idCategoria);
+
+                // Recargar la lista
+                DgvCategoria.DataSource = negocio.ListarCategoria();
+                DgvCategoria.DataBind();
+            }
+            if (e.CommandName == "Modificar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value.ToString());
+                Response.Redirect("ModificarCategoria.aspx?id=" + idCategoria);
+            }
         }
     }
 }

@@ -27,12 +27,6 @@ namespace TPC_Equipo_6A
             Response.Redirect("AgregarCliente");
         }
 
-        protected void DgvCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = DgvCliente.SelectedDataKey.Value.ToString();
-            Response.Redirect("ModificarCliente.aspx?id=" + id);
-    }
-
         protected void DgvCliente_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Eliminar")
@@ -46,6 +40,12 @@ namespace TPC_Equipo_6A
                 // Recargar la lista
                 DgvCliente.DataSource = negocio.ListarClientes();
                 DgvCliente.DataBind();
+            }
+            if (e.CommandName == "Modificar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idCliente = Convert.ToInt32(DgvCliente.DataKeys[indice].Value.ToString());
+                Response.Redirect("ModificarCliente.aspx?id=" + idCliente);
             }
         }
     }

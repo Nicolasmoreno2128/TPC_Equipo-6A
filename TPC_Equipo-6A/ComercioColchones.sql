@@ -148,6 +148,12 @@ Values
 ('Piero Foam','23 cm de altura','aaa',2400000,3,1,4),
 ('Gani Silver','25 cm de altura','aaa',304478,2,2,100);
 
+insert into CLIENTE (Nombre,Cuit,Descripcion,Telefono,Email)
+Values 
+('Julian Parodi','22222222','aasdasdasaa','1111111111','asdasd@asdasd'),
+('Guido Jaulin','4567867','aasdasdasaa','678567547','asdasd@asdasd'),
+('Nicolas Moreno','757527856','aasdasdasaa','6785675788','asdasd@asdasd');
+
 --------------------------
 -- CONSULTAS DE PRUEBAS --
 --------------------------
@@ -157,3 +163,6 @@ select IdMarca, NombreMarca, DescripcionMarca, Estado from Marcas
 select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from Categorias
 
 select P.IdProducto, P.NombreProducto, P.DescripcionProducto, P.UrlImagen, P.PrecioProducto, M.NombreMarca, C.NombreCategoria, P.Stock FROM PRODUCTO P, Categorias C, Marcas M where C.IdCategoria = P.IdCategoria and M.IdMarca = P.IdMarca and P.Estado = 1
+
+select * from CLIENTE
+

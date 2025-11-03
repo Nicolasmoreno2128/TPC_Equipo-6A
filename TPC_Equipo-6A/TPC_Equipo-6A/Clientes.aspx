@@ -14,8 +14,7 @@
 
                     <asp:GridView ID="DgvCliente" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
-                        DataKeyNames="IdCliente"
-                        OnSelectedIndexChanged="DgvCliente_SelectedIndexChanged" 
+                        DataKeyNames="IdCliente" 
                         OnRowCommand="DgvCliente_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -23,7 +22,7 @@
                             <asp:BoundField DataField="Cuit" HeaderText="CUIT" />
                             <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
-                            <asp:CommandField HeaderText="Modificar" ShowSelectButton="True" SelectText="📝" />
+                            <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
                             <asp:ButtonField Text="❌" CommandName="Eliminar" ButtonType="Button" />
                         </Columns>
                     </asp:GridView>

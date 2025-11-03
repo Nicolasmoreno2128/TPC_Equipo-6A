@@ -10,21 +10,19 @@
                     <div class="d-flex justify-content gap-2">
                         <asp:Button ID="btnNueva" runat="server" CssClass="btn btn-dark" Text="Nueva"
                             CausesValidation="false" OnClick="btnNueva_Click" />
-
-                        <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-dark" Text="Eliminar"
-                            CausesValidation="false" OnClick="btnEliminar_Click" />
                     </div>
 
                     <asp:GridView ID="DgvCategoria" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
-                        DataKeyNames="IdCategoria"
-                        OnSelectedIndexChanged="DgvCategoria_SelectedIndexChanged">
+                        DataKeyNames="IdCategoria" 
+                        OnRowCommand="DgvCategoria_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="IdCategoria" HeaderText="ID" ReadOnly="True" />
                             <asp:BoundField DataField="NombreCategoria" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionCategoria" HeaderText="Descripcion" />
                             <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
-                            <asp:CommandField HeaderText="Acciones" ShowSelectButton="True" SelectText=" Modificar 📝" />
+                            <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
+                            <asp:ButtonField Text="❌" CommandName="Eliminar" ButtonType="Button" />
                         </Columns>
                     </asp:GridView>
 
