@@ -130,7 +130,39 @@ namespace negocio
             }
         }
 
+        /*
+        public void EliminarCliente (int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from CLIENTE where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+        }
+        */
+
+        public void eliminarClienteLogico(int id, bool activo = false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update CLIENTE set Estado = @activo Where IdCliente = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
