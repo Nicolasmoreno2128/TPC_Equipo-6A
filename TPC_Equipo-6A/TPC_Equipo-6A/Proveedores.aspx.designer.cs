@@ -15,15 +15,6 @@ namespace TPC_Equipo_6A
     {
 
         /// <summary>
-        /// Control DgvProveedor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DgvProveedor;
-
-        /// <summary>
         /// Control btnNuevo.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace TPC_Equipo_6A
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNuevo;
+
+        /// <summary>
+        /// Control DgvProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DgvProveedores;
 
         /// <summary>
         /// Control btnVolver.

@@ -10,7 +10,7 @@ namespace negocio
     public class ProveedorNegocio
     {
         public List<Proveedor> ListarProveedores()
-        { 
+        {
             List<Proveedor> lista = new List<Proveedor>();
             AccesoDatos datos = new AccesoDatos();
 
@@ -24,7 +24,7 @@ namespace negocio
                     aux.IdProveedor = (int)datos.Lector["IdProveedor"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Cuit = (string)datos.Lector["Cuit"];                    
+                    aux.Cuit = (string)datos.Lector["Cuit"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Estado = (bool)datos.Lector["Estado"];
@@ -52,7 +52,7 @@ namespace negocio
                 datos.setearConsulta("INSERT INTO PROVEEDOR (Nombre, Descripcion, Cuit, Telefono, Email, Estado)values(@Nombre, @Descripcion, @Cuit, @Telefono, @Email, 1)");
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
-                datos.setearParametro("@Cuit", nuevo.Cuit);                
+                datos.setearParametro("@Cuit", nuevo.Cuit);
                 datos.setearParametro("@Telefono", nuevo.Telefono);
                 datos.setearParametro("@Email", nuevo.Email);
                 datos.ejecutarAccion();
@@ -67,5 +67,42 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        /*
+        public void EliminarProveedor(int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from PROVEEDOR where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        */
+
+
+        public void eliminarProveedorLogico(int id, bool activo = false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update PROVEEDOR set Estado = @activo Where IdProveedor = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }
