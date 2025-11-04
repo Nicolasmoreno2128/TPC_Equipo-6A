@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select IdProveedor, Nombre, Descripcion, Cuit, Telefono, Email, Estado from Proveedor");
+                datos.setearConsulta("select IdProveedor, Nombre, Descripcion, Cuit, Telefono, Email, Estado from Proveedor Where Estado = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

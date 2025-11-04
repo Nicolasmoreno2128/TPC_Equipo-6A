@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select IdMarca, NombreMarca, DescripcionMarca, Estado from MARCAS");
+                datos.setearConsulta("select IdMarca, NombreMarca, DescripcionMarca, Estado from MARCAS where Estado = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
