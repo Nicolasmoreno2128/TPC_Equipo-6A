@@ -42,6 +42,14 @@
                 MARCAS
             </asp:LinkButton>
         </div>
+        <div class="col-md-3 col-sm-6">
+            <asp:LinkButton ID="btnProd" runat="server"
+                CssClass="menu-btn"
+                PostBackUrl="Productos.aspx">
+                <i class="bi bi-bookmark-star fs-1 mb-2 d-block"></i>
+                PRODUCTOS
+            </asp:LinkButton>
+        </div>
 
         <div class="col-md-3 col-sm-6">
             <asp:LinkButton ID="btnCategorias" runat="server"
