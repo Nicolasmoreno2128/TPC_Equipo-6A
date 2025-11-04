@@ -8,10 +8,6 @@
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Clientes</h2>
 
-                    <div class="d-flex justify-content gap-2">
-                        <asp:Button ID="btnNuevo" runat="server" CssClass="btn btn-dark" Text="Nuevo"
-                            CausesValidation="false" OnClick="btnNuevo_Click" />
-                    </div>
 
                     <asp:GridView ID="DgvProveedores" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
@@ -39,6 +35,8 @@
                         </Columns>
                     </asp:GridView>
                     <div class="d-flex gap-3 mt-3">
+                        <asp:Button ID="btnNuevo" runat="server" CssClass="btn btn-dark" Text="Nuevo"
+                            CausesValidation="false" OnClick="btnNuevo_Click" />
                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
                             CausesValidation="false" OnClick="btnVolver_Click" />
                     </div>

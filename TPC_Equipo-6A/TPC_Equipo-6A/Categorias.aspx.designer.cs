@@ -15,15 +15,6 @@ namespace TPC_Equipo_6A
     {
 
         /// <summary>
-        /// Control btnNueva.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNueva;
-
-        /// <summary>
         /// Control DgvCategoria.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace TPC_Equipo_6A
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView DgvCategoria;
+
+        /// <summary>
+        /// Control btnNueva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNueva;
 
         /// <summary>
         /// Control btnVolver.
