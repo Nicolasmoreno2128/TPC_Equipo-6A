@@ -63,7 +63,7 @@ namespace negocio
             }
         }
 
-        public void EliminarMarca(int id)
+        /*public void EliminarMarca(int id)
         {
             try
             {
@@ -75,6 +75,23 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+        */
+
+        public void eliminarMarcaLogico(int id, bool activo = false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update MARCAS set Estado = @activo Where IdMarca = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

@@ -32,11 +32,26 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("AgregarMarca");
         }
-        protected void DgvMarca_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = DgvMarca.SelectedDataKey.Value.ToString();
-            Response.Redirect("ModificarMarca.aspx?id=" + id);
 
+        protected void DgvMarca_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value);
+
+                MarcaNegocio negocio = new MarcaNegocio();
+                negocio.eliminarMarcaLogico(idMarca);
+
+                DgvMarca.DataSource = negocio.ListarMarcas();
+                DgvMarca.DataBind();
+            }
+            if (e.CommandName == "Modificar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value.ToString());
+                Response.Redirect("ModificarMarca.aspx?id=" + idMarca);
+            }
         }
     }
     

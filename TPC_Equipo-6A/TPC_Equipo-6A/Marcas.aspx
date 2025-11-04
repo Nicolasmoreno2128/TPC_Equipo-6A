@@ -11,14 +11,16 @@
 
                    <asp:GridView ID="DgvMarca" runat="server" CssClass="table table-striped"
                             AutoGenerateColumns="False"
-                            DataKeyNames="IdMarca"
-                            OnSelectedIndexChanged="DgvMarca_SelectedIndexChanged">
+                            DataKeyNames="IdMarca" 
+                            OnRowCommand="DgvMarca_RowCommand"
+                            >
                             <Columns>
                                 <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
                                 <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
                                 <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
                                 <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
-                                <asp:CommandField HeaderText="Acciones" ShowSelectButton="True" SelectText=" Modificar 📝"  />
+                                <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
+                                <asp:ButtonField Text="❌" CommandName="Eliminar" ButtonType="Button" />
                             </Columns>
                         </asp:GridView>
                     <div class="d-flex gap-3 mt-3">
