@@ -164,5 +164,5 @@ select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from Categoria
 
 select P.IdProducto, P.NombreProducto, P.DescripcionProducto, P.UrlImagen, P.PrecioProducto, M.NombreMarca, C.NombreCategoria, P.Stock FROM PRODUCTO P, Categorias C, Marcas M where C.IdCategoria = P.IdCategoria and M.IdMarca = P.IdMarca and P.Estado = 1
 
-select * from CLIENTE
+select * from CATEGORIAS
 
