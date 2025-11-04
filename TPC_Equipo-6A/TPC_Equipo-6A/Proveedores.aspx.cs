@@ -29,25 +29,30 @@ namespace TPC_Equipo_6A
 
         protected void DgvProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
             {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[indice].Value);
+                if (e.CommandName == "Eliminar")
+                {
+                    int indice = Convert.ToInt32(e.CommandArgument);
+                    int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[indice].Value);
 
 
-                ProveedorNegocio negocio = new ProveedorNegocio();
-                negocio.eliminarProveedorLogico(idProveedor);
+                    ProveedorNegocio negocio = new ProveedorNegocio();
+                    negocio.eliminarProveedorLogico(idProveedor);
 
-                
-                DgvProveedores.DataSource = negocio.ListarProveedores();
-                DgvProveedores.DataBind();
-            }
-            if (e.CommandName == "Modificar")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[indice].Value.ToString());
-                Response.Redirect("ModificarProveedor.aspx?id=" + idProveedor);
+
+                    DgvProveedores.DataSource = negocio.ListarProveedores();
+                    DgvProveedores.DataBind();
+                }
+                if (e.CommandName == "Modificar")
+                {
+                    int indice = Convert.ToInt32(e.CommandArgument);
+                    int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[indice].Value.ToString());
+                    Response.Redirect("ModificarProveedor.aspx?id=" + idProveedor);
+                }
             }
         }
+        
+
+
     }
 }

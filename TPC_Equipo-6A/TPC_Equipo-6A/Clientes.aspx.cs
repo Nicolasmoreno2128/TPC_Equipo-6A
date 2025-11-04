@@ -34,13 +34,15 @@ namespace TPC_Equipo_6A
                 int indice = Convert.ToInt32(e.CommandArgument);
                 int idCliente = Convert.ToInt32(DgvCliente.DataKeys[indice].Value);
 
+
                 ClienteNegocio negocio = new ClienteNegocio();
                 negocio.eliminarClienteLogico(idCliente);
 
-                // Recargar la lista
+
                 DgvCliente.DataSource = negocio.ListarClientes();
                 DgvCliente.DataBind();
             }
+
             if (e.CommandName == "Modificar")
             {
                 int indice = Convert.ToInt32(e.CommandArgument);

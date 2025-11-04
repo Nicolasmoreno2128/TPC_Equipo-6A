@@ -14,7 +14,7 @@
 
                     <asp:GridView ID="DgvCategoria" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
-                        DataKeyNames="IdCategoria" 
+                        DataKeyNames="IdCategoria"
                         OnRowCommand="DgvCategoria_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="IdCategoria" HeaderText="ID" ReadOnly="True" />
@@ -22,7 +22,17 @@
                             <asp:BoundField DataField="DescripcionCategoria" HeaderText="Descripcion" />
                             <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
                             <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
-                            <asp:ButtonField Text="❌" CommandName="Eliminar" ButtonType="Button" />
+                            <asp:TemplateField HeaderText="Acciones">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkEliminar" runat="server"
+                                        Text="❌"
+                                        CommandName="Eliminar"
+                                        CommandArgument='<%# Container.DataItemIndex %>'
+                                        CssClass="btn btn-danger btn-sm"
+                                        OnClientClick="return confirm('¿Seguro que deseas eliminar esta categoria?');">
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
 

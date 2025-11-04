@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-        <div class="container mt-5">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card shadow p-4">
@@ -15,8 +15,9 @@
 
                     <asp:GridView ID="DgvProveedores" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
-                        DataKeyNames="IdProveedor" 
-                        OnRowCommand="DgvProveedores_RowCommand">
+                        DataKeyNames="IdProveedor"
+                        OnRowCommand="DgvProveedores_RowCommand"
+                        >
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
@@ -24,7 +25,17 @@
                             <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
                             <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
-                            <asp:ButtonField Text="❌" CommandName="Eliminar" ButtonType="Button" />
+                            <asp:TemplateField HeaderText="Acciones">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkEliminar" runat="server"
+                                        Text="❌"
+                                        CommandName="Eliminar"
+                                        CommandArgument='<%# Container.DataItemIndex %>'
+                                        CssClass="btn btn-danger btn-sm"
+                                        OnClientClick="return confirm('¿Seguro que deseas eliminar este proveedor?');">
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                     <div class="d-flex gap-3 mt-3">

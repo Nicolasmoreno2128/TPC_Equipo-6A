@@ -9,20 +9,29 @@
                     <h2 class="text-center mb-4">Marcas</h2>
 
 
-                   <asp:GridView ID="DgvMarca" runat="server" CssClass="table table-striped"
-                            AutoGenerateColumns="False"
-                            DataKeyNames="IdMarca" 
-                            OnRowCommand="DgvMarca_RowCommand"
-                            >
-                            <Columns>
-                                <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
-                                <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
-                                <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
-                                <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
-                                <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
-                                <asp:ButtonField Text="❌" CommandName="Eliminar" ButtonType="Button" />
-                            </Columns>
-                        </asp:GridView>
+                    <asp:GridView ID="DgvMarca" runat="server" CssClass="table table-striped"
+                        AutoGenerateColumns="False"
+                        DataKeyNames="IdMarca"
+                        OnRowCommand="DgvMarca_RowCommand">
+                        <Columns>
+                            <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
+                            <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
+                            <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
+                            <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
+                            <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
+                            <asp:TemplateField HeaderText="Acciones">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkEliminar" runat="server"
+                                        Text="❌"
+                                        CommandName="Eliminar"
+                                        CommandArgument='<%# Container.DataItemIndex %>'
+                                        CssClass="btn btn-danger btn-sm"
+                                        OnClientClick="return confirm('¿Seguro que deseas eliminar esta marca?');">
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                     <div class="d-flex gap-3 mt-3">
                         <asp:Button ID="btnNueva" runat="server" CssClass="btn btn-dark" Text="Nueva"
                             CausesValidation="false" OnClick="btnNueva_Click" />
