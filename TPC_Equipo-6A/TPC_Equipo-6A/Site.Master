@@ -19,9 +19,9 @@
 <body>
    <header class="bg-dark text-white py-2 border-bottom border-secondary">
     <div class="container d-flex justify-content-center align-items-center gap-4 text-uppercase fw-medium">
-        <div>Promociones</div>
-        <div>Envíos a todo el país</div>
-        <div>Conocenos</div>
+        <div>Acá indicamos usuario conectado</div>
+        <div>Acá indicamos el ROL del usuario</div>
+        <div>Cerrar Sesión</div>
     </div>
 </header>
     <form runat="server">
@@ -54,15 +54,6 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Productos">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Clientes">Clientes</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Proveedores">Proveedores</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Ventas">Ventas</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Compras">Compras</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Marcas">Marcas</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Categorias">Categorias</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Consultas">Consultas</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Usuarios">Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contacto">Contacto</a></li>
                     </ul>
                 </div>
