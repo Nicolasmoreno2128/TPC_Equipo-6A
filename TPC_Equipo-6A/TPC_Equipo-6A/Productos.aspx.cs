@@ -17,13 +17,23 @@ namespace TPC_Equipo_6A
             DgvProductos.DataBind();
         }
 
+        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarProducto.aspx");
+        }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+        
+
         protected void DgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idProd = (int)DgvProductos.SelectedDataKey.Values["IdProducto"];
             int idMarca = (int)DgvProductos.SelectedDataKey.Values["IdMarcaFk"];
             int idCat = (int)DgvProductos.SelectedDataKey.Values["IdCategoriaFk"];
 
-            Response.Redirect($"default.aspx?IdProducto={idProd}&IdMarcaFk={idMarca}&IdCategoriaFk={idCat}");
+            Response.Redirect($"ModificarProducto.aspx?IdProducto={idProd}&IdMarcaFk={idMarca}&IdCategoriaFk={idCat}");
         }
     }
 }

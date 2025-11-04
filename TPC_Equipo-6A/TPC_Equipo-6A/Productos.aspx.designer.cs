@@ -33,15 +33,6 @@ namespace TPC_Equipo_6A
         protected global::System.Web.UI.WebControls.Button btnAgregarProducto;
 
         /// <summary>
-        /// btnModificarProducto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarProducto;
-
-        /// <summary>
         /// btnEliminarProducto control.
         /// </summary>
         /// <remarks>

@@ -102,6 +102,7 @@
     <Content Include="AgregarCategoria.aspx" />
     <Content Include="AgregarCliente.aspx" />
     <Content Include="AgregarMarca.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="AgregarProveedor.aspx" />
     <Content Include="Categorias.aspx" />
     <Content Include="Clientes.aspx" />
@@ -132,6 +133,7 @@
     <Content Include="Marcas.aspx" />
     <Content Include="ModificarCategoria.aspx" />
     <Content Include="ModificarMarca.aspx" />
+    <Content Include="ModificarProducto.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="Registro.aspx" />
@@ -221,6 +223,13 @@
     <Compile Include="AgregarMarca.aspx.designer.cs">
       <DependentUpon>AgregarMarca.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarProveedor.aspx.cs">
       <DependentUpon>AgregarProveedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -302,6 +311,13 @@
     </Compile>
     <Compile Include="ModificarMarca.aspx.designer.cs">
       <DependentUpon>ModificarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarProducto.aspx.cs">
+      <DependentUpon>ModificarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarProducto.aspx.designer.cs">
+      <DependentUpon>ModificarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
