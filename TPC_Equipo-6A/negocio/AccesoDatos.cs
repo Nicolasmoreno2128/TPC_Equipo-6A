@@ -16,13 +16,26 @@ namespace negocio
         public SqlDataReader Lector
         {
             get { return lector; }
-        }
+        }       
         public AccesoDatos()
         {
-            //conexion = new SqlConnection("server=localhost\\SQLEXPRESS; database=ComercioColchones; integrated security=true");
-            conexion = new SqlConnection("server=.\\localhost,1433; database=ComercioColchones; integrated security=false; user=sa; password= Passw0rd2025!");
+            try
+            {
+                // Primer intento: conexión local
+                conexion = new SqlConnection("server=localhost\\SQLEXPRESS; database=ComercioColchones; integrated security=true");
+                conexion.Open();
+            }
+            catch
+            {
+                // Si falla, intenta con la conexión remota
+                conexion = new SqlConnection("server=.\\localhost,1433; database=ComercioColchones; integrated security=false; user=sa; password=Passw0rd2025!");
+                conexion.Open();
+            }
+            // Cierra enseguida si se abrió solo para probar
+            conexion.Close();
             comando = new SqlCommand();
         }
+
         public void setearConsulta(string consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;
