@@ -154,6 +154,15 @@ Values
 ('Guido Jaulin','4567867','aasdasdasaa','678567547','asdasd@asdasd'),
 ('Nicolas Moreno','757527856','aasdasdasaa','6785675788','asdasd@asdasd');
 
+
+insert into PROVEEDOR(Nombre,Cuit,Descripcion,Telefono,Email)
+Values 
+('CANNON','22222222','aasdasdasaa','1111111111','asdasd@asdasd'),
+('PIERO','4567867','aasdasdasaa','678567547','asdasd@asdasd'),
+('SUAVEGOM','4567867','aasdasdasaa','678567547','asdasd@asdasd'),
+('DESEO','4567867','aasdasdasaa','678567547','asdasd@asdasd'),
+('SUAVESTAR','757527856','aasdasdasaa','6785675788','asdasd@asdasd');
+
 --------------------------
 -- CONSULTAS DE PRUEBAS --
 --------------------------
@@ -164,5 +173,5 @@ select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from Categoria
 
 select P.IdProducto, P.NombreProducto, P.DescripcionProducto, P.UrlImagen, P.PrecioProducto, M.NombreMarca, C.NombreCategoria, P.Stock FROM PRODUCTO P, Categorias C, Marcas M where C.IdCategoria = P.IdCategoria and M.IdMarca = P.IdMarca and P.Estado = 1
 
-select * from CATEGORIAS
+select * from CLIENTE
 

@@ -33,18 +33,6 @@ namespace TPC_Equipo_6A
 
         protected void DgvCategoria_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value);
-
-                CategoriaNegocio negocio = new CategoriaNegocio();
-                negocio.eliminarCategoriaLogico(idCategoria);
-
-                // Recargar la lista
-                DgvCategoria.DataSource = negocio.ListarCategoria();
-                DgvCategoria.DataBind();
-            }
             if (e.CommandName == "Modificar")
             {
                 int indice = Convert.ToInt32(e.CommandArgument);

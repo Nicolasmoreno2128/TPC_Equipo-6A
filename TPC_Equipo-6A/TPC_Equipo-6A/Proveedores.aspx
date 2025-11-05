@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card shadow p-4">
-                    <h2 class="text-center mb-4">Clientes</h2>
+                    <h2 class="text-center mb-4">Proveedores</h2>
 
 
                     <asp:GridView ID="DgvProveedores" runat="server" CssClass="table table-striped"

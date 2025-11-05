@@ -68,6 +68,23 @@ namespace TPC_Equipo_6A
                 lblMensajeCategoria.Text = "Error al modificar la Categoria: " + ex.Message;
             }
         }
+
+        protected void btnEliminarCategoria_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id;
+                int.TryParse(Request.QueryString["id"], out id);
+
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.eliminarCategoriaLogico(id);
+                Response.Redirect("Categorias.aspx");
+            }
+            catch (Exception ex)
+            {
+                lblMensajeCategoria.Text = "Error al eliminar la Categoria: " + ex.Message;
+            }
+        }
     }
 }
 
