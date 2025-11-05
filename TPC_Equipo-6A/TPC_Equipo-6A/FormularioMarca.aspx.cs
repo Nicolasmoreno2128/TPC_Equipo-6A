@@ -65,5 +65,24 @@ namespace TPC_Equipo_6A
             }
         }
 
+        protected void btnEliminarMarca_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id;
+                int.TryParse(Request.QueryString["id"], out id);
+
+                MarcaNegocio negocio = new MarcaNegocio();
+
+                Marca marca = new Marca();
+                negocio.eliminarMarcaLogico(id);
+                Response.Redirect("Marcas.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                lblMensaje.Text = "Error al eliminar la marca: " + ex.Message;
+            }
+        }
     }
 }

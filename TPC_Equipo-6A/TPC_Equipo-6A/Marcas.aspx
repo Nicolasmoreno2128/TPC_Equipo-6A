@@ -18,18 +18,7 @@
                             <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
                             <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
-                            <asp:ButtonField Text="📝" CommandName="Modificar" ButtonType="Button" />
-                            <asp:TemplateField HeaderText="Acciones">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEliminar" runat="server"
-                                        Text="❌"
-                                        CommandName="Eliminar"
-                                        CommandArgument='<%# Container.DataItemIndex %>'
-                                        CssClass="btn btn-danger btn-sm"
-                                        OnClientClick="return confirm('¿Seguro que deseas eliminar esta marca?');">
-                                    </asp:LinkButton>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            <asp:ButtonField Text="✏️" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
                         </Columns>
                     </asp:GridView>
                     <div class="d-flex gap-3 mt-3">

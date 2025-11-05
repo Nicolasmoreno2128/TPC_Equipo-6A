@@ -29,25 +29,12 @@ namespace TPC_Equipo_6A
 
         protected void DgvCliente_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idCliente = Convert.ToInt32(DgvCliente.DataKeys[indice].Value);
 
-
-                ClienteNegocio negocio = new ClienteNegocio();
-                negocio.eliminarClienteLogico(idCliente);
-
-
-                DgvCliente.DataSource = negocio.ListarClientes();
-                DgvCliente.DataBind();
-            }
-
-            if (e.CommandName == "Modificar")
+            if (e.CommandName == "Detalles")
             {
                 int indice = Convert.ToInt32(e.CommandArgument);
                 int idCliente = Convert.ToInt32(DgvCliente.DataKeys[indice].Value.ToString());
-                Response.Redirect("ModificarCliente.aspx?id=" + idCliente);
+                Response.Redirect("FormularioCliente.aspx?id=" + idCliente);
             }
         }
     }

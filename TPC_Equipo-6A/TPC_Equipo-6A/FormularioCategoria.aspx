@@ -4,7 +4,7 @@
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <div class="col-md-4 text-center">
-            <h2 class="mb-4">Modificar Categoria</h2>
+            <h2 class="mb-4">Detalles Categoria</h2>
 
             <div class="mb-3">
                 <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre de la Categoria" runat="server" />

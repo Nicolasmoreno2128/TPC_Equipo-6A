@@ -35,22 +35,11 @@ namespace TPC_Equipo_6A
 
         protected void DgvMarca_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value);
-
-                MarcaNegocio negocio = new MarcaNegocio();
-                negocio.eliminarMarcaLogico(idMarca);
-
-                DgvMarca.DataSource = negocio.ListarMarcas();
-                DgvMarca.DataBind();
-            }
-            if (e.CommandName == "Modificar")
+            if (e.CommandName == "Detalles")
             {
                 int indice = Convert.ToInt32(e.CommandArgument);
                 int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value.ToString());
-                Response.Redirect("ModificarMarca.aspx?id=" + idMarca);
+                Response.Redirect("FormularioMarca.aspx?id=" + idMarca);
             }
         }
     }

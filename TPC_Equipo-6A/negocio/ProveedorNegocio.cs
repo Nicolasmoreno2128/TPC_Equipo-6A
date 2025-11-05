@@ -104,5 +104,68 @@ namespace negocio
         }
 
 
+        public void ModificarProveedor(Proveedor proveedor)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update PROVEEDOR set Nombre = @Nombre,Descripcion = @Descripcion, Cuit = @Cuit, Telefono = @Telefono, Email = @Email where IdProveedor = @Id");
+                datos.setearParametro("@Nombre", proveedor.Nombre);
+                datos.setearParametro("@Descripcion", proveedor.Descripcion);
+                datos.setearParametro("@Cuit", proveedor.Cuit);
+                datos.setearParametro("@Telefono", proveedor.Telefono);
+                datos.setearParametro("@Email", proveedor.Email);
+                datos.setearParametro("@Id", proveedor.IdProveedor);
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Proveedor ObtenerPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IdProveedor, Nombre, Descripcion, Cuit, Telefono, Email  FROM PROVEEDOR WHERE IdProveedor = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Proveedor proveedor = new Proveedor();
+                    proveedor.IdProveedor = (int)datos.Lector["IdProveedor"];
+                    proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    proveedor.Descripcion = (string)datos.Lector["Descripcion"];
+                    proveedor.Cuit = (string)datos.Lector["Cuit"];
+                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+                    proveedor.Email = (string)datos.Lector["Email"];
+
+
+                    return proveedor;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }

@@ -75,5 +75,27 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("Clientes");
         }
+
+        protected void btnELiminarCliente_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int id;
+                int.TryParse(Request.QueryString["id"], out id);
+
+                ClienteNegocio negocio = new ClienteNegocio();
+
+                Cliente cliente = new Cliente();
+                negocio.eliminarClienteLogico(id);
+                Response.Redirect("Clientes.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                lblMensajeCliente.Text = "Error al eliminar el cliente: " + ex.Message;
+            }
+
+        }
     }
 }

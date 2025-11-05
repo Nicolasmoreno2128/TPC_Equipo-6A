@@ -33,11 +33,11 @@ namespace TPC_Equipo_6A
 
         protected void DgvCategoria_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Modificar")
+            if (e.CommandName == "Detalles")
             {
                 int indice = Convert.ToInt32(e.CommandArgument);
                 int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value.ToString());
-                Response.Redirect("ModificarCategoria.aspx?id=" + idCategoria);
+                Response.Redirect("FormularioCategoria.aspx?id=" + idCategoria);
             }
         }
     }

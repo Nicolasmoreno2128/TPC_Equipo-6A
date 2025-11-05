@@ -44,9 +44,6 @@
                             <asp:Button ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" runat="server" CssClass="btn btn-dark w-100" Text="Agregar" />
                         </div>
                         <div class="col-4 col-md-3">
-                            <asp:Button ID="btnEliminarProducto" runat="server" CssClass="btn btn-dark w-100" Text="Eliminar" CausesValidation="false" />
-                        </div>
-                        <div class="col-4 col-md-3">
                             <asp:Button ID="btnVolver" OnClick="btnVolver_Click" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" />
                         </div>
                     </div>
