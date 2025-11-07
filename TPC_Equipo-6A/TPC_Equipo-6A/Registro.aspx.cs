@@ -13,7 +13,11 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (!IsPostBack)
+            {
+                ddlRol.DataSource = Enum.GetValues(typeof(Rol));
+                ddlRol.DataBind();
+            }
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
@@ -33,18 +37,17 @@ namespace TPC_Equipo_6A
                 usuario.Contrasena = txbContraseña.Text;
                 usuario.Nombre = txbNombre.Text;
                 usuario.Apellido = txbApellido.Text;
-                usuario.Rol = Rol.Vendedor;
+                usuario.Rol = (Rol)Enum.Parse(typeof(Rol), ddlRol.SelectedValue);
                 usuario.Email = txbEmail.Text;
                 usuario.Telefono = txbTelefono.Text;
-
                 negocio.agregarUsuario(usuario);
+                Response.Redirect("~/Default.aspx");
             }
             catch (Exception ex)
             {
-                throw;
-            }
-
-            Response.Redirect("~/Default.aspx");
+                lblError.Text = ex.Message;
+                lblError.Visible = true;
+            }            
         }
     }
 }

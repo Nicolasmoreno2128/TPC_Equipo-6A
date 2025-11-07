@@ -61,6 +61,18 @@ namespace negocio
 
             try
             {
+                datos.setearConsulta("SELECT COUNT(*) FROM USUARIO WHERE NombreUsuario = @NombreUsuario");
+                datos.setearParametro("@NombreUsuario", nuevo.NombreUsuario);
+                datos.ejecutarLectura();
+
+                int count = 0;
+                if (datos.Lector.Read())
+                    count = (int)datos.Lector[0];
+                datos.cerrarConexion();
+
+                if (count > 0)
+                    throw new Exception("El nombre de usuario ya existe.");
+                datos = new AccesoDatos();
                 datos.setearConsulta("INSERT INTO USUARIO (NombreUsuario, Contrasena, Nombre, Apellido, Rol, Email, Telefono, Estado)values(@NombreUsuario, @Contrasena, @Nombre, @Apellido, @Rol, @Email, @Telefono, 1)");
                 datos.setearParametro("@NombreUsuario", nuevo.NombreUsuario);
                 datos.setearParametro("@Contrasena", nuevo.Contrasena);
