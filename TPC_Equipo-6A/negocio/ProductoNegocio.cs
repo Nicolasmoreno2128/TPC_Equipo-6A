@@ -133,7 +133,6 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
-
         public void Modificar(Producto p)
         {
             var datos = new AccesoDatos();
