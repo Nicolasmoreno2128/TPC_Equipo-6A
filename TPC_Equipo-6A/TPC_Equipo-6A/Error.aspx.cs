@@ -11,7 +11,10 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["error"] != null)
+            {
+                lblError.Text = Session["error"].ToString();
+            }
         }
     }
 }

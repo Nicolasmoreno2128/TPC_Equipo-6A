@@ -11,7 +11,15 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
+            //VALIDA QUE HAYA UN USUARIO LEGUEADO PARA PODER ENTRAR AL DEFAULT
+            /*
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+            */
         }
     }
 }

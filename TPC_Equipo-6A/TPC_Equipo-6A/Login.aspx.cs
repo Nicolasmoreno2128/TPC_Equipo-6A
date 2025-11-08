@@ -13,7 +13,7 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -27,11 +27,12 @@ namespace TPC_Equipo_6A
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("Usuario", usuario);
-                 Response.Redirect("~/Default.aspx");
-                    
+                    Response.Redirect("~/Default.aspx");
+
                 }
                 else
                 {
+                    Session.Add("error", "User o Pass incorrectos");
                     Response.Redirect("Error");
                 }
             }
