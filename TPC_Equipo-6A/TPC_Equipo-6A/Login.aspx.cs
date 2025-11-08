@@ -1,4 +1,6 @@
-﻿using System;
+﻿using negocio;
+using dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +16,33 @@ namespace TPC_Equipo_6A
             
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
-        {            
-            Response.Redirect("~/Default.aspx");
+        {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            try
+            {
+                usuario.NombreUsuario = txbUsuario.Text;
+                usuario.Contrasena = txbContraseña.Text;
+
+                if (negocio.Loguear(usuario))
+                {
+                    Session.Add("Usuario", usuario);
+                 Response.Redirect("~/Default.aspx");
+                    
+                }
+                else
+                {
+                    Response.Redirect("Error");
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {

@@ -93,5 +93,36 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool Loguear(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("select IdUsuario,Rol from USUARIO WHERE NombreUsuario = @nombreUsuario and Contrasena = @contrasena");
+                datos.setearParametro("@nombreUsuario", usuario.NombreUsuario);
+                datos.setearParametro("@contrasena", usuario.Contrasena);
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    usuario.Rol = (int)(datos.Lector["Rol"]) == 0 ? Rol.Administrador : Rol.Vendedor;
+                    return true;
+                }
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
