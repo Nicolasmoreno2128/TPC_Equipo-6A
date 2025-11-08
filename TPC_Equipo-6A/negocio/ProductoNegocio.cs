@@ -108,7 +108,8 @@ namespace negocio
                                     P.PrecioProducto,
                                     P.Stock,
                                     P.IdMarca      AS IdMarcaFk,
-                                    P.IdCategoria  AS IdCategoriaFk
+                                    P.IdCategoria  AS IdCategoriaFk,
+                                    P.Estado
                                 FROM Producto P
                                 WHERE P.IdProducto = @id;");
 
@@ -126,7 +127,8 @@ namespace negocio
                         PrecioProducto = (decimal)datos.Lector["PrecioProducto"],
                         Stock = (int)datos.Lector["Stock"],
                         IdMarcaFk = (int)datos.Lector["IdMarcaFk"],
-                        IdCategoriaFk = (int)datos.Lector["IdCategoriaFk"]
+                        IdCategoriaFk = (int)datos.Lector["IdCategoriaFk"],
+                        Estado = (bool)datos.Lector["Estado"]
                     };
                 }
                 return null;
@@ -146,7 +148,8 @@ namespace negocio
                                         PrecioProducto = @precio,
                                         Stock = @stock,
                                         IdMarca = @idMarca,
-                                        IdCategoria = @idCategoria
+                                        IdCategoria = @idCategoria,
+                                        Estado = @estado
                                     WHERE IdProducto = @id;");
 
                 datos.setearParametro("@nombre", p.NombreProducto);
@@ -157,6 +160,7 @@ namespace negocio
                 datos.setearParametro("@idMarca", p.IdMarcaFk);
                 datos.setearParametro("@idCategoria", p.IdCategoriaFk);
                 datos.setearParametro("@id", p.IdProducto);
+                datos.setearParametro("@estado", p.Estado);
 
                 datos.ejecutarAccion();
             }

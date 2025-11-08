@@ -64,6 +64,8 @@ namespace TPC_Equipo_6A
             txtStockProdm.Text = p.Stock.ToString();
             ddlMarcam.SelectedValue = p.IdMarcaFk.ToString();
             ddlCategoriam.SelectedValue = p.IdCategoriaFk.ToString();
+            ddlEstado.SelectedValue = p.Estado ? "true" : "false";
+
         }
 
         protected void btnModificarProd_Click(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace TPC_Equipo_6A
                     Stock = int.Parse(txtStockProdm.Text),
                     IdMarcaFk = int.Parse(ddlMarcam.SelectedValue),
                     IdCategoriaFk = int.Parse(ddlCategoriam.SelectedValue),
-                    Estado = true
+                    Estado = bool.Parse(ddlEstado.SelectedValue)
                 };
 
                 new ProductoNegocio().Modificar(p);

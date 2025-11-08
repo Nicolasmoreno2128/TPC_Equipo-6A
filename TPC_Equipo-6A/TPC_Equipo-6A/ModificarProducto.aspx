@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <h2 class="mb-4 text-center">Modificar Producto</h2>
 
-            
+
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="txtNombreProdm" class="form-label mb-0">Nombre:</label>
@@ -15,7 +15,7 @@
                 <div class="col-md-9">
                     <asp:TextBox ID="txtNombreProdm" CssClass="form-control" runat="server" />
                 </div>
-            </div>            
+            </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="txtDescripcionProdm" class="form-label mb-0">Descripción:</label>
@@ -23,7 +23,7 @@
                 <div class="col-md-9">
                     <asp:TextBox ID="txtDescripcionProdm" CssClass="form-control" runat="server" />
                 </div>
-            </div>            
+            </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="txtImagenProdm" class="form-label mb-0">Imagen:</label>
@@ -31,7 +31,7 @@
                 <div class="col-md-9">
                     <asp:TextBox ID="txtImagenProdm" CssClass="form-control" runat="server" />
                 </div>
-            </div>            
+            </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="txtPrecioProdm" class="form-label mb-0">Precio:</label>
@@ -39,7 +39,7 @@
                 <div class="col-md-9">
                     <asp:TextBox ID="txtPrecioProdm" CssClass="form-control" runat="server" />
                 </div>
-            </div>            
+            </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="txtStockProdm" class="form-label mb-0">Stock:</label>
@@ -47,7 +47,7 @@
                 <div class="col-md-9">
                     <asp:TextBox ID="txtStockProdm" CssClass="form-control" runat="server" />
                 </div>
-            </div>            
+            </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="ddlMarcam" class="form-label mb-0">Marca:</label>
@@ -56,7 +56,7 @@
                     <asp:DropDownList ID="ddlMarcam" runat="server" DataTextField="NombreMarca" DataValueField="IdMarca" CssClass="form-control" />
                     <asp:RequiredFieldValidator runat="server" ID="rfvMarca" ControlToValidate="ddlMarcam" InitialValue="" ErrorMessage="Seleccioná una marca" CssClass="text-danger d-block mt-1" />
                 </div>
-            </div>            
+            </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="ddlCategoriam" class="form-label mb-0">Categoría:</label>
@@ -65,7 +65,20 @@
                     <asp:DropDownList ID="ddlCategoriam" runat="server" DataTextField="NombreCategoria" DataValueField="IdCategoria" CssClass="form-control" />
                     <asp:RequiredFieldValidator runat="server" ID="rfvCategoria" ControlToValidate="ddlCategoriam" InitialValue="" ErrorMessage="Seleccioná una categoría" CssClass="text-danger d-block mt-1" />
                 </div>
-            </div>            
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-3 text-md-end">
+                    <label for="ddlEstado" class="form-label mb-0">Estado:</label>
+                </div>
+                <div class="col-md-9">
+                    <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                        <asp:ListItem Text="Activo" Value="true"></asp:ListItem>
+                        <asp:ListItem Text="Inactivo" Value="false"></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator runat="server" ID="rfvEstado" ControlToValidate="ddlEstado" InitialValue="" ErrorMessage="Seleccioná un estado" CssClass="text-danger d-block mt-1" />
+                </div>
+            </div>
+
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <asp:Button Text="Modificar" ID="btnModificarProd" OnClick="btnModificarProd_Click" CssClass="btn btn-dark" runat="server" />
                 <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />
