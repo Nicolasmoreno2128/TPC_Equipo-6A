@@ -17,14 +17,16 @@
 
 </head>
 <body>
-   <header class="bg-dark text-white py-2 border-bottom border-secondary">
-    <div class="container d-flex justify-content-center align-items-center gap-4 text-uppercase fw-medium">
-        <div>Acá indicamos usuario conectado</div>
-        <div>Acá indicamos el ROL del usuario</div>
-        <div>Cerrar Sesión</div>
-    </div>
-</header>
     <form runat="server">
+        <header class="bg-dark text-white py-2 border-bottom border-secondary">
+            <div class="container d-flex justify-content-center align-items-center gap-4 text-uppercase fw-medium">
+                <asp:Label ID="lblNombreUsuario" runat="server" CssClass="me-3 fw-bold" />
+                <asp:Label ID="lblRol" runat="server" CssClass="me-4 text-secondary" />
+                <asp:Label ID="lblNoLogueado" runat="server" CssClass="me-3 fw-bold" />
+                <asp:Button Text="Cerrar Sesion" ID="btnCerrar" runat="server" OnClick="btnCerrar_Click" CssClass="btn btn-outline-danger btn-sm" />
+
+            </div>
+        </header>
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -55,6 +57,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contacto">Contacto</a></li>
+
                     </ul>
                 </div>
             </div>
