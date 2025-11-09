@@ -59,12 +59,10 @@ namespace TPC_Equipo_6A
 
             txtNombreProdm.Text = p.NombreProducto;
             txtDescripcionProdm.Text = p.DescripcionProducto;
-            txtImagenProdm.Text = p.UrlImagen;
             txtPrecioProdm.Text = p.PrecioProducto.ToString();
             txtStockProdm.Text = p.Stock.ToString();
             ddlMarcam.SelectedValue = p.IdMarcaFk.ToString();
             ddlCategoriam.SelectedValue = p.IdCategoriaFk.ToString();
-            ddlEstado.SelectedValue = p.Estado ? "true" : "false";
 
         }
 
@@ -77,12 +75,10 @@ namespace TPC_Equipo_6A
                     IdProducto = int.Parse(hfIdProducto.Value),
                     NombreProducto = txtNombreProdm.Text,
                     DescripcionProducto = txtDescripcionProdm.Text,
-                    UrlImagen = txtImagenProdm.Text,
                     PrecioProducto = decimal.Parse(txtPrecioProdm.Text),
                     Stock = int.Parse(txtStockProdm.Text),
                     IdMarcaFk = int.Parse(ddlMarcam.SelectedValue),
                     IdCategoriaFk = int.Parse(ddlCategoriam.SelectedValue),
-                    Estado = bool.Parse(ddlEstado.SelectedValue)
                 };
 
                 new ProductoNegocio().Modificar(p);

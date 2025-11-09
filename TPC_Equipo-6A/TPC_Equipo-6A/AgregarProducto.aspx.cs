@@ -50,7 +50,6 @@ namespace TPC_Equipo_6A
 
                 nuevo.NombreProducto = txtNombreProdn.Text;
                 nuevo.DescripcionProducto = txtDescripcionProdn.Text;
-                nuevo.UrlImagen = txtImagenProdn.Text;
                 nuevo.PrecioProducto = decimal.Parse(txtPrecioProdn.Text);
                 nuevo.Stock = int.Parse(txtStockProdn.Text);
                 nuevo.IdMarcaFk = int.Parse(ddlMarcan.SelectedValue);

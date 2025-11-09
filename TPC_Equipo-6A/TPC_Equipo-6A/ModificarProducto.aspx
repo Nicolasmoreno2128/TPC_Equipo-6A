@@ -5,7 +5,7 @@
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <div class="col-md-6">
-            <h2 class="mb-4 text-center">Modificar Producto</h2>
+            <h2 class="mb-4 text-center">Detalles Producto</h2>
 
 
             <div class="row mb-3 align-items-center">
@@ -24,14 +24,7 @@
                     <asp:TextBox ID="txtDescripcionProdm" CssClass="form-control" runat="server" />
                 </div>
             </div>
-            <div class="row mb-3 align-items-center">
-                <div class="col-md-3 text-md-end">
-                    <label for="txtImagenProdm" class="form-label mb-0">Imagen:</label>
-                </div>
-                <div class="col-md-9">
-                    <asp:TextBox ID="txtImagenProdm" CssClass="form-control" runat="server" />
-                </div>
-            </div>
+
             <div class="row mb-3 align-items-center">
                 <div class="col-md-3 text-md-end">
                     <label for="txtPrecioProdm" class="form-label mb-0">Precio:</label>
@@ -64,18 +57,6 @@
                 <div class="col-md-9">
                     <asp:DropDownList ID="ddlCategoriam" runat="server" DataTextField="NombreCategoria" DataValueField="IdCategoria" CssClass="form-control" />
                     <asp:RequiredFieldValidator runat="server" ID="rfvCategoria" ControlToValidate="ddlCategoriam" InitialValue="" ErrorMessage="Seleccioná una categoría" CssClass="text-danger d-block mt-1" />
-                </div>
-            </div>
-            <div class="row mb-3 align-items-center">
-                <div class="col-md-3 text-md-end">
-                    <label for="ddlEstado" class="form-label mb-0">Estado:</label>
-                </div>
-                <div class="col-md-9">
-                    <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Activo" Value="true"></asp:ListItem>
-                        <asp:ListItem Text="Inactivo" Value="false"></asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ID="rfvEstado" ControlToValidate="ddlEstado" InitialValue="" ErrorMessage="Seleccioná un estado" CssClass="text-danger d-block mt-1" />
                 </div>
             </div>
 
