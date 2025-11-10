@@ -9,17 +9,15 @@
                    <asp:GridView ID="DgvProductos" runat="server" CssClass="table table-striped"
                             AutoGenerateColumns="False"
                             DataKeyNames="IdProducto,IdMarcaFk,IdCategoriaFk"
-                            OnSelectedIndexChanged="DgvProductos_SelectedIndexChanged">
+                            OnRowCommand="DgvProductos_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="IdProducto" HeaderText="ID" ReadOnly="True" />
                                 <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" />
                                 <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripcion" />
                                 <asp:BoundField DataField="UrlImagen" HeaderText="Imagen" />
-                                <asp:BoundField DataField="PrecioProducto" HeaderText="Precio Producto" />
+                                <asp:BoundField DataField="PrecioProducto" HeaderText="Precio" />
                                 <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                                <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
-
-                                
+                
                                 <asp:TemplateField HeaderText="Marca">
                                     <ItemTemplate><%# Eval("IdMarca.NombreMarca") %></ItemTemplate>
                                 </asp:TemplateField>
@@ -28,14 +26,8 @@
                                     <ItemTemplate><%# Eval("IdCategoria.NombreCategoria") %></ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Acciones">
-                                  <ItemTemplate>
-                                    <asp:HyperLink runat="server" CssClass="btn btn-dark"
-                                     Text="📝 
-                                        Modificar"
-                                     NavigateUrl='<%# "ModificarProducto.aspx?id=" + Eval("IdProducto") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                            <asp:ButtonField Text="✏️" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
+
                             </Columns>
                         </asp:GridView>
 

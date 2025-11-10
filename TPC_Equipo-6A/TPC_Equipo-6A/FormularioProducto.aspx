@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ModificarProducto.aspx.cs" Inherits="TPC_Equipo_6A.ModificarProducto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormularioProducto.aspx.cs" Inherits="TPC_Equipo_6A.ModificarProducto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfIdProducto" runat="server" />
@@ -62,7 +62,10 @@
 
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <asp:Button Text="Modificar" ID="btnModificarProd" OnClick="btnModificarProd_Click" CssClass="btn btn-dark" runat="server" />
+                <asp:Button ID="btnEliminarProducto" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarProducto_Click" />
                 <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />
+                <asp:Label ID="lblMensajeProducto" runat="server" CssClass="text-danger d-block mt-2" />
+
             </div>
         </div>
     </div>

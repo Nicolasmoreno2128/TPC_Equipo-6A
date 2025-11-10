@@ -22,7 +22,7 @@ namespace TPC_Equipo_6A
                 CargarCategorias();
 
                 // ID por QueryString: ModificarProducto.aspx?id=123
-                var idQS = Request.QueryString["id"];
+                var idQS = Request.QueryString["IdProducto"];
                 if (!string.IsNullOrEmpty(idQS))
                 {
                     hfIdProducto.Value = idQS;
@@ -95,5 +95,22 @@ namespace TPC_Equipo_6A
             Response.Redirect("Productos.aspx", false);
         }
 
+        protected void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id;
+                int.TryParse(Request.QueryString["IdProducto"], out id);
+
+                ProductoNegocio negocio = new ProductoNegocio();
+                negocio.eliminarProductoLogico(id);
+                Response.Redirect("Productos.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                lblMensajeProducto.Text = "Error al modificar el producto: " + ex.Message;
+            }
+        }
     }
 }

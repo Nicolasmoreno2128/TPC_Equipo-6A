@@ -25,15 +25,19 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("Default.aspx");
         }
-        
+       
 
-        protected void DgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int idProd = (int)DgvProductos.SelectedDataKey.Values["IdProducto"];
-            int idMarca = (int)DgvProductos.SelectedDataKey.Values["IdMarcaFk"];
-            int idCat = (int)DgvProductos.SelectedDataKey.Values["IdCategoriaFk"];
+            if (e.CommandName == "Detalles")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idProducto = Convert.ToInt32(DgvProductos.DataKeys[indice].Value.ToString());
+                int idMarca = Convert.ToInt32(DgvProductos.DataKeys[indice].Values["IdMarcaFk"]);
+                int idCat = Convert.ToInt32(DgvProductos.DataKeys[indice].Values["IdCategoriaFk"]);
+                Response.Redirect($"FormularioProducto.aspx?IdProducto={idProducto}&IdMarcaFk={idMarca}&IdCategoriaFk={idCat}");
 
-            Response.Redirect($"ModificarProducto.aspx?IdProducto={idProd}&IdMarcaFk={idMarca}&IdCategoriaFk={idCat}");
+            }
         }
     }
 }
