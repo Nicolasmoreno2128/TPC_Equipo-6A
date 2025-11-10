@@ -17,7 +17,6 @@
                             <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
                             <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
-                            <asp:CheckBoxField DataField="Estado" HeaderText="Activo" ReadOnly="True" />
                             <asp:ButtonField Text="✏️" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
                         </Columns>
                     </asp:GridView>

@@ -108,7 +108,6 @@ namespace TPC_Equipo_6A
             }
             catch (Exception ex)
             {
-
                 lblMensajeProducto.Text = "Error al modificar el producto: " + ex.Message;
             }
         }
