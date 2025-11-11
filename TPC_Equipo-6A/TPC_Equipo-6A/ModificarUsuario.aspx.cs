@@ -2,6 +2,8 @@
 using negocio;
 using System;
 using System.Web.UI;
+using System.Text.RegularExpressions;
+
 
 namespace TPC_Equipo_6A
 {
@@ -47,27 +49,33 @@ namespace TPC_Equipo_6A
 
         protected void btnModificarUsuario_Click(object sender, EventArgs e)
         {
-
-
             try
-            {
-                // Validación de contraseñas
+            {                
                 string contrasena = txtContrasena.Text.Trim();
                 string repetir = txtRepetirContrasena.Text.Trim();
+                string email = txbEmail.Text.Trim();
 
+                // Validación del mail
+                if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    lblMensajeUsuario.Text = "El correo electrónico ingresado no es válido.";
+                    lblMensajeUsuario.CssClass = "text-danger fw-bold";
+                    return;
+                }
+                // Validación de contraseñas
                 if (!string.IsNullOrEmpty(contrasena) || !string.IsNullOrEmpty(repetir))
                 {
                     if (string.IsNullOrEmpty(contrasena) || string.IsNullOrEmpty(repetir))
                     {
                         lblMensajeUsuario.Text = "Debes completar ambos campos de contraseña.";
-                        lblMensajeUsuario.CssClass = "text-danger";
+                        lblMensajeUsuario.CssClass = "text-danger fw-bold";
                         return;
                     }
 
                     if (contrasena != repetir)
                     {
                         lblMensajeUsuario.Text = "Las contraseñas no coinciden.";
-                        lblMensajeUsuario.CssClass = "text-danger";
+                        lblMensajeUsuario.CssClass = "text-danger fw-bold";
                         return;
                     }
                 }
@@ -87,6 +95,7 @@ namespace TPC_Equipo_6A
                     usuario.Contrasena = contrasena;
 
                 new UsuarioNegocio().Modificar(usuario);
+                lblMensajeUsuario.Text = "";
                 Response.Redirect("Usuarios.aspx", false);
             }
             catch (Exception ex)

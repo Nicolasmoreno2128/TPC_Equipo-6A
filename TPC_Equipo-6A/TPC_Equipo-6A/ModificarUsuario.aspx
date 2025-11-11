@@ -29,13 +29,7 @@
                 </div>
                 <div class="col-md-8">
                     <asp:TextBox ID="txtRepetirContrasena" TextMode="Password" CssClass="form-control" runat="server" />
-                    <asp:CompareValidator
-                        ID="cvContrasena"
-                        runat="server"
-                        ControlToValidate="txtRepetirContrasena"
-                        ControlToCompare="txtContrasena"
-                        CssClass="text-danger d-block mt-1"
-                        Display="Dynamic" />
+                    
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
@@ -94,7 +88,7 @@
                 <asp:Button Text="Cancelar" ID="btnCancelar" CssClass="btn btn-secondary" runat="server" OnClick="btnCancelar_Click" />
             </div>
             <div class="d-flex justify-content-center mt-3">
-                <asp:Label ID="lblMensajeUsuario" runat="server" CssClass="text-danger fw-bold" />
+                <asp:Label ID="lblMensajeUsuario" runat="server" CssClass="text-danger fw-bold" />                
             </div>
 
 
