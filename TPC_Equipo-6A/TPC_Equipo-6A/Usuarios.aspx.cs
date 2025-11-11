@@ -17,10 +17,7 @@ namespace TPC_Equipo_6A
             UsuarioNegocio negocio = new UsuarioNegocio();
             DgvUsuario.DataSource = negocio.ListarUsuarios();
             DgvUsuario.DataBind();
-
-
         }
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default");
@@ -29,5 +26,18 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("Registro");
         }
+        protected void DgvUsuario_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Detalles")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = DgvUsuario.Rows[index];
+                int idUsuario = Convert.ToInt32(DgvUsuario.DataKeys[index].Value);
+
+                // Redirige a la página de edición con el ID del usuario seleccionado
+                Response.Redirect("ModificarUsuario.aspx?IdUsuario=" + idUsuario, false);
+            }
+        }
+
     }
 }

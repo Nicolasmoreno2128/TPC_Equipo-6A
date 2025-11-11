@@ -135,6 +135,7 @@
     <Content Include="FormularioCategoria.aspx" />
     <Content Include="FormularioMarca.aspx" />
     <Content Include="FormularioProducto.aspx" />
+    <Content Include="ModificarUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="Registro.aspx" />
@@ -327,6 +328,13 @@
     </Compile>
     <Compile Include="FormularioProducto.aspx.designer.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarUsuario.aspx.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarUsuario.aspx.designer.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>

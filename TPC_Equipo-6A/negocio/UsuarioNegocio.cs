@@ -124,6 +124,87 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public Usuario ObtenerPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario usuario = null;
+
+            try
+            {
+                datos.setearConsulta("SELECT IdUsuario, NombreUsuario, Nombre, Apellido, Rol, Email, Telefono, Estado FROM USUARIO WHERE IdUsuario = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    usuario = new Usuario
+                    {
+                        IdUsuario = (int)datos.Lector["IdUsuario"],
+                        NombreUsuario = (string)datos.Lector["NombreUsuario"],
+                        Nombre = (string)datos.Lector["Nombre"],
+                        Apellido = (string)datos.Lector["Apellido"],
+                        Email = (string)datos.Lector["Email"],
+                        Telefono = (string)datos.Lector["Telefono"],
+                        Estado = (bool)datos.Lector["Estado"],
+                        Rol = (Rol)Convert.ToInt32(datos.Lector["Rol"])
+                    };
+                }
+                return usuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Modificar(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = @"UPDATE USUARIO 
+                            SET Nombre = @Nombre, 
+                                Apellido = @Apellido, 
+                                Rol = @Rol, 
+                                Email = @Email, 
+                                Telefono = @Telefono,
+                                Estado = @Estado";
+
+                if (!string.IsNullOrEmpty(usuario.Contrasena))
+                    consulta += ", Contrasena = @Contrasena";
+
+                consulta += " WHERE IdUsuario = @IdUsuario";
+
+                datos.setearConsulta(consulta);
+
+                datos.setearParametro("@Nombre", usuario.Nombre);
+                datos.setearParametro("@Apellido", usuario.Apellido);
+                datos.setearParametro("@Rol", usuario.Rol);
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Telefono", usuario.Telefono);
+                datos.setearParametro("@Estado", usuario.Estado);
+                datos.setearParametro("@IdUsuario", usuario.IdUsuario);
+
+                if (!string.IsNullOrEmpty(usuario.Contrasena))
+                    datos.setearParametro("@Contrasena", usuario.Contrasena);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
 
     }
 }
