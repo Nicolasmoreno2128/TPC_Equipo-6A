@@ -46,11 +46,18 @@ namespace TPC_Equipo_6A
         {
             try
             {
+
+
                 Producto nuevo = new Producto();
+
+
+                string ruta = Server.MapPath("./images/");
+                txtImagen.PostedFile.SaveAs(ruta + "producto-" + txtNombreProdn + ".jpg");
 
                 nuevo.NombreProducto = txtNombreProdn.Text;
                 nuevo.DescripcionProducto = txtDescripcionProdn.Text;
                 nuevo.PrecioProducto = decimal.Parse(txtPrecioProdn.Text);
+                nuevo.UrlImagen = !string.IsNullOrEmpty(txtNombreProdn.Text) ? "producto-" + txtNombreProdn.Text.Trim() + ".jpg" : null;
                 nuevo.Stock = int.Parse(txtStockProdn.Text);
                 nuevo.IdMarcaFk = int.Parse(ddlMarcan.SelectedValue);
                 nuevo.IdCategoriaFk = int.Parse(ddlCategorian.SelectedValue);

@@ -29,7 +29,7 @@ CREATE TABLE PRODUCTO (
 	IdProducto INT PRIMARY KEY NOT NULL IDENTITY (1,1),
 	NombreProducto VARCHAR (150) NOT NULL,
 	DescripcionProducto VARCHAR(300) NOT NULL,
-	UrlImagen VARCHAR(255) NOT NULL,
+	UrlImagen VARCHAR(255) NULL,
 	PrecioProducto DECIMAL NOT NULL,
 	IdMarca INT NOT NULL FOREIGN KEY REFERENCES MARCAS(IdMarca),
 	IdCategoria INT NOT NULL FOREIGN KEY REFERENCES CATEGORIAS(IdCategoria),
@@ -38,6 +38,9 @@ CREATE TABLE PRODUCTO (
 	)
 
 GO
+
+
+
 CREATE TABLE PROVEEDOR (
 	IdProveedor INT PRIMARY KEY NOT NULL IDENTITY (1,1),
 	Nombre VARCHAR (150) NOT NULL,
@@ -173,5 +176,5 @@ select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from Categoria
 
 select P.IdProducto, P.NombreProducto, P.DescripcionProducto, P.UrlImagen, P.PrecioProducto, M.NombreMarca, C.NombreCategoria, P.Stock FROM PRODUCTO P, Categorias C, Marcas M where C.IdCategoria = P.IdCategoria and M.IdMarca = P.IdMarca and P.Estado = 1
 
-select * from USUARIO
+select * from PRODUCTO
 

@@ -49,14 +49,6 @@
 
                 <div class="mb-3">
                     <input type="file" id="txtImagen" runat="server" class="form-control" />
-                </div>
-
-                <asp:Image ID="imgNuevoPerfil"
-                    runat="server"
-                    CssClass="img-fluid rounded shadow-sm border"
-                    ImageUrl="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
-                    AlternateText="Vista previa del producto" />
-            </div>
         </div>
     </div>
 

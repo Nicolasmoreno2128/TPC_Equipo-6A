@@ -44,7 +44,7 @@ namespace negocio
                     aux.IdCategoriaFk = (int)datos.Lector["IdCategoriaFk"];
                     aux.NombreProducto = (string)datos.Lector["NombreProducto"];
                     aux.DescripcionProducto = (string)datos.Lector["DescripcionProducto"];
-                    aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+                    aux.UrlImagen = datos.Lector["UrlImagen"] is DBNull ? null : (string)datos.Lector["UrlImagen"];
                     aux.PrecioProducto = (decimal)datos.Lector["PrecioProducto"];
                     aux.IdMarca = new Marca { NombreMarca = (string)datos.Lector["NombreMarca"] };
                     aux.IdCategoria = new Categoria { NombreCategoria = (string)datos.Lector["NombreCategoria"] };
