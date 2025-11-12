@@ -14,6 +14,15 @@ namespace TPC_Equipo_6A
         public List<Usuario> ListaUsuario { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Valida que haya un usuario logueado
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+
+
             UsuarioNegocio negocio = new UsuarioNegocio();
             DgvUsuario.DataSource = negocio.ListarUsuarios();
             DgvUsuario.DataBind();

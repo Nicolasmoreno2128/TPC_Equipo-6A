@@ -20,6 +20,11 @@ namespace TPC_Equipo_6A
                 CargarMarcas();
                 CargarCategorias();
             }
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
         }
 
         private void CargarMarcas()

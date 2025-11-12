@@ -17,6 +17,15 @@ namespace TPC_Equipo_6A
         private int _id;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Valida que haya un usuario logueado
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+
+
             int.TryParse(Request.QueryString["id"], out _id);
 
             if (!IsPostBack)

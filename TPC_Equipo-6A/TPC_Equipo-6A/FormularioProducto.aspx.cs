@@ -16,6 +16,14 @@ namespace TPC_Equipo_6A
         private readonly CategoriaNegocio _categoriaNegocio = new CategoriaNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Valida que haya un usuario logueado
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+
+
             if (!IsPostBack)
             {
                 CargarMarcas();

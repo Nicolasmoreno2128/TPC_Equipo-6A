@@ -14,6 +14,14 @@ namespace TPC_Equipo_6A
         public List<Proveedor> ListaProveedor { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Valida que haya un usuario logueado
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+
+
             ProveedorNegocio negocio = new ProveedorNegocio();
             DgvProveedores.DataSource = negocio.ListarProveedores();
             DgvProveedores.DataBind();

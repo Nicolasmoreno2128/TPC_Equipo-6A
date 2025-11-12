@@ -15,6 +15,15 @@ namespace TPC_Equipo_6A
         public List<Marca> ListaMarca { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Valida que haya un usuario logueado
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+
+
             if (!IsPostBack)
             {
                 MarcaNegocio negocio = new MarcaNegocio();

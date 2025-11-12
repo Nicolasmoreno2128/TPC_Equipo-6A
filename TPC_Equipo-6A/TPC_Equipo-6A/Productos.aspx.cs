@@ -12,6 +12,15 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Valida que haya un usuario logueado
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
+
+
             ProductoNegocio negocio = new ProductoNegocio();
             DgvProductos.DataSource = negocio.ListarProductos();
             DgvProductos.DataBind();

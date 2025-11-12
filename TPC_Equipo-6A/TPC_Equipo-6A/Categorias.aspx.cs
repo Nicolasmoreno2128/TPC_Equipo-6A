@@ -19,6 +19,12 @@ namespace TPC_Equipo_6A
                 DgvCategoria.DataSource = negocio.ListarCategoria();
                 DgvCategoria.DataBind();
             }
+
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("Login");
+            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
