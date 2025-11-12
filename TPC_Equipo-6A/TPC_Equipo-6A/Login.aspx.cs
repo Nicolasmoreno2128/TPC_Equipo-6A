@@ -21,6 +21,8 @@ namespace TPC_Equipo_6A
             UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
+                if (!Page.IsValid)
+                    return; 
                 usuario.NombreUsuario = txbUsuario.Text;
                 usuario.Contrasena = txbContraseña.Text;
 
@@ -36,20 +38,15 @@ namespace TPC_Equipo_6A
                     Response.Redirect("Error");
                 }
             }
-
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
-
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Default.aspx");
         }
-
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Registro.aspx");

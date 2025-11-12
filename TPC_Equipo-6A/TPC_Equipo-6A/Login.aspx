@@ -8,21 +8,40 @@
             <div class="mb-3">
                 <label for="txbUsuario" class="form-label d-block">Usuario</label>
                 <asp:TextBox runat="server" ID="txbUsuario" CssClass="form-control mx-auto w-75" placeholder="Usuario" />
-                <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txbUsuario" ErrorMessage="Campo obligatorio." CssClass="text-danger d-block" EnableClientScript="true" Display="Dynamic" ValidationGroup="LoginGroup"/>
+                <asp:RequiredFieldValidator
+                    ID="rfvUsuario"
+                    runat="server"
+                    ControlToValidate="txbUsuario"
+                    ErrorMessage="Campo obligatorio."
+                    CssClass="text-danger d-block"
+                    Display="Dynamic"
+                    ValidationGroup="LoginGroup"
+                    EnableClientScript="true"
+                    SetFocusOnError="true"
+                    InitialValue=""
+                    Visible="false" />
             </div>
 
             <div class="mb-4">
                 <label for="txbContraseña" class="form-label d-block">Contraseña</label>
                 <asp:TextBox runat="server" ID="txbContraseña" CssClass="form-control mx-auto w-75" placeholder="Contraseña" TextMode="Password" />
-                <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txbContraseña" ErrorMessage="Campo obligatorio." CssClass="text-danger d-block" EnableClientScript="true" Display="Dynamic" ValidationGroup="LoginGroup" />
+                <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txbContraseña" ErrorMessage="Campo obligatorio."
+                    CssClass="text-danger d-block"
+                    Display="Dynamic"
+                    ValidationGroup="LoginGroup"
+                    EnableClientScript="true"
+                    SetFocusOnError="true"
+                    InitialValue=""
+                    Visible="false" />
             </div>
-
             <div class="d-flex justify-content-center gap-2 mt-2">
-                <asp:Button Text="Ingresar" ID="btnIngresar" CssClass="btn btn-dark mt-3" runat="server" OnClick="btnIngresar_Click" CausesValidation="false" />
-                <asp:Button Text="Volver" ID="btnVolver" CssClass="btn btn-dark mt-3" runat="server" OnClick="btnVolver_Click" CausesValidation="false" />
-                <asp:Button Text="Registrarse" ID="btnRegistrarse" CssClass="btn btn-dark mt-3" runat="server" OnClick="btnRegistrarse_Click" CausesValidation="false" />
+                <asp:Button Text="Ingresar" ID="btnIngresar" CssClass="btn btn-dark mt-3" runat="server"
+                    OnClick="btnIngresar_Click" ValidationGroup="LoginGroup" CausesValidation="true" />
+                <asp:Button Text="Volver" ID="btnVolver" CssClass="btn btn-dark mt-3" runat="server"
+                    OnClick="btnVolver_Click" CausesValidation="false" />
+                <asp:Button Text="Registrarse" ID="btnRegistrarse" CssClass="btn btn-dark mt-3"
+                    runat="server" OnClick="btnRegistrarse_Click" CausesValidation="false" />
             </div>
         </div>
-        </div>
+    </div>
 </asp:Content>
-
