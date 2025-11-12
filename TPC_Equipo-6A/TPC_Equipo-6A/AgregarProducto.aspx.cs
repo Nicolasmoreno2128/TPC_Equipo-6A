@@ -2,6 +2,7 @@
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,14 +51,22 @@ namespace TPC_Equipo_6A
 
                 Producto nuevo = new Producto();
 
+                if (txtImagen.HasFile)
+                {
+                    string ruta = Server.MapPath("~/Images/");
+                    string nombreArchivo = "producto-" + txtNombreProdn.Text.Trim() + ".jpg";
+                    txtImagen.PostedFile.SaveAs(Path.Combine(ruta, nombreArchivo));
+                    nuevo.UrlImagen = "~/Images/" + nombreArchivo;
+                }
+                else
+                {
+                    nuevo.UrlImagen = null;
+                }
 
-                string ruta = Server.MapPath("./images/");
-                txtImagen.PostedFile.SaveAs(ruta + "producto-" + txtNombreProdn + ".jpg");
 
                 nuevo.NombreProducto = txtNombreProdn.Text;
                 nuevo.DescripcionProducto = txtDescripcionProdn.Text;
                 nuevo.PrecioProducto = decimal.Parse(txtPrecioProdn.Text);
-                nuevo.UrlImagen = !string.IsNullOrEmpty(txtNombreProdn.Text) ? "producto-" + txtNombreProdn.Text.Trim() + ".jpg" : null;
                 nuevo.Stock = int.Parse(txtStockProdn.Text);
                 nuevo.IdMarcaFk = int.Parse(ddlMarcan.SelectedValue);
                 nuevo.IdCategoriaFk = int.Parse(ddlCategorian.SelectedValue);

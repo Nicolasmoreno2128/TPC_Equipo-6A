@@ -63,7 +63,14 @@ namespace TPC_Equipo_6A
             txtStockProdm.Text = p.Stock.ToString();
             ddlMarcam.SelectedValue = p.IdMarcaFk.ToString();
             ddlCategoriam.SelectedValue = p.IdCategoriaFk.ToString();
-
+            if (!string.IsNullOrEmpty(p.UrlImagen))
+            {
+                imgProducto.ImageUrl = p.UrlImagen;
+            }
+            else
+            {
+                imgProducto.ImageUrl = "~/Images/placeholder.png";
+            }
         }
 
         protected void btnModificarProd_Click(object sender, EventArgs e)

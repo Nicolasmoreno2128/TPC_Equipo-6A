@@ -48,7 +48,7 @@
                 <h5 class="fw-semibold mb-4">Imagen del Producto</h5>
 
                 <div class="mb-3">
-                    <input type="file" id="txtImagen" runat="server" class="form-control" />
+                    <asp:FileUpload ID="txtImagen" runat="server" CssClass="form-control" />
         </div>
     </div>
 
@@ -57,6 +57,10 @@
         <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-outline-secondary px-4 py-2 fw-semibold" runat="server" />
     </div>
 </div>
+
+        </div>
+        </div>
+
 
 
 
