@@ -6,41 +6,38 @@
             <div class="col-md-10">
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Productos</h2>
-                   <asp:GridView ID="DgvProductos" runat="server" CssClass="table table-striped"
-                            AutoGenerateColumns="False"
-                            DataKeyNames="IdProducto,IdMarcaFk,IdCategoriaFk"
-                            OnRowCommand="DgvProductos_RowCommand">
-                            <Columns>
-                                <asp:BoundField DataField="IdProducto" HeaderText="ID" ReadOnly="True" />
-                                <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" />
-                                <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripcion" />
-                                <asp:BoundField DataField="UrlImagen" HeaderText="Imagen" />
-                                <asp:BoundField DataField="PrecioProducto" HeaderText="Precio" />
-                                <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                
-                                <asp:TemplateField HeaderText="Marca">
-                                    <ItemTemplate><%# Eval("IdMarca.NombreMarca") %></ItemTemplate>
-                                </asp:TemplateField>
+                    <asp:GridView ID="DgvProductos" runat="server" CssClass="table table-striped"
+                        AutoGenerateColumns="False"
+                        DataKeyNames="IdProducto,IdMarcaFk,IdCategoriaFk"
+                        OnRowCommand="DgvProductos_RowCommand">
+                        <Columns>
+                            <asp:BoundField DataField="IdProducto" HeaderText="ID" ReadOnly="True" />
+                            <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" />
+                            <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripcion" />
+                            <asp:BoundField DataField="UrlImagen" HeaderText="Imagen" />
+                            <asp:BoundField DataField="PrecioProducto" HeaderText="Precio" />
+                            <asp:BoundField DataField="Stock" HeaderText="Stock" />
 
-                                <asp:TemplateField HeaderText="Categoría">
-                                    <ItemTemplate><%# Eval("IdCategoria.NombreCategoria") %></ItemTemplate>
-                                </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Marca">
+                                <ItemTemplate><%# Eval("IdMarca.NombreMarca") %></ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Categoría">
+                                <ItemTemplate><%# Eval("IdCategoria.NombreCategoria") %></ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:ButtonField Text="✏️" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
 
-                            </Columns>
-                        </asp:GridView>
+                        </Columns>
+                    </asp:GridView>
 
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-4 col-md-3">
-                            <asp:Button ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" runat="server" CssClass="btn btn-dark w-100" Text="Agregar" />
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <asp:Button ID="btnVolver" OnClick="btnVolver_Click" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" />
-                        </div>
+                    <div class="d-flex gap-3 mt-3">
+                        <asp:Button ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" runat="server" CssClass="btn btn-dark" Text="Agregar" />
+                        <asp:Button ID="btnVolver" OnClick="btnVolver_Click" runat="server" CssClass="btn btn-secondary" Text="Volver" CausesValidation="false" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </asp:Content>

@@ -4,13 +4,23 @@
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <div class="col-md-4 text-center">
-            <h2 class="mb-4">Detalles Categoria</h2>
+            <h2 class="mb-4">Detalle Categoría</h2>
 
-            <div class="mb-3">
-                <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre de la Categoria" runat="server" />
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-3 text-md-end">
+                    <label for="txtNombre" class="form-label mb-0">Categoría:</label>
+                </div>
+                <div class="col-md-9">
+                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre de la Categoria" runat="server" />
+                </div>
             </div>
-            <div class="mb-3">
-                <asp:TextBox ID="txtDescripcion" CssClass="form-control mx-auto w-75" placeholder="Descripción" runat="server" />
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-3 text-md-end">
+                    <label for="txtDescripcion" class="form-label mb-0">Descripción:</label>
+                </div>
+                <div class="col-md-9">
+                    <asp:TextBox ID="txtDescripcion" CssClass="form-control mx-auto w-75" placeholder="Descripción" runat="server" />
+                </div>
             </div>
             <div class="d-flex justify-content-center gap-3 mt-3">
                 <asp:Button ID="btnModificarCategoria" runat="server" Text="Modificar" CssClass="btn btn-dark"
