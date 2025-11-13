@@ -51,7 +51,7 @@
         </div>
         <div class="mt-3">
             <asp:Button Text="Crear" ID="btnCrear" CssClass="btn btn-dark mt-3" runat="server" OnClick="btnCrear_Click" ValidationGroup="LoginGroup" CausesValidation="true" />
-            <asp:Button Text="Volver" ID="btnVolver" CssClass="btn btn-dark mt-3" runat="server" OnClick="btnVolver_Click" CausesValidation="false" />
+            <asp:Button Text="Volver" ID="btnVolver" CssClass="btn btn-secondary mt-3" runat="server" OnClick="btnVolver_Click" CausesValidation="false" />
         </div>
     </div>
 </asp:Content>

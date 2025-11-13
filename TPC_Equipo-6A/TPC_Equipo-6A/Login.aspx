@@ -36,11 +36,7 @@
             </div>
             <div class="d-flex justify-content-center gap-2 mt-2">
                 <asp:Button Text="Ingresar" ID="btnIngresar" CssClass="btn btn-dark mt-3" runat="server"
-                    OnClick="btnIngresar_Click" ValidationGroup="LoginGroup" CausesValidation="true" />
-                <asp:Button Text="Volver" ID="btnVolver" CssClass="btn btn-dark mt-3" runat="server"
-                    OnClick="btnVolver_Click" CausesValidation="false" />
-                <asp:Button Text="Registrarse" ID="btnRegistrarse" CssClass="btn btn-dark mt-3"
-                    runat="server" OnClick="btnRegistrarse_Click" CausesValidation="false" />
+                    OnClick="btnIngresar_Click" ValidationGroup="LoginGroup" CausesValidation="true" />                
             </div>
         </div>
     </div>
