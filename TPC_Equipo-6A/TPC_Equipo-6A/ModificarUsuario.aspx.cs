@@ -14,7 +14,7 @@ namespace TPC_Equipo_6A
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //Valida que haya un usuario logueado
+            //Validación usuario logueado
             if (Session["usuario"] == null)
             {
                 Session.Add("error", "Debes loguearte para ingresar");
@@ -52,7 +52,7 @@ namespace TPC_Equipo_6A
             txbEmail.Text = usuario.Email;
             txbTelefono.Text = usuario.Telefono;
             ddlRol.SelectedValue = usuario.Rol.ToString();
-            ddlEstado.SelectedValue = usuario.Estado ? "true" : "false";
+            
         }
 
         protected void btnModificarUsuario_Click(object sender, EventArgs e)
@@ -88,6 +88,8 @@ namespace TPC_Equipo_6A
                     }
                 }
 
+                var actual = _usuarioNegocio.ObtenerPorId(int.Parse(hfIdUsuario.Value));
+
                 Usuario usuario = new Usuario
                 {
                     IdUsuario = int.Parse(hfIdUsuario.Value),
@@ -96,9 +98,10 @@ namespace TPC_Equipo_6A
                     Apellido = txbApellido.Text,
                     Email = txbEmail.Text,
                     Telefono = txbTelefono.Text,
-                    Rol = (Rol)Enum.Parse(typeof(Rol), ddlRol.SelectedValue),
-                    Estado = bool.Parse(ddlEstado.SelectedValue)
+                    Rol = (Rol)Enum.Parse(typeof(Rol), ddlRol.SelectedValue),                    
+                    Estado = actual != null ? actual.Estado : true
                 };
+
                 if (!string.IsNullOrEmpty(contrasena))
                     usuario.Contrasena = contrasena;
 
@@ -113,6 +116,29 @@ namespace TPC_Equipo_6A
             }
         }
 
+        protected void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = 0;
+                int.TryParse(hfIdUsuario.Value, out id);
+
+                if (id <= 0)
+                {
+                    lblMensajeUsuario.Text = "Id de usuario inválido.";
+                    return;
+                }
+
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                negocio.eliminarUsuarioLogico(id, false);
+
+                Response.Redirect("Usuarios.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                lblMensajeUsuario.Text = "Error al eliminar el usuario: " + ex.Message;
+            }
+        }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Usuarios.aspx", false);

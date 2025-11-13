@@ -71,20 +71,10 @@
                 <div class="col-md-8">
                     <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
-            </div>
-            <div class="row mb-3 align-items-center">
-                <div class="col-md-4 text-md-end">
-                    <label for="ddlEstado" class="form-label mb-0">Estado:</label>
-                </div>
-                <div class="col-md-8">
-                    <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Activo" Value="true"></asp:ListItem>
-                        <asp:ListItem Text="Inactivo" Value="false"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-            </div>
+            </div>            
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <asp:Button Text="Modificar" ID="btnModificarUsuario" CssClass="btn btn-dark" runat="server" OnClick="btnModificarUsuario_Click" />
+                <asp:Button ID="btnEliminarUsuario" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarUsuario_Click" />
                 <asp:Button Text="Cancelar" ID="btnCancelar" CssClass="btn btn-secondary" runat="server" OnClick="btnCancelar_Click" />
             </div>
             <div class="d-flex justify-content-center mt-3">
