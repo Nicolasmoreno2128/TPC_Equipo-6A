@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,35 @@ namespace TPC_Equipo_6A
                 Response.Redirect("Login");
             }
 
+            if (!IsPostBack)
+            {
+                CargarCompras();
+            }
         }
+        private void CargarCompras()
+        {
+            CompraNegocio negocio = new CompraNegocio();
+            DgvCompra.DataSource = negocio.ListarCompras();
+            DgvCompra.DataBind();
+        }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default");
+        }
+        protected void btnNueva_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default");
+        }
+        protected void DgvCompra_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Detalles")
+            {                
+                if (int.TryParse(e.CommandArgument?.ToString(), out int idCompra))
+                {
+                    Response.Redirect($"DetallesCompra.aspx?IdCompra={idCompra}", false);
+                }
+            }
+        }
+
     }
 }
