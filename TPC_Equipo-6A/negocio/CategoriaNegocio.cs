@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace negocio
@@ -46,6 +47,9 @@ namespace negocio
 
             try
             {
+                if (ExisteCategoria(nueva.NombreCategoria))
+                    throw new Exception("La Categoria ya existe.");
+
                 datos.setearConsulta("INSERT INTO CATEGORIAS (NombreCategoria, DescripcionCategoria, Estado)values(@Nombre, @Descripcion, 1)");
                 datos.setearParametro("@Nombre", nueva.NombreCategoria);
                 datos.setearParametro("@Descripcion", nueva.DescripcionCategoria);
@@ -60,23 +64,7 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
-        }
-        /*
-        public void EliminarCategoria(int id)
-        {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from CATEGORIAS where id = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }*/
+        }       
 
         public void eliminarCategoriaLogico(int id, bool activo = false)
         {
@@ -147,6 +135,33 @@ namespace negocio
             }
         }
 
+        public bool ExisteCategoria(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM CATEGORIAS WHERE NombreCategoria = @nombre");
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
 

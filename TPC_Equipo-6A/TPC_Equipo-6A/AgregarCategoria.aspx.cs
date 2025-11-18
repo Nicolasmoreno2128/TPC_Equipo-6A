@@ -35,11 +35,14 @@ namespace TPC_Equipo_6A
                 categoria.DescripcionCategoria = txtDescripcion.Text;
 
                 negocio.agregarCategoria(categoria);
+                Response.Redirect("Categorias");
             }
             catch (Exception ex)
             {
+                lblError.Text = ex.Message;
+                lblError.Visible = true;
             }
-            Response.Redirect("Categorias");
+            
         }
     }
 }
