@@ -31,16 +31,21 @@ namespace TPC_Equipo_6A
 
             try
             {
-                marca.NombreMarca = txtNombre.Text;
-                marca.DescripcionMarca = txtDescripcion.Text;
+                marca.NombreMarca = txtNombre.Text.Trim();
+                marca.DescripcionMarca = txtDescripcion.Text.Trim();
 
-                negocio.agregarMarca(marca);               
+                negocio.agregarMarca(marca);
+
+                Response.Redirect("Marcas");
             }
             catch (Exception ex)
             {
+                // Mostramos el mensaje de error
+                lblError.Text = ex.Message;
+                lblError.Visible = true;
             }
-            Response.Redirect("Marcas");
         }
+
     }
-    
+
 }

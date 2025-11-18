@@ -64,7 +64,7 @@ namespace TPC_Equipo_6A
 
                 negocio.ModificarMarca(marca);
 
-                Response.Redirect("Marcas.aspx");
+                Response.Redirect("Marcas");
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace TPC_Equipo_6A
 
                 Marca marca = new Marca();
                 negocio.eliminarMarcaLogico(id);
-                Response.Redirect("Marcas.aspx");
+                Response.Redirect("Marcas");
             }
             catch (Exception ex)
             {

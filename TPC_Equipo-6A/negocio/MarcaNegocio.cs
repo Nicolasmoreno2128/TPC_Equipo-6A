@@ -1,5 +1,5 @@
 ﻿using dominio;
-using negocio;  
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,21 +41,25 @@ namespace negocio
             }
         }
 
-        public void agregarMarca(Marca nueva)
+        public void agregarMarca(Marca marca)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("INSERT INTO MARCAS (NombreMarca, DescripcionMarca, Estado)values(@Nombre, @Descripcion, 1)");
-                datos.setearParametro("@Nombre", nueva.NombreMarca);
-                datos.setearParametro("@Descripcion", nueva.DescripcionMarca);
+                // Validación previa
+                if (ExisteMarca(marca.NombreMarca))
+                    throw new Exception("La marca ya existe.");
+
+                datos.setearConsulta("INSERT INTO MARCAS (NombreMarca, DescripcionMarca) VALUES (@nombre, @descripcion)");
+                datos.setearParametro("@nombre", marca.NombreMarca);
+                datos.setearParametro("@descripcion", marca.DescripcionMarca);
+
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            catch
             {
-
-                throw ex;
+                throw;
             }
             finally
             {
@@ -63,22 +67,6 @@ namespace negocio
             }
         }
 
-        /*public void EliminarMarca(int id)
-        {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from MARCAS where id = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        */
 
         public void eliminarMarcaLogico(int id, bool activo = false)
         {
@@ -103,8 +91,8 @@ namespace negocio
             {
                 datos.setearConsulta("UPDATE Marcas SET NombreMarca = @nombre, DescripcionMarca = @descripcion WHERE IdMarca = @id");
                 datos.setearParametro("@nombre", marca.NombreMarca);
-                datos.setearParametro("@Descripcion", marca.DescripcionMarca);
-                datos.setearParametro("@Id", marca.IdMarca);
+                datos.setearParametro("@descripcion", marca.DescripcionMarca);
+                datos.setearParametro("@id", marca.IdMarca);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -149,6 +137,35 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool ExisteMarca(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM MARCAS WHERE NombreMarca = @nombre");
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
 
