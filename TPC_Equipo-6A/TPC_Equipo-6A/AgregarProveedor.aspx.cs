@@ -38,11 +38,13 @@ namespace TPC_Equipo_6A
                 proveedor.Telefono = txtTelefono.Text;
 
                 negocio.agregarProveedor(proveedor);
+                Response.Redirect("Proveedor");
             }
             catch (Exception ex)
             {
-            }
-            Response.Redirect("Proveedores");
+                lblError.Text = ex.Message;
+                lblError.Visible = true;
+            }            
         }
     }
 }

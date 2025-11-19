@@ -25,6 +25,10 @@
                 <asp:Button Text="Nuevo" ID="btnCrear" OnClick="btnNuevo_Click" CssClass="btn btn-dark" runat="server" />
                 <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />
             </div>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" Visible="false"></asp:Label>
+            </div>
+
         </div>
     </div>
 

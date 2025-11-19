@@ -38,11 +38,14 @@ namespace TPC_Equipo_6A
                 cliente.Telefono = txtTelefono.Text;
 
                 negocio.agregarCliente(cliente);
+                Response.Redirect("Clientes");
             }
             catch (Exception ex)
             {
+                lblError.Text = ex.Message;
+                lblError.Visible = true;
             }
-            Response.Redirect("Clientes");
+            
         }
     }
 }

@@ -12,8 +12,7 @@
                     <asp:GridView ID="DgvProveedores" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
                         DataKeyNames="IdProveedor"
-                        OnRowCommand="DgvProveedores_RowCommand"
-                        >
+                        OnRowCommand="DgvProveedores_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
@@ -32,7 +31,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
 </asp:Content>

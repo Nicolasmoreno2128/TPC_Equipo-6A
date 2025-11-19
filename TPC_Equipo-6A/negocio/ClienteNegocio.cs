@@ -1,9 +1,10 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using dominio;
 
 namespace negocio
 {
@@ -49,6 +50,9 @@ namespace negocio
 
             try
             {
+                if (ExisteCliente(nuevo.Nombre))
+                    throw new Exception("El cliente ya existe.");
+
                 datos.setearConsulta("INSERT INTO CLIENTE (Nombre, Cuit, Descripcion, Telefono, Email, Estado)values(@Nombre, @Cuit, @Descripcion, @Telefono, @Email, 1)");
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Cuit", nuevo.Cuit);
@@ -106,6 +110,7 @@ namespace negocio
 
                 if (datos.Lector.Read())
                 {
+
                     Cliente cliente = new Cliente();
                     cliente.IdCliente = (int)datos.Lector["IdCliente"];
                     cliente.Nombre = (string)datos.Lector["Nombre"];
@@ -130,24 +135,6 @@ namespace negocio
             }
         }
 
-        /*
-        public void EliminarCliente (int id)
-        {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from CLIENTE where id = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        */
-
         public void eliminarClienteLogico(int id, bool activo = false)
         {
             try
@@ -163,6 +150,34 @@ namespace negocio
                 throw ex;
             }
         }
+        public bool ExisteCliente(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM CLIENTE WHERE Nombre = @nombre");
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }

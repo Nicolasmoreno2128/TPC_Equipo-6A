@@ -1,9 +1,10 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using dominio;
 
 namespace negocio
 {
@@ -49,6 +50,9 @@ namespace negocio
 
             try
             {
+                if (ExisteProveedor(nuevo.Nombre))
+                    throw new Exception("El Proveedor ya existe.");
+
                 datos.setearConsulta("INSERT INTO PROVEEDOR (Nombre, Descripcion, Cuit, Telefono, Email, Estado)values(@Nombre, @Descripcion, @Cuit, @Telefono, @Email, 1)");
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
@@ -67,26 +71,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
-        /*
-        public void EliminarProveedor(int id)
-        {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from PROVEEDOR where id = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        */
-
-
         public void eliminarProveedorLogico(int id, bool activo = false)
         {
             try
@@ -159,6 +143,33 @@ namespace negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool ExisteProveedor(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM PROVEEDOR WHERE Nombre = @nombre");
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            catch
+            {
+                throw;
             }
             finally
             {
