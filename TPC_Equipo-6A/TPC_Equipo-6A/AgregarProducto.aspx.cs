@@ -84,8 +84,8 @@ namespace TPC_Equipo_6A
             }
             catch (Exception ex)
             {
-      
-                throw;
+                lblError.Text = ex.Message;
+                lblError.Visible = true;
             }
 
         }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using dominio;
-using negocio;
 
 namespace negocio
 {
@@ -71,6 +72,9 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                if (ExisteProducto(p.NombreProducto))
+                    throw new Exception("El Producto ya existe.");
+
                 datos.setearConsulta(@"
                                 INSERT INTO Producto
                                 (NombreProducto, DescripcionProducto, UrlImagen, PrecioProducto, Stock, IdMarca, IdCategoria, Estado)
@@ -167,25 +171,6 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         }
 
-
-        /*public void EliminarProducto(int id)
-        {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from PRODUCTO where id = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }*/
-
-
-
         public void eliminarProductoLogico(int id, bool activo = false)
         {
             try
@@ -201,6 +186,34 @@ namespace negocio
                 throw ex;
             }
         }
+        public bool ExisteProducto(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM PRODUCTO WHERE NombreProducto = @nombre");
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
 
