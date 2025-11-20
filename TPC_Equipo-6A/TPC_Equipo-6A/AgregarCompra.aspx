@@ -33,39 +33,43 @@
                     <asp:DropDownList ID="ddlProducto" runat="server" DataTextField="NombreProducto" DataValueField="IdProducto" CssClass="form-control" />
                     <asp:RequiredFieldValidator runat="server" ID="rfvProducto" ControlToValidate="ddlProducto" InitialValue="" ErrorMessage="Seleccioná un producto" CssClass="text-danger d-block mt-1" />
                 </div>
-            
-            <div class="col-md-9">
-                <label for="txtCantidad" class="form-label">Cantidad</label>
-                <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
-          </div>
 
-            <div class="col-md-9 d-flex align-items-end">
-                <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-dark w-100"
-                    OnClick="btnAgregar_Click" />
+                <div class="col-md-9">
+                    <label for="txtCantidad" class="form-label">Cantidad</label>
+                    <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
+                </div>
+
+                <div class="col-md-9 d-flex align-items-end">
+                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-dark w-100"
+                        OnClick="btnAgregar_Click" />
+                </div>
+                <asp:GridView ID="gvProductos" runat="server" CssClass="table table-bordered mt-4"
+                    AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="Nombre" HeaderText="Producto" />
+                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                        <asp:BoundField DataField="Precio" HeaderText="Precio" />
+
+                    </Columns>
+                </asp:GridView>
+
+                <div class="mt-3 text-end">
+                    <asp:Label ID="lblTotal" runat="server" CssClass="fw-bold fs-4 text-dark"></asp:Label>
+                </div>
             </div>
-        <asp:GridView ID="gvProductos" runat="server" CssClass="table table-bordered mt-4"
-            AutoGenerateColumns="false">
-            <Columns>
-                <asp:BoundField DataField="Nombre" HeaderText="Producto" />
-                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-                <asp:BoundField DataField="Precio" HeaderText="Precio" />
 
-            </Columns>
-        </asp:GridView>
+
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <asp:Button Text="Nuevo" ID="btnCrear" OnClick="btnCrear_Click" CssClass="btn btn-dark" runat="server" />
+                <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />
+            </div>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" Visible="false"></asp:Label>
+            </div>
+
         </div>
-
-
-        <div class="d-flex justify-content-center gap-3 mt-3">
-            <asp:Button Text="Nuevo" ID="btnCrear" OnClick="btnCrear_Click" CssClass="btn btn-dark" runat="server" />
-            <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />
-        </div>
-        <div class="d-flex justify-content-center gap-3 mt-3">
-            <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" Visible="false"></asp:Label>
-        </div>
-
     </div>
-        </div>
-    
+
 
 
 

@@ -67,14 +67,17 @@ namespace TPC_Equipo_6A
             var prod = negocio.ObtenerPorId(id);
             decimal precio = prod != null ? prod.PrecioProducto : 0;
 
-            
+            decimal subtotal = cantidad * precio;
+
+
             DataTable dt = ProductosSeleccionados;
-            dt.Rows.Add(id, nombre, cantidad, precio);
+            dt.Rows.Add(id, nombre, cantidad, precio, subtotal);
 
             gvProductos.DataSource = dt;
             gvProductos.DataBind();
 
             txtCantidad.Text = "";
+            CalcularTotal();
         }
 
         private DataTable ProductosSeleccionados
@@ -88,6 +91,7 @@ namespace TPC_Equipo_6A
                     dt.Columns.Add("Nombre", typeof(string));
                     dt.Columns.Add("Cantidad", typeof(int));
                     dt.Columns.Add("Precio", typeof(decimal));
+                    dt.Columns.Add("Subtotal", typeof(decimal));
                     ViewState["ProductosSeleccionados"] = dt;
                 }
                 return (DataTable)ViewState["ProductosSeleccionados"];
@@ -97,6 +101,16 @@ namespace TPC_Equipo_6A
         protected void btnCrear_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CalcularTotal()
+        {
+            DataTable dt = ProductosSeleccionados;
+
+            decimal total = dt.AsEnumerable()
+                              .Sum(row => row.Field<decimal>("Subtotal"));
+
+            lblTotal.Text = "TOTAL: " + total.ToString("C");
         }
     }
 }
