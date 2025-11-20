@@ -35,7 +35,7 @@ namespace TPC_Equipo_6A
         }
         protected void btnNueva_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default");
+            Response.Redirect("AgregarCompra");
         }
         protected void DgvCompra_RowCommand(object sender, GridViewCommandEventArgs e)
         {
