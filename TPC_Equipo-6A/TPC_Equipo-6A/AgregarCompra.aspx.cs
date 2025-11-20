@@ -1,7 +1,8 @@
-﻿using negocio;
-using dominio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,6 +17,7 @@ namespace TPC_Equipo_6A
             if (!IsPostBack)
             {
                 CargarProveedores();
+                CargarProductos();
             }
             if (Session["usuario"] == null)
             {
@@ -34,12 +36,16 @@ namespace TPC_Equipo_6A
             ddlProveedor.Items.Insert(0, new ListItem("-- Seleccioná un proveedor --", ""));
         }
 
-
-
-        protected void btnCrear_Click(object sender, EventArgs e)
+        private void CargarProductos()
         {
-
+            var productos = new ProductoNegocio().ListarProductos();
+            ddlProducto.DataSource = productos;
+            ddlProducto.DataTextField = "NombreProducto";
+            ddlProducto.DataValueField = "IdProducto";
+            ddlProducto.DataBind();
+            ddlProducto.Items.Insert(0, new ListItem("-- Seleccioná un producto --", ""));
         }
+
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -47,7 +53,48 @@ namespace TPC_Equipo_6A
         }
 
 
-        protected void btnAgregarProd_Click(object sender, EventArgs e)
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ddlProducto.SelectedValue) || string.IsNullOrEmpty(txtCantidad.Text))
+                return;
+
+            int id = int.Parse(ddlProducto.SelectedValue);
+            string nombre = ddlProducto.SelectedItem.Text;
+            int cantidad = int.Parse(txtCantidad.Text);
+
+            
+            var negocio = new ProductoNegocio();
+            var prod = negocio.ObtenerPorId(id);
+            decimal precio = prod != null ? prod.PrecioProducto : 0;
+
+            
+            DataTable dt = ProductosSeleccionados;
+            dt.Rows.Add(id, nombre, cantidad, precio);
+
+            gvProductos.DataSource = dt;
+            gvProductos.DataBind();
+
+            txtCantidad.Text = "";
+        }
+
+        private DataTable ProductosSeleccionados
+        {
+            get
+            {
+                if (ViewState["ProductosSeleccionados"] == null)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("IdProducto", typeof(int));
+                    dt.Columns.Add("Nombre", typeof(string));
+                    dt.Columns.Add("Cantidad", typeof(int));
+                    dt.Columns.Add("Precio", typeof(decimal));
+                    ViewState["ProductosSeleccionados"] = dt;
+                }
+                return (DataTable)ViewState["ProductosSeleccionados"];
+            }
+        }
+
+        protected void btnCrear_Click(object sender, EventArgs e)
         {
 
         }
