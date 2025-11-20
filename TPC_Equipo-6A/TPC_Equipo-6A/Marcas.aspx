@@ -17,7 +17,8 @@
                             <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
                             <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
-                            <asp:ButtonField Text="✏️" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
+                            <asp:ButtonField Text="📄" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
+                            <asp:ButtonField Text="🗑️" CommandName="Borrar" ButtonType="Button" HeaderText="Borrar" />
                         </Columns>
                     </asp:GridView>
                     <div class="d-flex gap-3 mt-3">

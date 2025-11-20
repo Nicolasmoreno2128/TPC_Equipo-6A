@@ -50,6 +50,16 @@ namespace TPC_Equipo_6A
                 int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value.ToString());
                 Response.Redirect("FormularioMarca.aspx?id=" + idMarca);
             }
+            if (e.CommandName == "Borrar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value);
+
+                MarcaNegocio negocio = new MarcaNegocio();
+                negocio.eliminarMarcaLogico(idMarca);
+
+                Response.Redirect("Marcas");
+            }
         }
     }
     
