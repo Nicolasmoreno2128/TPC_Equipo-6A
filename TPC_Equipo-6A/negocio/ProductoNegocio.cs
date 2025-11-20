@@ -214,34 +214,6 @@ namespace negocio
             }
         }
 
-        public List<Producto> BuscarProductos(string texto)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            var lista = new List<Producto>();
-
-            try
-            {
-                datos.setearConsulta("SELECT IdProducto, NombreProducto, PrecioProducto FROM Producto WHERE NombreProducto LIKE @texto AND Estado = 1");
-                datos.setearParametro("@texto", "%" + texto + "%");
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    lista.Add(new Producto
-                    {
-                        IdProducto = (int)datos.Lector["IdProducto"],
-                        NombreProducto = (string)datos.Lector["NombreProducto"],
-                        PrecioProducto = (decimal)datos.Lector["PrecioProducto"]
-                    });
-                }
-
-                return lista;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
 
     }
 }
