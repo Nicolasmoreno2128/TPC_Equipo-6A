@@ -45,6 +45,16 @@ namespace TPC_Equipo_6A
                 int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value.ToString());
                 Response.Redirect("FormularioCategoria.aspx?id=" + idCategoria);
             }
+            if (e.CommandName == "Borrar")
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value);
+
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.eliminarCategoriaLogico(idCategoria);
+
+                Response.Redirect("Categorias");
+            }
         }
     }
 }

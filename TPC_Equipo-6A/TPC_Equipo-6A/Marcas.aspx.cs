@@ -44,23 +44,39 @@ namespace TPC_Equipo_6A
 
         protected void DgvMarca_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Detalles")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value.ToString());
-                Response.Redirect("FormularioMarca.aspx?id=" + idMarca);
-            }
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvMarca.Rows[index];
             if (e.CommandName == "Borrar")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[indice].Value);
+            {  
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
+
+            if (e.CommandName == "Confirmar")
+            {                
+                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[index].Value);
 
                 MarcaNegocio negocio = new MarcaNegocio();
                 negocio.eliminarMarcaLogico(idMarca);
 
                 Response.Redirect("Marcas");
             }
+
+            if (e.CommandName == "Cancelar")
+            {                
+                Response.Redirect("Marcas");
+            }
+
+            if (e.CommandName == "Detalles")
+            {
+                int idMarca = Convert.ToInt32(DgvMarca.DataKeys[index].Value);
+                Response.Redirect("FormularioMarca.aspx?id=" + idMarca);
+            }
         }
+
     }
-    
+
 }
