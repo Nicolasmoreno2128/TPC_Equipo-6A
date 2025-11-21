@@ -13,16 +13,18 @@ namespace TPC_Equipo_6A
     {
         public List<Cliente> ListaCliente { get; set; }
         protected void Page_Load(object sender, EventArgs e)
-        {
-            ClienteNegocio negocio = new ClienteNegocio();
-            DgvCliente.DataSource = negocio.ListarClientes();
-            DgvCliente.DataBind();
-
-
+        {            
             if (Session["usuario"] == null)
             {
                 Session.Add("error", "Debes loguearte para ingresar");
                 Response.Redirect("Login");
+            }
+
+            if (!IsPostBack)      
+            {
+                ClienteNegocio negocio = new ClienteNegocio();
+                DgvCliente.DataSource = negocio.ListarClientes();
+                DgvCliente.DataBind();
             }
         }
         protected void btnVolver_Click(object sender, EventArgs e)
@@ -37,10 +39,35 @@ namespace TPC_Equipo_6A
         protected void DgvCliente_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvCliente.Rows[index];
+            if (e.CommandName == "Borrar")
+            {
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
+
+            if (e.CommandName == "Confirmar")
+            {
+                int idCliente = Convert.ToInt32(DgvCliente.DataKeys[index].Value);
+
+                ClienteNegocio negocio = new ClienteNegocio();
+                negocio.eliminarClienteLogico(idCliente);
+
+                Response.Redirect("Clientes");
+            }
+
+            if (e.CommandName == "Cancelar")
+            {
+                Response.Redirect("Clientes");
+            }
+
             if (e.CommandName == "Detalles")
             {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idCliente = Convert.ToInt32(DgvCliente.DataKeys[indice].Value.ToString());
+                int idCliente = Convert.ToInt32(DgvCliente.DataKeys[index].Value);
                 Response.Redirect("FormularioCliente.aspx?id=" + idCliente);
             }
         }

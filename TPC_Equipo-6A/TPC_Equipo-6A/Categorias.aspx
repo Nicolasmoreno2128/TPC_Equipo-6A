@@ -17,8 +17,36 @@
                             <asp:BoundField DataField="IdCategoria" HeaderText="ID" ReadOnly="True" />
                             <asp:BoundField DataField="NombreCategoria" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionCategoria" HeaderText="Descripcion" />
-                            <asp:ButtonField Text="📄" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
-                            <asp:ButtonField Text="🗑️" CommandName="Borrar" ButtonType="Button" HeaderText="Borrar" />
+                            <asp:TemplateField HeaderText="Acciones">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnDetalles" runat="server"
+                                        Text="📄"
+                                        CommandName="Detalles"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <asp:Button ID="btnBorrar" runat="server"
+                                        Text="🗑️"
+                                        CommandName="Borrar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <asp:Label ID="lblEliminar" runat="server"
+                                        Text="Eliminar"
+                                        Visible="false"
+                                        CssClass="fw-bold text-danger me-2" />
+                                    <asp:Button ID="btnConfirmar" runat="server"
+                                        Text="✔️"
+                                        CommandName="Confirmar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent"
+                                        Visible="false" />
+                                    <asp:Button ID="btnCancelar" runat="server"
+                                        Text="❌"
+                                        CommandName="Cancelar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent"
+                                        Visible="false" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
 

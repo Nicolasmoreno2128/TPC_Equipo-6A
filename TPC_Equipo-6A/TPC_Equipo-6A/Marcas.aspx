@@ -12,52 +12,41 @@
                     <asp:GridView ID="DgvMarca" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
                         DataKeyNames="IdMarca"
-                        OnRowCommand="DgvMarca_RowCommand" >                       
+                        OnRowCommand="DgvMarca_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="IdMarca" HeaderText="ID" ReadOnly="True" />
                             <asp:BoundField DataField="NombreMarca" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionMarca" HeaderText="Descripcion" />
                             <asp:TemplateField HeaderText="Acciones">
-    <ItemTemplate>
-
-        
-        <asp:Button ID="btnDetalles" runat="server"
-            Text="📄"
-            CommandName="Detalles"
-            CommandArgument="<%# Container.DataItemIndex %>"
-            CssClass="btn btn-light btn-sm" />
-
-        
-        <asp:Button ID="btnBorrar" runat="server"
-            Text="🗑️"
-            CommandName="Borrar"
-            CommandArgument="<%# Container.DataItemIndex %>"
-            CssClass="btn btn-sm border-0 bg-transparent" />
-
-        <asp:Label ID="lblEliminar" runat="server"
-            Text="Eliminar"
-            Visible="false"
-            CssClass="fw-bold text-danger me-2" />
-
-        
-        <asp:Button ID="btnConfirmar" runat="server"
-            Text="✔️"
-            CommandName="Confirmar"
-            CommandArgument="<%# Container.DataItemIndex %>"
-            CssClass="btn btn-sm border-0 bg-transparent"
-            Visible="false" />
-
-        
-        <asp:Button ID="btnCancelar" runat="server"
-            Text="❌"
-            CommandName="Cancelar"
-            CommandArgument="<%# Container.DataItemIndex %>"
-            CssClass="btn btn-sm border-0 bg-transparent"
-            Visible="false" />
-
-    </ItemTemplate>
-</asp:TemplateField>
-
+                                <ItemTemplate>
+                                    <asp:Button ID="btnDetalles" runat="server"
+                                        Text="📄"
+                                        CommandName="Detalles"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <asp:Button ID="btnBorrar" runat="server"
+                                        Text="🗑️"
+                                        CommandName="Borrar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <asp:Label ID="lblEliminar" runat="server"
+                                        Text="Eliminar"
+                                        Visible="false"
+                                        CssClass="fw-bold text-danger me-2" />
+                                    <asp:Button ID="btnConfirmar" runat="server"
+                                        Text="✔️"
+                                        CommandName="Confirmar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent"
+                                        Visible="false" />
+                                    <asp:Button ID="btnCancelar" runat="server"
+                                        Text="❌"
+                                        CommandName="Cancelar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent"
+                                        Visible="false" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                     <div class="d-flex gap-3 mt-3">

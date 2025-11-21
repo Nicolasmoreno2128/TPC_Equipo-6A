@@ -36,24 +36,38 @@ namespace TPC_Equipo_6A
             Response.Redirect("AgregarCategoria");
         }
 
-
         protected void DgvCategoria_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Detalles")
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value.ToString());
-                Response.Redirect("FormularioCategoria.aspx?id=" + idCategoria);
-            }
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvCategoria.Rows[index];
             if (e.CommandName == "Borrar")
             {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[indice].Value);
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
+
+            if (e.CommandName == "Confirmar")
+            {
+                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[index].Value);
 
                 CategoriaNegocio negocio = new CategoriaNegocio();
                 negocio.eliminarCategoriaLogico(idCategoria);
 
                 Response.Redirect("Categorias");
+            }
+
+            if (e.CommandName == "Cancelar")
+            {
+                Response.Redirect("Categorias");
+            }
+
+            if (e.CommandName == "Detalles")
+            {
+                int idCategoria = Convert.ToInt32(DgvCategoria.DataKeys[index].Value);
+                Response.Redirect("FormularioCategoria.aspx?id=" + idCategoria);
             }
         }
     }
