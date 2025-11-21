@@ -26,6 +26,9 @@ namespace TPC_Equipo_6A
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+                return;
+
             Categoria categoria = new Categoria();
             CategoriaNegocio negocio = new CategoriaNegocio();
 

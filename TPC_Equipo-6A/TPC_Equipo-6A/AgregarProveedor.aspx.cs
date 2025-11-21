@@ -26,6 +26,9 @@ namespace TPC_Equipo_6A
         }
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+                return;
+
             Proveedor proveedor = new Proveedor();
             ProveedorNegocio negocio = new ProveedorNegocio();
 
@@ -38,7 +41,7 @@ namespace TPC_Equipo_6A
                 proveedor.Telefono = txtTelefono.Text;
 
                 negocio.agregarProveedor(proveedor);
-                Response.Redirect("Proveedor");
+                Response.Redirect("Proveedores");
             }
             catch (Exception ex)
             {

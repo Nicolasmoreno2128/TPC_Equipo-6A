@@ -26,6 +26,9 @@ namespace TPC_Equipo_6A
         }
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+                return;
+
             Marca marca = new Marca();
             MarcaNegocio negocio = new MarcaNegocio();
 
@@ -40,7 +43,6 @@ namespace TPC_Equipo_6A
             }
             catch (Exception ex)
             {
-                // Mostramos el mensaje de error
                 lblError.Text = ex.Message;
                 lblError.Visible = true;
             }

@@ -8,6 +8,13 @@
 
             <div class="mb-3">
                 <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre de la marca" runat="server" />
+                <asp:RequiredFieldValidator
+                    ID="rfvNombre"
+                    runat="server"
+                    ControlToValidate="txtNombre"
+                    ErrorMessage="El nombre es obligatorio."
+                    ForeColor="Red"
+                    Display="Dynamic" />
             </div>
             <div class="mb-3">
                 <asp:TextBox ID="txtDescripcion" CssClass="form-control mx-auto w-75" placeholder="Descripción" runat="server" />
@@ -15,10 +22,10 @@
 
             <div class="d-flex justify-content-center gap-3 mt-3">
                 <asp:Button Text="Crear" ID="btnCrear" OnClick="btnCrear_Click" CssClass="btn btn-dark" runat="server" />
-                <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />               
+                <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" CausesValidation="false"/>
             </div>
             <div class="d-flex justify-content-center gap-3 mt-3">
-                 <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" Visible="false"></asp:Label>
+                <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" Visible="false"></asp:Label>
             </div>
         </div>
     </div>

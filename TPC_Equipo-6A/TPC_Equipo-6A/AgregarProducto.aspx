@@ -52,7 +52,7 @@
                 </div>
                 <div class="d-flex justify-content-center gap-3 mt-5">
                     <asp:Button Text="Guardar Producto" ID="btnNuevoProd" OnClick="btnNuevoProd_Click" CssClass="btn btn-dark px-4 py-2 fw-semibold" runat="server" />
-                    <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-outline-secondary px-4 py-2 fw-semibold" runat="server" />
+                    <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-outline-secondary px-4 py-2 fw-semibold" runat="server" CausesValidation="false"/>
                 </div>
                 <div class="d-flex justify-content-center gap-3 mt-5">
                     <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" Visible="false"></asp:Label>
