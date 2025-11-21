@@ -6,6 +6,19 @@
              <div class="card shadow p-4">
                  <h2 class="text-center mb-4">Ventas</h2>
 
+                 <asp:GridView ID="dgvVentas" runat="server" AutoGenerateColumns="false" CssClass="table table-striped mt-3">
+                  <Columns>
+                        <asp:BoundField DataField="idVenta" HeaderText="ID" />
+                        <asp:BoundField DataField="FechaVenta" HeaderText="Fecha" 
+                                        DataFormatString="{0:dd/MM/yyyy}" />
+                        <asp:BoundField DataField="Cliente.Nombre" HeaderText="Cliente" />
+                        <asp:BoundField DataField="Vendedor.NombreUsuario" HeaderText="Vendedor" />
+                        <asp:BoundField DataField="TotalVenta" HeaderText="Total" DataFormatString="{0:C}" />
+                        <asp:ButtonField Text="📄" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
+                        <asp:ButtonField Text="❌" CommandName="Borrar" ButtonType="Button" HeaderText="Anular Venta" />
+                    </Columns>
+                   </asp:GridView>
+
 
                  <div class="row justify-content-center mt-3">
                      <div class="col-4 col-md-3">

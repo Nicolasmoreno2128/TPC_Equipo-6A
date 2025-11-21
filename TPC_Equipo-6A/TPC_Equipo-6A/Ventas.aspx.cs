@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,18 @@ namespace TPC_Equipo_6A
                 Response.Redirect("Login");
             }
 
+            if (!IsPostBack)
+            {
+                CargarVentas();
+            }
+
         }
+        private void CargarVentas()
+        {
+            VentaNegocio negocio = new VentaNegocio();
+            dgvVentas.DataSource = negocio.ListarVentas();
+            dgvVentas.DataBind();
+        }
+
     }
 }

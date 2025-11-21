@@ -14,7 +14,6 @@
                             <asp:BoundField DataField="IdProducto" HeaderText="ID" ReadOnly="True" />
                             <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" />
                             <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripcion" />
-                            <asp:BoundField DataField="UrlImagen" HeaderText="Imagen" />
                             <asp:BoundField DataField="PrecioProducto" HeaderText="Precio" />
                             <asp:BoundField DataField="Stock" HeaderText="Stock" />
 
