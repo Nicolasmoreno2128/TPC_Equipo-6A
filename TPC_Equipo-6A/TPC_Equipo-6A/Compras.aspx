@@ -20,7 +20,7 @@
 
                             <asp:TemplateField HeaderText="Proveedor">
                                 <ItemTemplate>
-                                    <%# Eval("Proveedor.Nombre") %>
+                                    <%# Eval("IdProveedor") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

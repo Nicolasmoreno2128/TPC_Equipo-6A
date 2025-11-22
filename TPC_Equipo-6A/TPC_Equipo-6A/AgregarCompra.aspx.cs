@@ -100,10 +100,33 @@ namespace TPC_Equipo_6A
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            var compra = new Compra();
+            compra.IdProveedor = int.Parse(ddlProveedor.SelectedValue);
+            compra.FechaCompra = DateTime.Parse(txtFecha.Text);
+            compra.TotalCompra = CalcularTotal();
 
+            var negocioCompra = new CompraNegocio();
+            var negocioDetalle = new DetalleCompraNegocio();
+
+            // PASO 1: Crear compra y obtener ID
+            int idCompra = negocioCompra.AgregarCompra(compra);
+
+            // PASO 2: Guardar los detalles
+            foreach (DataRow row in ProductosSeleccionados.Rows)
+            {
+                var detalle = new DetalleCompra();
+                detalle.IdCompra = idCompra;
+                detalle.IdProducto = (int)row["IdProducto"];
+                detalle.Cantidad = (int)row["Cantidad"];
+                detalle.PrecioUnitario = (decimal)row["Precio"];
+
+                negocioDetalle.AgregarDetalleCompra(detalle);
+            }
+
+            Response.Redirect("Compras.aspx");
         }
 
-        private void CalcularTotal()
+        private decimal CalcularTotal()
         {
             DataTable dt = ProductosSeleccionados;
 
@@ -111,6 +134,8 @@ namespace TPC_Equipo_6A
                               .Sum(row => row.Field<decimal>("Subtotal"));
 
             lblTotal.Text = "TOTAL: " + total.ToString("C");
+
+            return total;
         }
     }
 }

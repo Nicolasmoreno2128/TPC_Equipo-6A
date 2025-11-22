@@ -78,5 +78,12 @@ namespace negocio
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
+
+        public object ejecutarScalar()
+        {
+            comando.Connection = conexion;
+            conexion.Open();
+            return comando.ExecuteScalar();
+        }
     }
 }

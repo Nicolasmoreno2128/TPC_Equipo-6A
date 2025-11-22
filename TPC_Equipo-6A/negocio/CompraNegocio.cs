@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
+using negocio;
 
 namespace negocio
 {
@@ -22,16 +23,11 @@ namespace negocio
                 C.FechaCompra,
                 C.FechaRecepcion,
                 C.TotalCompra,
-                C.IdProveedor AS IdProveedorFk,
-                C.Estado,
-                
-                P.Nombre        AS NombreProveedor,
-                P.Descripcion   AS DescripcionProveedor,
-                P.Cuit,
-                P.Telefono,
-                P.Email
+                C.IdProveedor,
+                C.Estado
+               
             FROM COMPRA C
-            INNER JOIN PROVEEDOR P ON P.IdProveedor = C.IdProveedor
+            
             WHERE C.Estado = 1;
         ");
 
@@ -44,19 +40,11 @@ namespace negocio
                     aux.idCompra = (int)datos.Lector["IdCompra"];
                     aux.FechaCompra = (DateTime)datos.Lector["FechaCompra"];
                     aux.FechaRecepcion = datos.Lector["FechaRecepcion"] is DBNull ?
-                                         DateTime.MinValue : (DateTime)datos.Lector["FechaRecepcion"];
+                    DateTime.MinValue : (DateTime)datos.Lector["FechaRecepcion"];
                     aux.TotalCompra = (decimal)datos.Lector["TotalCompra"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-
-                    aux.Proveedor = new Proveedor
-                    {
-                        IdProveedor = (int)datos.Lector["IdProveedorFk"],
-                        Nombre = (string)datos.Lector["NombreProveedor"],
-                        Descripcion = (string)datos.Lector["DescripcionProveedor"],
-                        Cuit = (string)datos.Lector["Cuit"],
-                        Telefono = (string)datos.Lector["Telefono"],
-                        Email = (string)datos.Lector["Email"]
-                    };
+                    aux.IdProveedor = (int)datos.Lector["IdProveedor"];
+                 
 
                     lista.Add(aux);
                 }
@@ -72,6 +60,25 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int AgregarCompra(Compra compra)
+        {
+            var datos = new AccesoDatos();
+
+            datos.setearConsulta(@"
+            INSERT INTO COMPRA (IdProveedor, FechaCompra, TotalCompra)
+            OUTPUT INSERTED.IdCompra
+            VALUES (@proveedor, @fecha, @total)");
+
+            datos.setearParametro("@proveedor", compra.IdProveedor);
+            datos.setearParametro("@fecha", compra.FechaCompra);
+            datos.setearParametro("@total", compra.TotalCompra);
+
+            int idCompra = (int)datos.ejecutarScalar();
+
+            return idCompra;
+        }
+
 
     }
 }
