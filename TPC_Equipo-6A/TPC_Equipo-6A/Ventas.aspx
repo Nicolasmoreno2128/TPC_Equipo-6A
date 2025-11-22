@@ -8,30 +8,23 @@
 
                  <asp:GridView ID="dgvVentas" runat="server" AutoGenerateColumns="false" CssClass="table table-striped mt-3">
                   <Columns>
-                        <asp:BoundField DataField="idVenta" HeaderText="ID" />
+                        <asp:BoundField DataField="IdVenta" HeaderText="ID" />
                         <asp:BoundField DataField="FechaVenta" HeaderText="Fecha" 
                                         DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField DataField="Cliente.Nombre" HeaderText="Cliente" />
-                        <asp:BoundField DataField="Vendedor.NombreUsuario" HeaderText="Vendedor" />
+                        <asp:BoundField DataField="Usuario.NombreUsuario" HeaderText="Vendedor" />
                         <asp:BoundField DataField="TotalVenta" HeaderText="Total" DataFormatString="{0:C}" />
                         <asp:ButtonField Text="📄" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
                         <asp:ButtonField Text="❌" CommandName="Borrar" ButtonType="Button" HeaderText="Anular Venta" />
                     </Columns>
                    </asp:GridView>
 
-
                  <div class="row justify-content-center mt-3">
                      <div class="col-4 col-md-3">
-                         <asp:Button ID="btnAgregarVenta" runat="server" CssClass="btn btn-dark w-100" Text="Agregar" />
+                         <asp:Button ID="btnAgregarVenta" runat="server" CssClass="btn btn-dark w-100" Text="Nueva Venta" OnClick="btnAgregarVenta_Click"    />
                      </div>
                      <div class="col-4 col-md-3">
-                         <asp:Button ID="btnModificarVenta" runat="server" CssClass="btn btn-dark w-100" Text="Modificar" CausesValidation="false" />
-                     </div>
-                     <div class="col-4 col-md-3">
-                         <asp:Button ID="btnEliminarVenta" runat="server" CssClass="btn btn-dark w-100" Text="Eliminar" CausesValidation="false" />
-                     </div>
-                     <div class="col-4 col-md-3">
-                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" />
+                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" OnClick="btnVolver_Click" />
                      </div>
                  </div>
              </div>

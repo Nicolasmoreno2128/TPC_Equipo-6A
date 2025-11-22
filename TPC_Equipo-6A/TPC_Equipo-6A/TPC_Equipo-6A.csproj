@@ -137,6 +137,7 @@
     <Content Include="FormularioMarca.aspx" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="ModificarUsuario.aspx" />
+    <Content Include="NuevaVenta.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="Registro.aspx" />
@@ -343,6 +344,13 @@
     </Compile>
     <Compile Include="ModificarUsuario.aspx.designer.cs">
       <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.designer.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>

@@ -33,5 +33,14 @@ namespace TPC_Equipo_6A
             dgvVentas.DataBind();
         }
 
+        protected void btnAgregarVenta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NuevaVenta.aspx");
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
     }
 }

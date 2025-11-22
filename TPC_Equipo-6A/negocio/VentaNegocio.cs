@@ -30,7 +30,7 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Venta aux = new Venta();
-                    aux.idVenta = (int)datos.Lector["IdVenta"];
+                    aux.IdVenta = (int)datos.Lector["IdVenta"];
                     aux.FechaVenta = (DateTime)datos.Lector["FechaVenta"];
                     aux.TotalVenta = (decimal)datos.Lector["TotalVenta"];
                     aux.Estado = (bool)datos.Lector["Estado"];
@@ -39,9 +39,9 @@ namespace negocio
                     aux.Cliente.IdCliente = (int)datos.Lector["IdCliente"];
                     aux.Cliente.Nombre = (string)datos.Lector["Nombre"];
 
-                    aux.Vendedor = new Usuario();
-                    aux.Vendedor.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    aux.Vendedor.NombreUsuario = (string)datos.Lector["NombreUsuario"];
+                    aux.Usuario = new Usuario();
+                    aux.Usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    aux.Usuario.NombreUsuario = (string)datos.Lector["NombreUsuario"];
 
                     lista.Add(aux);
                 }
@@ -51,6 +51,64 @@ namespace negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public int AgregarVenta(Venta venta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "INSERT INTO VENTA (IdCliente, FechaVenta, TotalVenta, IdUsuario, Estado) " +
+                    "OUTPUT INSERTED.IdVenta " +
+                    "VALUES (@IdCliente, @FechaVenta, @TotalVenta, @IdUsuario, @Estado)"
+                );
+
+                datos.setearParametro("@IdCliente", venta.Cliente.IdCliente);
+                datos.setearParametro("@FechaVenta", venta.FechaVenta);
+                datos.setearParametro("@TotalVenta", venta.TotalVenta);
+                datos.setearParametro("@IdUsuario", venta.Usuario.IdUsuario);
+                datos.setearParametro("@Estado", venta.Estado);
+
+                int idVenta = (int)datos.ejecutarScalar();
+                datos.cerrarConexion();
+
+                foreach (var item in venta.Detalles)
+                {
+
+                    AccesoDatos datosDetalle = new AccesoDatos();
+                    datosDetalle.setearConsulta(
+                        "INSERT INTO DETALLE_VENTA (IdVenta, IdProducto, Cantidad, PrecioUnitario) " +
+                        "VALUES (@IdVenta, @IdProducto, @Cantidad, @PrecioUnitario)"
+                    );
+
+                    datosDetalle.setearParametro("@IdVenta", idVenta);
+                    datosDetalle.setearParametro("@IdProducto", item.IdProducto);
+                    datosDetalle.setearParametro("@Cantidad", item.Cantidad);
+                    datosDetalle.setearParametro("@PrecioUnitario", item.PrecioUnitario);
+
+                    datosDetalle.ejecutarAccion();
+                    datosDetalle.cerrarConexion();
+
+                    AccesoDatos datosStock = new AccesoDatos();
+                    datosStock.setearConsulta(
+                        "UPDATE PRODUCTO SET Stock = Stock - @Cantidad WHERE IdProducto = @IdProducto"
+                    );
+
+                    datosStock.setearParametro("@Cantidad", item.Cantidad);
+                    datosStock.setearParametro("@IdProducto", item.IdProducto);
+
+                    datosStock.ejecutarAccion();
+                    datosStock.cerrarConexion();
+                }
+
+                return idVenta;
             }
             finally
             {
