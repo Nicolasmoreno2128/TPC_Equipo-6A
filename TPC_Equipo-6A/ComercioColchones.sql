@@ -178,3 +178,7 @@ select P.IdProducto, P.NombreProducto, P.DescripcionProducto, P.UrlImagen, P.Pre
 
 select * from PRODUCTO
 
+select * from DETALLE_COMPRA
+
+select * from COMPRA
+

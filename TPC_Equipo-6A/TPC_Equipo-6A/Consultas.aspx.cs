@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using negocio;
 
 namespace TPC_Equipo_6A
 {
@@ -16,7 +18,9 @@ namespace TPC_Equipo_6A
                 Session.Add("error", "Debes loguearte para ingresar");
                 Response.Redirect("Login");
             }
-
+            var reporte = new InformeNegocio().TopClientesCompras();
+            gvComprasCliente.DataSource = reporte;
+            gvComprasCliente.DataBind();
         }
     }
 }
