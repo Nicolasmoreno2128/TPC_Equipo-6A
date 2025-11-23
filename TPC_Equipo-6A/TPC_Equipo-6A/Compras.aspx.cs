@@ -46,6 +46,24 @@ namespace TPC_Equipo_6A
                     Response.Redirect($"DetallesCompra.aspx?IdCompra={idCompra}", false);
                 }
             }
+
+            if (e.CommandName == "Recibido")
+            {
+                int idCompra = Convert.ToInt32(e.CommandArgument);
+
+                try
+                {
+                    CompraNegocio negocio = new CompraNegocio();
+                    negocio.RegistrarRecepcionYActualizarStock(idCompra);
+
+                    CargarCompras();
+                }
+                catch (Exception ex)
+                {
+                    lblMensajeError.Text = "Error al recibir la compra: " + ex.Message;
+                    lblMensajeError.Visible = true;
+                }
+            }
         }
 
     }

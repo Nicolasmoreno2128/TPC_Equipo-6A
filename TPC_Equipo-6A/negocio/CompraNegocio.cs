@@ -79,6 +79,59 @@ namespace negocio
             return idCompra;
         }
 
+        public void ActualizarStockProducto(int idProducto, int cantidadSumar)
+        {
+            var datos = new AccesoDatos();
+
+            datos.setearConsulta("UPDATE PRODUCTO SET Stock = Stock + @cant WHERE IdProducto = @id");
+            datos.setearParametro("@cant", cantidadSumar);
+            datos.setearParametro("@id", idProducto);
+
+            datos.ejecutarAccion();
+        }
+
+        public List<DetalleCompra> ObtenerDetalles(int idCompra)
+        {
+            List<DetalleCompra> lista = new List<DetalleCompra>();
+            var datos = new AccesoDatos();
+
+            datos.setearConsulta("SELECT IdProducto, Cantidad, PrecioUnitario FROM DETALLE_COMPRA WHERE IdCompra = @id");
+            datos.setearParametro("@id", idCompra);
+            datos.ejecutarLectura();
+
+            while (datos.Lector.Read())
+            {
+                var d = new DetalleCompra
+                {
+                    IdProducto = (int)datos.Lector["IdProducto"],
+                    Cantidad = (int)datos.Lector["Cantidad"],
+                    PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"]
+                };
+
+                lista.Add(d);
+            }
+
+            return lista;
+        }
+
+        public void RegistrarRecepcionYActualizarStock(int idCompra)
+        {
+            var datos = new AccesoDatos();
+
+            datos.setearConsulta("UPDATE COMPRA SET FechaRecepcion = @fecha WHERE IdCompra = @id");
+            datos.setearParametro("@fecha", DateTime.Now);
+            datos.setearParametro("@id", idCompra);
+            datos.ejecutarAccion();
+
+            
+            List<DetalleCompra> detalles = ObtenerDetalles(idCompra);
+
+            foreach (var d in detalles)
+            {
+                ActualizarStockProducto(d.IdProducto, d.Cantidad);
+            }
+        }
+
 
     }
 }

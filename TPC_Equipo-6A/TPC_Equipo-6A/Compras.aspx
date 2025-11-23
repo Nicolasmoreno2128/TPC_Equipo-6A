@@ -32,7 +32,7 @@
 
                             <asp:BoundField DataField="TotalCompra" HeaderText="Total"
                                 DataFormatString="{0:C}" />
-                           
+
                             <asp:TemplateField HeaderText="Detalles">
                                 <ItemTemplate>
                                     <asp:Button runat="server"
@@ -43,8 +43,15 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
-
+                            <asp:TemplateField HeaderText="Mercaderia Recibida">
+                                <ItemTemplate>
+                                    <asp:Button runat="server"
+                                        Text="✅"
+                                        CssClass="btn btn-sm btn-outline-primary"
+                                        CommandName="Recibido"
+                                        CommandArgument='<%# Eval("idCompra") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
 
@@ -54,6 +61,10 @@
                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
                             CausesValidation="false" OnClick="btnVolver_Click" />
 
+                    </div>
+
+                    <div class="mt-3">
+                        <asp:Label ID="lblMensajeError" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
 
                 </div>
