@@ -11,7 +11,7 @@
                     <label for="txtNombre" class="form-label mb-0">Nombre:</label>
                 </div>
                 <div class="col-md-9">
-                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre" runat="server" />
+                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre" runat="server" ReadOnly="true" />
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
@@ -49,8 +49,6 @@
             <div class="d-flex justify-content-center gap-3 mt-3">
                 <asp:Button ID="btnModificarCliente" runat="server" Text="Modificar" CssClass="btn btn-dark"
                     OnClick="btnModificarCliente_Click" />
-                <asp:Button ID="btnELiminarCliente" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-                    OnClick="btnELiminarCliente_Click" />
                 <asp:Button ID="btnCancelarCliente" runat="server" Text="Cancelar" CssClass="btn btn-secondary"
                     OnClick="btnCancelarCliente_Click" />
                 <asp:Label ID="lblMensajeCliente" runat="server" CssClass="text-danger d-block mt-2" />

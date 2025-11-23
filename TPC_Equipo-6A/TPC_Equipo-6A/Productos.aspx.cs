@@ -64,7 +64,7 @@ namespace TPC_Equipo_6A
             if (e.CommandName == "Detalles")
             {
                 int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
-                Response.Redirect("FormularioProdcuto.aspx?id=" + idProducto);
+                Response.Redirect("FormularioProducto.aspx?IdProducto=" + idProducto);
             }
         }
     }

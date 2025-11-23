@@ -11,7 +11,7 @@
                     <label for="txtNombre" class="form-label mb-0">Marca:</label>
                 </div>
                 <div class="col-md-9">
-                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre de la marca" runat="server" />
+                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre de la marca" runat="server" ReadOnly="true"/>
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
@@ -26,8 +26,6 @@
         <div class="d-flex justify-content-center gap-3 mt-3">
             <asp:Button ID="btnModificarMarca" runat="server" Text="Modificar" CssClass="btn btn-dark"
                 OnClick="btnModificarMarca_Click" />
-            <asp:Button ID="btnEliminarMarca" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-                OnClick="btnEliminarMarca_Click" />
             <asp:Button ID="btnCancelarMarca" runat="server" Text="Cancelar" CssClass="btn btn-secondary"
                 OnClick="btnCancelarMarca_Click" />
             <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger d-block mt-2" />

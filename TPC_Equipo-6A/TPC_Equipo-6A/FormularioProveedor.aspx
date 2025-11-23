@@ -6,7 +6,7 @@
             <h2 class="mb-4">Detalles Proveedor</h2>
 
             <div class="mb-3">
-                <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre" runat="server" />
+                <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre" runat="server" ReadOnly="true"/>
             </div>
             <div class="mb-3">
                 <asp:TextBox ID="txtCuit" CssClass="form-control mx-auto w-75" placeholder="CUIT" runat="server" />
@@ -23,8 +23,6 @@
             <div class="d-flex justify-content-center gap-3 mt-3">
                 <asp:Button ID="btnModificarProveedor" runat="server" Text="Modificar" CssClass="btn btn-dark"
                     OnClick="btnModificarProveedor_Click" />
-                <asp:Button ID="btnEliminarProveedor" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-                    OnClick="btnEliminarProveedor_Click" />
                 <asp:Button ID="btnCancelarProveedor" runat="server" Text="Cancelar" CssClass="btn btn-secondary"
                     OnClick="btnCancelarProveedor_Click"/>
                 <asp:Label ID="lblMensajeProveedor" runat="server" CssClass="text-danger d-block mt-2" />

@@ -69,15 +69,6 @@ namespace TPC_Equipo_6A
         protected global::System.Web.UI.WebControls.Button btnModificarProveedor;
 
         /// <summary>
-        /// Control btnEliminarProveedor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarProveedor;
-
-        /// <summary>
         /// Control btnCancelarProveedor.
         /// </summary>
         /// <remarks>

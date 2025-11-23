@@ -74,7 +74,6 @@
             </div>            
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <asp:Button Text="Modificar" ID="btnModificarUsuario" CssClass="btn btn-dark" runat="server" OnClick="btnModificarUsuario_Click" />
-                <asp:Button ID="btnEliminarUsuario" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarUsuario_Click" />
                 <asp:Button Text="Cancelar" ID="btnCancelar" CssClass="btn btn-secondary" runat="server" OnClick="btnCancelar_Click" />
             </div>
             <div class="d-flex justify-content-center mt-3">

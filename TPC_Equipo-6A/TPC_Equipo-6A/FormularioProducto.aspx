@@ -12,7 +12,7 @@
                     <label for="txtNombreProdm" class="form-label mb-0">Nombre:</label>
                 </div>
                 <div class="col-md-9">
-                    <asp:TextBox ID="txtNombreProdm" CssClass="form-control" runat="server" />
+                    <asp:TextBox ID="txtNombreProdm" CssClass="form-control" runat="server" ReadOnly="true"/>
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
@@ -71,7 +71,6 @@
     </div>
         <div class="d-flex justify-content-center gap-3 mt-4">
             <asp:Button Text="Modificar" ID="btnModificarProd" OnClick="btnModificarProd_Click" CssClass="btn btn-dark" runat="server" />
-            <asp:Button ID="btnEliminarProducto" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarProducto_Click" />
             <asp:Button Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_Click" CssClass="btn btn-secondary" runat="server" />
             <asp:Label ID="lblMensajeProducto" runat="server" CssClass="text-danger d-block mt-2" />
 
