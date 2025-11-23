@@ -51,7 +51,7 @@ namespace TPC_Equipo_6A
         private void cargarClientes()
         {
             ClienteNegocio negocio = new ClienteNegocio();
-            ddlClientes.DataSource = negocio.ListarClientes();  // AJUSTAR A TU MÉTODO
+            ddlClientes.DataSource = negocio.ListarClientes();
             ddlClientes.DataTextField = "Nombre";
             ddlClientes.DataValueField = "IdCliente";
             ddlClientes.DataBind();
@@ -61,7 +61,7 @@ namespace TPC_Equipo_6A
         private void cargarProductos()
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            ddlProductos.DataSource = negocio.ListarProductos();  // AJUSTAR A TU MÉTODO
+            ddlProductos.DataSource = negocio.ListarProductos();
             ddlProductos.DataTextField = "NombreProducto";
             ddlProductos.DataValueField = "IdProducto";
             ddlProductos.DataBind();
@@ -87,11 +87,23 @@ namespace TPC_Equipo_6A
                 ProductoNegocio prodNeg = new ProductoNegocio();
                 Producto prod = prodNeg.ObtenerPorId(idProducto);
 
-                if (cantidad > prod.Stock)
+                // Stock total en la base
+                int stockTotal = prod.Stock;
+
+                // Cantidad ya agregada de ESTE producto en la venta actual
+                int cantidadYaAgregada = Detalles
+                    .Where(d => d.IdProducto == idProducto)
+                    .Sum(d => d.Cantidad);
+
+                // Stock restante disponible
+                int stockRestante = stockTotal - cantidadYaAgregada;
+
+                if (cantidad > stockRestante)
                 {
-                    lblMensajeError.Text = $"No hay stock suficiente. Stock disponible: {prod.Stock}.";
+                    lblMensajeError.Text = $"No hay stock suficiente. Stock disponible: {stockRestante}.";
                     return;
                 }
+
 
                 // Crear detalle
                 DetalleVenta nuevo = new DetalleVenta
@@ -112,6 +124,9 @@ namespace TPC_Equipo_6A
                 // Recalcular total
                 recalcularTotal();
 
+                // Actualizar el stock restante y cantidades permitidas
+                ActualizarStockDisponible();
+
 
             }
             catch (Exception ex)
@@ -130,6 +145,7 @@ namespace TPC_Equipo_6A
             gvDetalleVenta.DataBind();
 
             recalcularTotal();
+            ActualizarStockDisponible();
         }
 
 
@@ -189,16 +205,28 @@ namespace TPC_Equipo_6A
             int idProducto = int.Parse(ddlProductos.SelectedValue);
 
             ProductoNegocio prodNeg = new ProductoNegocio();
-            Producto prod = prodNeg.ObtenerPorId(idProducto); // usá tu método real
+            Producto prod = prodNeg.ObtenerPorId(idProducto);
 
-            // Mostrar stock
-            lblStockDisponible.Text = prod.Stock.ToString();
+            // Stock total en la base
+            int stockTotal = prod.Stock;
 
-            // Llenar el combo de cantidad
+            // Cantidad ya agregada de ESTE producto en la venta actual
+            int cantidadYaAgregada = Detalles
+                .Where(d => d.IdProducto == idProducto)
+                .Sum(d => d.Cantidad);
+
+            // Stock restante disponible para seguir agregando
+            int stockRestante = stockTotal - cantidadYaAgregada;
+            if (stockRestante < 0)
+                stockRestante = 0;
+
+            // Mostrar stock en el label (total o restante, como prefieras)
+            lblStockDisponible.Text = stockRestante.ToString();
+
+            // Llenar el combo de cantidad según el stock restante
             ddlCantidad.Items.Clear();
 
-            // Si no hay stock, no agregamos nada y podrías deshabilitar el botón Agregar
-            if (prod.Stock <= 0)
+            if (stockRestante <= 0)
             {
                 ddlCantidad.Items.Add("0");
                 ddlCantidad.Enabled = false;
@@ -209,10 +237,13 @@ namespace TPC_Equipo_6A
             ddlCantidad.Enabled = true;
             btnAgregarProducto.Enabled = true;
 
-            for (int i = 1; i <= prod.Stock; i++)
+            for (int i = 1; i <= stockRestante; i++)
             {
                 ddlCantidad.Items.Add(i.ToString());
             }
+
+            // Por defecto, que quede seleccionada la primera opción (1)
+            ddlCantidad.SelectedIndex = 0;
         }
         protected void ddlProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
