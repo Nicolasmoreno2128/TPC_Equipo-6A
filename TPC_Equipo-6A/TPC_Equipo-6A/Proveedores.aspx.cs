@@ -21,10 +21,13 @@ namespace TPC_Equipo_6A
                 Response.Redirect("Login");
             }
 
-
-            ProveedorNegocio negocio = new ProveedorNegocio();
-            DgvProveedores.DataSource = negocio.ListarProveedores();
-            DgvProveedores.DataBind();
+            if (!IsPostBack)
+            {
+                ProveedorNegocio negocio = new ProveedorNegocio();
+                DgvProveedores.DataSource = negocio.ListarProveedores();
+                DgvProveedores.DataBind();
+            }
+                
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
@@ -37,14 +40,35 @@ namespace TPC_Equipo_6A
 
         protected void DgvProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvProveedores.Rows[index];
+            if (e.CommandName == "Borrar")
             {
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
 
-                if (e.CommandName == "Detalles")
-                {
-                    int indice = Convert.ToInt32(e.CommandArgument);
-                    int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[indice].Value.ToString());
-                    Response.Redirect("FormularioProveedor.aspx?id=" + idProveedor);
-                }
+            if (e.CommandName == "Confirmar")
+            {
+                int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[index].Value);
+
+                ProveedorNegocio negocio = new ProveedorNegocio();
+                negocio.eliminarProveedorLogico(idProveedor);
+                Response.Redirect("Proveedores");
+            }
+
+            if (e.CommandName == "Cancelar")
+            {
+                Response.Redirect("Proveedores");
+            }
+
+            if (e.CommandName == "Detalles")
+            {
+                int idProveedor = Convert.ToInt32(DgvProveedores.DataKeys[index].Value);
+                Response.Redirect("FormularioProveedor.aspx?id=" + idProveedor);
             }
         }
         

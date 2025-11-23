@@ -12,18 +12,18 @@ namespace TPC_Equipo_6A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+               ProductoNegocio negocio = new ProductoNegocio();
+                DgvProductos.DataSource = negocio.ListarProductos();
+                DgvProductos.DataBind();
+            }
             //Valida que haya un usuario logueado
             if (Session["usuario"] == null)
             {
                 Session.Add("error", "Debes loguearte para ingresar");
                 Response.Redirect("Login");
-            }
-
-
-            ProductoNegocio negocio = new ProductoNegocio();
-            DgvProductos.DataSource = negocio.ListarProductos();
-            DgvProductos.DataBind();
+            }            
         }
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
@@ -34,18 +34,37 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("Default.aspx");
         }
-       
-
         protected void DgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvProductos.Rows[index];
+            if (e.CommandName == "Borrar")
+            {
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
+
+            if (e.CommandName == "Confirmar")
+            {
+                int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
+
+                ProductoNegocio negocio = new ProductoNegocio();
+                negocio.eliminarProductoLogico(idProducto);
+                Response.Redirect("Productos");
+            }
+
+            if (e.CommandName == "Cancelar")
+            {
+                Response.Redirect("Productos");
+            }
+
             if (e.CommandName == "Detalles")
             {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int idProducto = Convert.ToInt32(DgvProductos.DataKeys[indice].Value.ToString());
-                int idMarca = Convert.ToInt32(DgvProductos.DataKeys[indice].Values["IdMarcaFk"]);
-                int idCat = Convert.ToInt32(DgvProductos.DataKeys[indice].Values["IdCategoriaFk"]);
-                Response.Redirect($"FormularioProducto.aspx?IdProducto={idProducto}&IdMarcaFk={idMarca}&IdCategoriaFk={idCat}");
-
+                int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
+                Response.Redirect("FormularioProdcuto.aspx?id=" + idProducto);
             }
         }
     }

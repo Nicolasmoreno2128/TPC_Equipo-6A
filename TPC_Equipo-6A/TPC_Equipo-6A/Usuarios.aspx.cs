@@ -22,10 +22,13 @@ namespace TPC_Equipo_6A
                 Response.Redirect("Login");
             }
 
-
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            DgvUsuario.DataSource = negocio.ListarUsuarios();
-            DgvUsuario.DataBind();
+            if (!IsPostBack)
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                DgvUsuario.DataSource = negocio.ListarUsuarios();
+                DgvUsuario.DataBind();
+            }
+                
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
@@ -37,14 +40,35 @@ namespace TPC_Equipo_6A
         }
         protected void DgvUsuario_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Detalles")
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvUsuario.Rows[index];
+            if (e.CommandName == "Borrar")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = DgvUsuario.Rows[index];
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
+
+            if (e.CommandName == "Confirmar")
+            {
                 int idUsuario = Convert.ToInt32(DgvUsuario.DataKeys[index].Value);
 
-                // Redirige a la página de edición con el ID del usuario seleccionado
-                Response.Redirect("ModificarUsuario.aspx?IdUsuario=" + idUsuario, false);
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                negocio.eliminarUsuarioLogico(idUsuario);
+                Response.Redirect("Usuarios");
+            }
+
+            if (e.CommandName == "Cancelar")
+            {
+                Response.Redirect("Usuarios");
+            }
+
+            if (e.CommandName == "Detalles")
+            {
+                int idUsuario = Convert.ToInt32(DgvUsuario.DataKeys[index].Value);
+                Response.Redirect("FormularioUsuario.aspx?id=" + idUsuario);
             }
         }
 
