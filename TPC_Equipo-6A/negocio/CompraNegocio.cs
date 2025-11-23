@@ -39,12 +39,13 @@ namespace negocio
 
                     aux.idCompra = (int)datos.Lector["IdCompra"];
                     aux.FechaCompra = (DateTime)datos.Lector["FechaCompra"];
-                    aux.FechaRecepcion = datos.Lector["FechaRecepcion"] is DBNull ?
-                    DateTime.MinValue : (DateTime)datos.Lector["FechaRecepcion"];
+                    aux.FechaRecepcion = datos.Lector["FechaRecepcion"] is DBNull
+                     ? (DateTime?)null
+                     : (DateTime)datos.Lector["FechaRecepcion"];
                     aux.TotalCompra = (decimal)datos.Lector["TotalCompra"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.IdProveedor = (int)datos.Lector["IdProveedor"];
-                 
+
 
                     lista.Add(aux);
                 }
@@ -138,7 +139,7 @@ namespace negocio
             datos.setearParametro("@id", idCompra);
             datos.ejecutarAccion();
 
-            
+
             List<DetalleCompra> detalles = ObtenerDetalles(idCompra);
 
             foreach (var d in detalles)

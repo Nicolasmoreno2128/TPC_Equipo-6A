@@ -10,7 +10,7 @@ namespace dominio
     {
         public int idCompra { get; set; }
         public DateTime FechaCompra { get; set; }
-        public DateTime FechaRecepcion { get; set; }
+        public DateTime? FechaRecepcion { get; set; }
         public decimal TotalCompra { get; set; }
         public int IdProveedor { get; set; }
         public bool Estado { get; set; }

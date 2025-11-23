@@ -27,7 +27,8 @@
 
                             <asp:TemplateField HeaderText="Recepción">
                                 <ItemTemplate>
-                                    <%# Eval("FechaRecepcion", "{0:dd/MM/yyyy}") %>
+                                    <%# Eval("FechaRecepcion") == null ? "" : 
+                                     String.Format("{0:dd/MM/yyyy}", Eval("FechaRecepcion")) %>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="TotalCompra" HeaderText="Total"
