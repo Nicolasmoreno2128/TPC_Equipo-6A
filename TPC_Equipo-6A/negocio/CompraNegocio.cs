@@ -119,7 +119,25 @@ namespace negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("update COMPRA set Estado = @activo Where IdCompra = @id");
+
+                // 1. Verificar si la compra ya fue recepcionada
+                datos.setearConsulta("SELECT FechaRecepcion FROM COMPRA WHERE IdCompra = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    if (!(datos.Lector["FechaRecepcion"] is DBNull))
+                    {
+                        throw new Exception("No se puede eliminar una compra que ya fue recepcionada.");
+                    }
+                }
+
+                datos.cerrarConexion();
+
+                // 2. Si no fue recepcionada → eliminar lógicamente
+                datos = new AccesoDatos();
+                datos.setearConsulta("UPDATE COMPRA SET Estado = @activo WHERE IdCompra = @id");
                 datos.setearParametro("@id", id);
                 datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
@@ -129,7 +147,6 @@ namespace negocio
                 throw ex;
             }
         }
-
         public void RegistrarRecepcionYActualizarStock(int idCompra)
         {
             var datos = new AccesoDatos();

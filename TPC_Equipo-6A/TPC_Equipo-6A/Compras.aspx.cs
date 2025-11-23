@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,20 +87,24 @@ namespace TPC_Equipo_6A
                     break;
 
                 case "Confirmar":
-
-                    if (lblAccion.Text == "Eliminar")
+                    try
                     {
                         CompraNegocio negocio = new CompraNegocio();
-                        negocio.eliminarCompraLogico(id);
-                    }
-                    else if (lblAccion.Text == "Recepcionar")
-                    {
-                        CompraNegocio negocio = new CompraNegocio();
-                        negocio.RegistrarRecepcionYActualizarStock(id);
-                    }
 
-                    CargarCompras();
+                        if (lblAccion.Text == "Eliminar")
+                            negocio.eliminarCompraLogico(id);
+                        else if (lblAccion.Text == "Recepcionar")
+                            negocio.RegistrarRecepcionYActualizarStock(id);
+
+                        CargarCompras();
+                    }
+                    catch (Exception ex)
+                    {
+                        Session["error"] = ex.Message;
+                        Response.Redirect("Error.aspx");
+                    }
                     break;
+
             }
         }
 
@@ -107,9 +112,26 @@ namespace TPC_Equipo_6A
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+                Compra compra = (Compra)e.Row.DataItem;
+
+                Button btnBorrar = (Button)e.Row.FindControl("btnBorrar");
+                Button btnRecepcionar = (Button)e.Row.FindControl("btnRecepcionar");
+
+                // Ocultar botón borrar si ya fue recepcionada
+                if (compra.FechaRecepcion != null)
+                {
+                    btnBorrar.Visible = false;
+                }
+
+                // Ocultar botón recepcionar si ya fue recepcionada
+                if (compra.FechaRecepcion != null)
+                {
+                    btnRecepcionar.Visible = false;
+                }
             }
         }
+
+
 
 
     }
