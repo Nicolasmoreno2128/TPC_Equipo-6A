@@ -133,6 +133,95 @@ namespace negocio
            }
         }
 
+        public Venta ObtenerVentaPorId(int idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT V.IdVenta, V.FechaVenta, V.TotalVenta, V.Estado, " +
+                    "C.IdCliente, C.Nombre AS NombreCliente, " +
+                    "U.IdUsuario, U.NombreUsuario " +
+                    "FROM VENTA V " +
+                    "INNER JOIN CLIENTE C ON V.IdCliente = C.IdCliente " +
+                    "INNER JOIN USUARIO U ON V.IdUsuario = U.IdUsuario " +
+                    "WHERE V.IdVenta = @IdVenta"
+                );
+
+                datos.setearParametro("@IdVenta", idVenta);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Venta aux = new Venta();
+                    aux.IdVenta = (int)datos.Lector["IdVenta"];
+                    aux.FechaVenta = (DateTime)datos.Lector["FechaVenta"];
+                    aux.TotalVenta = (decimal)datos.Lector["TotalVenta"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    aux.Cliente = new Cliente();
+                    aux.Cliente.IdCliente = (int)datos.Lector["IdCliente"];
+                    aux.Cliente.Nombre = (string)datos.Lector["NombreCliente"];
+
+                    aux.Usuario = new Usuario();
+                    aux.Usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    aux.Usuario.NombreUsuario = (string)datos.Lector["NombreUsuario"];
+
+                    return aux;
+                }
+
+                return null;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<DetalleVenta> ListarDetallesPorVenta(int idVenta)
+        {
+            List<DetalleVenta> lista = new List<DetalleVenta>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT DV.IdDetalleVenta, DV.IdVenta, DV.IdProducto, DV.Cantidad, DV.PrecioUnitario, " +
+                    "P.NombreProducto " +
+                    "FROM DETALLE_VENTA DV " +
+                    "INNER JOIN PRODUCTO P ON DV.IdProducto = P.IdProducto " +
+                    "WHERE DV.IdVenta = @IdVenta"
+                );
+
+                datos.setearParametro("@IdVenta", idVenta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    DetalleVenta det = new DetalleVenta();
+                    det.IdDetalleVenta = (int)datos.Lector["IdDetalleVenta"];
+                    det.IdVenta = (int)datos.Lector["IdVenta"];
+                    det.IdProducto = (int)datos.Lector["IdProducto"];
+                    det.Cantidad = (int)datos.Lector["Cantidad"];
+                    det.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
+
+                    det.Producto = new Producto();
+                    det.Producto.IdProducto = det.IdProducto;
+                    det.Producto.NombreProducto = (string)datos.Lector["NombreProducto"];
+
+                    lista.Add(det);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
 
     }
 }

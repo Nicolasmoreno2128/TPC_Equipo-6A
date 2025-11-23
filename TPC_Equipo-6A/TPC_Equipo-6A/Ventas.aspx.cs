@@ -50,19 +50,22 @@ namespace TPC_Equipo_6A
 
         protected void dgvVentas_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            int idVenta = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
+
             if (e.CommandName == "Anular")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int idVenta = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
-
                 VentaNegocio negocio = new VentaNegocio();
                 negocio.AnularVenta(idVenta);
 
-                // recargar listado
                 CargarVentas();
 
                 lblMensaje.Text = "La venta fue anulada correctamente.";
                 lblMensaje.CssClass = "text-warning fw-bold";
+            }
+            else if (e.CommandName == "Detalles")
+            {
+                Response.Redirect("DetalleVentaPage.aspx?IdVenta=" + idVenta);
             }
         }
     }
