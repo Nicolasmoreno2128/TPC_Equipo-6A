@@ -11,7 +11,7 @@
                     <label for="txtNombre" class="form-label mb-0">Nombre:</label>
                 </div>
                 <div class="col-md-9">
-                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre" runat="server" ReadOnly="true" />
+                    <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75 bg-light text-muted" placeholder="Nombre" runat="server" ReadOnly="true" />
                 </div>
             </div>
             <div class="row mb-3 align-items-center">

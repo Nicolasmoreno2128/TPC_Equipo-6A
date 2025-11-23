@@ -12,7 +12,7 @@
                     <label for="txtNombreProdm" class="form-label mb-0">Nombre:</label>
                 </div>
                 <div class="col-md-9">
-                    <asp:TextBox ID="txtNombreProdm" CssClass="form-control" runat="server" ReadOnly="true"/>
+                    <asp:TextBox ID="txtNombreProdm" CssClass="form-control bg-light text-muted" runat="server" ReadOnly="true"/>
                 </div>
             </div>
             <div class="row mb-3 align-items-center">

@@ -6,7 +6,7 @@
             <h2 class="mb-4">Detalles Proveedor</h2>
 
             <div class="mb-3">
-                <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75" placeholder="Nombre" runat="server" ReadOnly="true"/>
+                <asp:TextBox ID="txtNombre" CssClass="form-control mx-auto w-75 bg-light text-muted" placeholder="Nombre" runat="server" ReadOnly="true"/>
             </div>
             <div class="mb-3">
                 <asp:TextBox ID="txtCuit" CssClass="form-control mx-auto w-75" placeholder="CUIT" runat="server" />

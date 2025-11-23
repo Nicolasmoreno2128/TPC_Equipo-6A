@@ -68,7 +68,8 @@ namespace TPC_Equipo_6A
             if (e.CommandName == "Detalles")
             {
                 int idUsuario = Convert.ToInt32(DgvUsuario.DataKeys[index].Value);
-                Response.Redirect("ModificarUsuario.aspx?id=" + idUsuario);
+                Response.Redirect("ModificarUsuario.aspx?IdUsuario=" + idUsuario);
+
             }
         }
 
