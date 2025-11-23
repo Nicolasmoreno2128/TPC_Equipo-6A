@@ -25,6 +25,11 @@ namespace TPC_Equipo_6A
                 CargarVentas();
             }
 
+            if (Request.QueryString["alta"] == "ok")
+            {
+                lblMensaje.Text = "La venta se registró correctamente.";
+                lblMensaje.CssClass = "text-success fw-bold";
+            }
         }
         private void CargarVentas()
         {
@@ -41,6 +46,24 @@ namespace TPC_Equipo_6A
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
+        }
+
+        protected void dgvVentas_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Anular")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idVenta = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
+
+                VentaNegocio negocio = new VentaNegocio();
+                negocio.AnularVenta(idVenta);
+
+                // recargar listado
+                CargarVentas();
+
+                lblMensaje.Text = "La venta fue anulada correctamente.";
+                lblMensaje.CssClass = "text-warning fw-bold";
+            }
         }
     }
 }

@@ -18,11 +18,12 @@ namespace negocio
             {
                 datos.setearConsulta(
                     "SELECT V.IdVenta, V.FechaVenta, V.TotalVenta, V.Estado, " +
-                    "C.IdCliente, C.Nombre, " +
+                    "C.IdCliente, C.Nombre AS NombreCliente, " +
                     "U.IdUsuario, U.NombreUsuario " +
                     "FROM VENTA V " +
                     "INNER JOIN CLIENTE C ON V.IdCliente = C.IdCliente " +
-                    "INNER JOIN USUARIO U ON V.IdUsuario = U.IdUsuario"
+                    "INNER JOIN USUARIO U ON V.IdUsuario = U.IdUsuario " +
+                    "WHERE V.Estado = 1"
                 );
 
                 datos.ejecutarLectura();
@@ -37,7 +38,7 @@ namespace negocio
 
                     aux.Cliente = new Cliente();
                     aux.Cliente.IdCliente = (int)datos.Lector["IdCliente"];
-                    aux.Cliente.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Cliente.Nombre = (string)datos.Lector["NombreCliente"];
 
                     aux.Usuario = new Usuario();
                     aux.Usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
@@ -50,7 +51,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -115,6 +116,23 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void AnularVenta(int idVenta)
+        {
+                AccesoDatos datos = new AccesoDatos();
+
+           try
+           {
+                datos.setearConsulta("UPDATE VENTA SET Estado = 0 WHERE IdVenta = @IdVenta");
+                datos.setearParametro("@IdVenta", idVenta);
+                datos.ejecutarAccion();
+           }
+           finally
+           {
+                datos.cerrarConexion();
+           }
+        }
+
 
     }
 }

@@ -6,7 +6,8 @@
              <div class="card shadow p-4">
                  <h2 class="text-center mb-4">Ventas</h2>
 
-                 <asp:GridView ID="dgvVentas" runat="server" AutoGenerateColumns="false" CssClass="table table-striped mt-3">
+                 <asp:Label ID="lblMensaje" runat="server" CssClass="d-block mb-2"></asp:Label>
+                 <asp:GridView ID="dgvVentas" runat="server" AutoGenerateColumns="false" DataKeyNames="IdVenta" OnRowCommand="dgvVentas_RowCommand" CssClass="table table-striped mt-3">
                   <Columns>
                         <asp:BoundField DataField="IdVenta" HeaderText="ID" />
                         <asp:BoundField DataField="FechaVenta" HeaderText="Fecha" 
@@ -15,7 +16,7 @@
                         <asp:BoundField DataField="Usuario.NombreUsuario" HeaderText="Vendedor" />
                         <asp:BoundField DataField="TotalVenta" HeaderText="Total" DataFormatString="{0:C}" />
                         <asp:ButtonField Text="📄" CommandName="Detalles" ButtonType="Button" HeaderText="Detalles" />
-                        <asp:ButtonField Text="❌" CommandName="Borrar" ButtonType="Button" HeaderText="Anular Venta" />
+                        <asp:ButtonField Text="❌" CommandName="Anular" ButtonType="Button" HeaderText="Anular Venta" />
                     </Columns>
                    </asp:GridView>
 
