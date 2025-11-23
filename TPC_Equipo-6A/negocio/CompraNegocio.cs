@@ -113,6 +113,21 @@ namespace negocio
 
             return lista;
         }
+        public void eliminarCompraLogico(int id, bool activo = false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update COMPRA set Estado = @activo Where IdCompra = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void RegistrarRecepcionYActualizarStock(int idCompra)
         {

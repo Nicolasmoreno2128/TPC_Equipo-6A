@@ -26,8 +26,8 @@ namespace TPC_Equipo_6A
         private void CargarCompras()
         {
             CompraNegocio negocio = new CompraNegocio();
-            DgvCompra.DataSource = negocio.ListarCompras();
-            DgvCompra.DataBind();
+            DgvCompras.DataSource = negocio.ListarCompras();
+            DgvCompras.DataBind();
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
@@ -37,34 +37,80 @@ namespace TPC_Equipo_6A
         {
             Response.Redirect("AgregarCompra");
         }
-        protected void DgvCompra_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void DgvCompras_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Detalles")
-            {                
-                if (int.TryParse(e.CommandArgument?.ToString(), out int idCompra))
-                {
-                    Response.Redirect($"DetallesCompra.aspx?IdCompra={idCompra}", false);
-                }
-            }
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = DgvCompras.Rows[index];
+            int id = Convert.ToInt32(DgvCompras.DataKeys[index].Value);
 
-            if (e.CommandName == "Recibido")
-            {
-                int idCompra = Convert.ToInt32(e.CommandArgument);
+            // Controles dentro de la fila
+            var lblAccion = (Label)row.FindControl("lblAccion");
+            var btnDetalle = (Button)row.FindControl("btnDetalle");
+            var btnRecepcionar = (Button)row.FindControl("btnRecepcionar");
+            var btnBorrar = (Button)row.FindControl("btnBorrar");
+            var btnConfirmar = (Button)row.FindControl("btnConfirmar");
+            var btnCancelar = (Button)row.FindControl("btnCancelar");
 
-                try
-                {
-                    CompraNegocio negocio = new CompraNegocio();
-                    negocio.RegistrarRecepcionYActualizarStock(idCompra);
+            switch (e.CommandName)
+            {               
+                case "Detalle":
+                    Response.Redirect("DetalleCompra.aspx?id=" + id);
+                    break;
+                
+                case "Recepcionar":
+                    lblAccion.Text = "Recepcionar";
+                    lblAccion.Visible = true;
+
+                    btnDetalle.Visible = false;
+                    btnRecepcionar.Visible = false;
+                    btnBorrar.Visible = false;
+
+                    btnConfirmar.Visible = true;
+                    btnCancelar.Visible = true;
+                    break;
+                
+                case "Borrar":
+                    lblAccion.Text = "Eliminar";
+                    lblAccion.Visible = true;
+
+                    btnDetalle.Visible = false;
+                    btnRecepcionar.Visible = false;
+                    btnBorrar.Visible = false;
+
+                    btnConfirmar.Visible = true;
+                    btnCancelar.Visible = true;
+                    break;
+
+                case "Cancelar":
+                    CargarCompras();   
+                    break;
+
+                case "Confirmar":
+
+                    if (lblAccion.Text == "Eliminar")
+                    {
+                        CompraNegocio negocio = new CompraNegocio();
+                        negocio.eliminarCompraLogico(id);
+                    }
+                    else if (lblAccion.Text == "Recepcionar")
+                    {
+                        CompraNegocio negocio = new CompraNegocio();
+                        negocio.RegistrarRecepcionYActualizarStock(id);
+                    }
 
                     CargarCompras();
-                }
-                catch (Exception ex)
-                {
-                    lblMensajeError.Text = "Error al recibir la compra: " + ex.Message;
-                    lblMensajeError.Visible = true;
-                }
+                    break;
             }
         }
+
+        protected void DgvCompras_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+            }
+        }
+
 
     }
 }

@@ -15,13 +15,13 @@ namespace TPC_Equipo_6A
     {
 
         /// <summary>
-        /// Control DgvCompra.
+        /// Control DgvCompras.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DgvCompra;
+        protected global::System.Web.UI.WebControls.GridView DgvCompras;
 
         /// <summary>
         /// Control btnNueva.
