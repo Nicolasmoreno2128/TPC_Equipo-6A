@@ -51,22 +51,34 @@ namespace TPC_Equipo_6A
         protected void dgvVentas_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            int idVenta = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
-
-            if (e.CommandName == "Anular")
+            GridViewRow row = dgvVentas.Rows[index];
+            if (e.CommandName == "Eliminar")
             {
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = true;
+                row.FindControl("btnConfirmar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+            }
+
+            if (e.CommandName == "Confirmar")
+            {
+                int idVentas = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
                 VentaNegocio negocio = new VentaNegocio();
-                negocio.AnularVenta(idVenta);
-
-                CargarVentas();
-
-                lblMensaje.Text = "La venta fue anulada correctamente.";
-                lblMensaje.CssClass = "text-warning fw-bold";
+                negocio.AnularVenta(idVentas);
+                Response.Redirect("Ventas");
             }
-            else if (e.CommandName == "Detalles")
+
+            if (e.CommandName == "Cancelar")
             {
-                Response.Redirect("DetalleVentaPage.aspx?IdVenta=" + idVenta);
+                Response.Redirect("Ventas");
             }
+
+            if (e.CommandName == "Detalles")
+            {
+                int idVentas = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
+                Response.Redirect("DetalleVentaPage.aspx?IdVenta=" + idVentas);
+            }            
         }
     }
 }

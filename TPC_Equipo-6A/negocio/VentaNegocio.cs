@@ -119,19 +119,39 @@ namespace negocio
 
         public void AnularVenta(int idVenta)
         {
-                AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
 
-           try
-           {
+            try
+            {
+                // Recupero los detalles de la venta
+                List<DetalleVenta> detalles = ListarDetallesPorVenta(idVenta);
+
+                // Devuelvo el stock de cada producto
+                foreach (var item in detalles)
+                {
+                    AccesoDatos datosStock = new AccesoDatos();
+                    datosStock.setearConsulta(
+                        "UPDATE PRODUCTO SET Stock = Stock + @Cantidad WHERE IdProducto = @IdProducto"
+                    );
+
+                    datosStock.setearParametro("@Cantidad", item.Cantidad);
+                    datosStock.setearParametro("@IdProducto", item.IdProducto);
+
+                    datosStock.ejecutarAccion();
+                    datosStock.cerrarConexion();
+                }
+
+                // Marco la venta como anulada
                 datos.setearConsulta("UPDATE VENTA SET Estado = 0 WHERE IdVenta = @IdVenta");
                 datos.setearParametro("@IdVenta", idVenta);
                 datos.ejecutarAccion();
-           }
-           finally
-           {
+            }
+            finally
+            {
                 datos.cerrarConexion();
-           }
+            }
         }
+
 
         public Venta ObtenerVentaPorId(int idVenta)
         {

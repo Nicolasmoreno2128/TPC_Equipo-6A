@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetalleVentaPage.aspx.cs" Inherits="TPC_Equipo_6A.DetalleVentaPage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container my-5">
@@ -19,22 +20,26 @@
 
                         <div class="row mb-2">
                             <div class="col-4 fw-semibold">N° Venta:</div>
-                            <div class="col-8"><asp:Label ID="lblNroVenta" runat="server" /></div>
+                            <div class="col-8">
+                                <asp:Label ID="lblNroVenta" runat="server" /></div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="col-4 fw-semibold">Fecha:</div>
-                            <div class="col-8"><asp:Label ID="lblFecha" runat="server" /></div>
+                            <div class="col-8">
+                                <asp:Label ID="lblFecha" runat="server" /></div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="col-4 fw-semibold">Cliente:</div>
-                            <div class="col-8"><asp:Label ID="lblCliente" runat="server" /></div>
+                            <div class="col-8">
+                                <asp:Label ID="lblCliente" runat="server" /></div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="col-4 fw-semibold">Vendedor:</div>
-                            <div class="col-8"><asp:Label ID="lblUsuario" runat="server" /></div>
+                            <div class="col-8">
+                                <asp:Label ID="lblUsuario" runat="server" /></div>
                         </div>
 
                         <div class="row mb-2">
@@ -78,7 +83,6 @@
                                 <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" ItemStyle-HorizontalAlign="Right" />
                             </Columns>
                         </asp:GridView>
-
                     </div>
                 </div>
             </div>
@@ -86,11 +90,12 @@
 
         <!-- Botón volver -->
         <div class="row">
-            <div class="col text-center">
-                <asp:Button ID="btnVolver" runat="server" Text="Volver a Ventas" CssClass="btn btn-dark" OnClick="btnVolver_Click" />
+            <div class="col-md-10 mx-auto">
+                <div class="d-flex mt-3">
+                    <asp:Button ID="btnVolver" runat="server" Text="Volver"
+                        CssClass="btn btn-secondary" OnClick="btnVolver_Click" />
+                </div>
             </div>
         </div>
-
     </div>
-
 </asp:Content>
