@@ -39,5 +39,41 @@ namespace negocio
             }
         }
 
+        public decimal ObtenerTotalAnual()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT SUM(TotalVenta) AS TotalAnual FROM VENTA WHERE YEAR(FechaVenta) = YEAR(GETDATE())");
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read() && datos.Lector["TotalAnual"] != DBNull.Value)
+                    return Convert.ToDecimal(datos.Lector["TotalAnual"]);
+
+                return 0;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public decimal ObtenerTotalPorMes(int mes)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT SUM(TotalVenta) AS TotalMes FROM VENTA " +
+                    "WHERE MONTH(FechaVenta) = @mes AND YEAR(FechaVenta) = YEAR(GETDATE())"
+                );
+                datos.setearParametro("@mes", mes);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read() && datos.Lector["TotalMes"] != DBNull.Value)
+                    return Convert.ToDecimal(datos.Lector["TotalMes"]);
+
+                return 0;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
     }
 }

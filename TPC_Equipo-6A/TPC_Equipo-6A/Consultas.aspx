@@ -22,7 +22,16 @@
 
             </div>
             <div class="col">
-                Column
+                <h2>Total recaudado por mes</h2>
+                <asp:DropDownList ID="ddlPeriodos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPeriodos_SelectedIndexChanged" CssClass="form-select w-50 mx-auto my-3 shadow-sm">
+                </asp:DropDownList>
+
+                <div class="card w-50 mx-auto my-3 shadow">
+                    <div class="card-body text-center">
+                        <asp:Label ID="lblResultado" runat="server" CssClass="fw-bold fs-4 text-primary"></asp:Label>
+                    </div>
+                </div>
+
             </div>
             <div class="col">
                 Column
