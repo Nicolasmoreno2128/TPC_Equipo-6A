@@ -17,11 +17,23 @@ namespace dominio
         public int IdUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string Contrasena { get; set; }
-        public string Nombre { get; set; }        
-        public string Apellido { get; set; }        
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
         public bool Estado { get; set; }
         public Rol Rol { get; set; }
+        public Usuario()
+        {
+
+        }
+        public Usuario(string user, string pass, bool admin)
+        {
+            NombreUsuario = user;
+            Contrasena = pass;
+            Rol = admin ? Rol.Administrador : Rol.Vendedor;
+        }
     }
 }
+
+

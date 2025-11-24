@@ -26,11 +26,14 @@
                                         CommandName="Detalles"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                                        { %>
                                     <asp:Button ID="btnBorrar" runat="server"
                                         Text="🗑️"
                                         CommandName="Borrar"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <% } %>
                                     <asp:Label ID="lblEliminar" runat="server"
                                         Text="Eliminar"
                                         Visible="false"

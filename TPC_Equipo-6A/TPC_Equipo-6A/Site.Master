@@ -55,7 +55,11 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                            { %>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Registro">Registro</a></li>
+                        <% } %>
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contacto">Contacto</a></li>
 
                     </ul>

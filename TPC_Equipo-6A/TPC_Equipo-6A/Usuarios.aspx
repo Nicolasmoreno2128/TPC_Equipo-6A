@@ -31,11 +31,14 @@
                                         CommandName="Detalles"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                                        { %>
                                     <asp:Button ID="btnBorrar" runat="server"
                                         Text="🗑️"
                                         CommandName="Borrar"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <% } %>
                                     <asp:Label ID="lblEliminar" runat="server"
                                         Text="Eliminar"
                                         Visible="false"
@@ -59,8 +62,11 @@
 
 
                     <div class="d-flex gap-3 mt-3">
+                        <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                            { %>
                         <asp:Button ID="btnNuevo" runat="server" CssClass="btn btn-dark" Text="Nuevo"
                             CausesValidation="false" OnClick="btnNuevo_Click" />
+                        <% } %>
                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver"
                             CausesValidation="false" OnClick="btnVolver_Click" />
                     </div>
