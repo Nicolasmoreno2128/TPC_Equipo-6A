@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,8 +53,19 @@ namespace TPC_Equipo_6A
         {
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = dgvVentas.Rows[index];
+
+            Usuario user = (Usuario)Session["usuario"];
+
+
             if (e.CommandName == "Eliminar")
             {
+                if (user.Rol != Rol.Administrador)
+                {
+                    lblMensaje.Text = "No tenés permisos para eliminar ventas.";
+                    lblMensaje.CssClass = "text-danger fw-bold";
+                    return;
+                }
+
                 row.FindControl("btnDetalles").Visible = false;
                 row.FindControl("btnBorrar").Visible = false;
                 row.FindControl("lblEliminar").Visible = true;
@@ -63,6 +75,13 @@ namespace TPC_Equipo_6A
 
             if (e.CommandName == "Confirmar")
             {
+                if (user.Rol != Rol.Administrador)
+                {
+                    lblMensaje.Text = "No tenés permisos para eliminar ventas.";
+                    lblMensaje.CssClass = "text-danger fw-bold";
+                    return;
+                }
+
                 int idVentas = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
                 VentaNegocio negocio = new VentaNegocio();
                 negocio.AnularVenta(idVentas);
