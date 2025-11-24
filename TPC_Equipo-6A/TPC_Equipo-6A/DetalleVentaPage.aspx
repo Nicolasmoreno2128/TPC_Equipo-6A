@@ -91,11 +91,22 @@
         <!-- Botón volver -->
         <div class="row">
             <div class="col-md-10 mx-auto">
-                <div class="d-flex mt-3">
+                <div class="d-flex gap-3 mt-3">
                     <asp:Button ID="btnVolver" runat="server" Text="Volver"
                         CssClass="btn btn-secondary" OnClick="btnVolver_Click" />
+                    <button type="button" class="btn btn-dark" onclick="window.print();">
+                        Imprimir
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+    @media print {
+        button, .btn, .btn-secondary, .btn-dark {
+            display: none !important;
+        }
+    }
+    </style>
+
 </asp:Content>
