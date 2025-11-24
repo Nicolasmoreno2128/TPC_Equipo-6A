@@ -18,35 +18,14 @@
                             <asp:BoundField DataField="TotalVenta" HeaderText="Total" DataFormatString="{0:C}" />
                             <asp:TemplateField HeaderText="Acciones">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnDetalles" runat="server"
-                                        Text="📄"
-                                        CommandName="Detalles"
-                                        CommandArgument="<%# Container.DataItemIndex %>"
-                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <asp:Button ID="btnDetalles" runat="server" Text="📄" CommandName="Detalles" CommandArgument="<%# Container.DataItemIndex %>" CssClass="btn btn-sm border-0 bg-transparent" ToolTip="Ver detalles de la venta"/>
                                     <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
                                         { %>
-                                    <asp:Button ID="btnBorrar" runat="server"
-                                        Text="🗑️"
-                                        CommandName="Eliminar"
-                                        CommandArgument="<%# Container.DataItemIndex %>"
-                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <asp:Button ID="btnBorrar" runat="server" Text="🗑️" CommandName="Eliminar" CommandArgument="<%# Container.DataItemIndex %>" CssClass="btn btn-sm border-0 bg-transparent" ToolTip="Anular esta venta" />
                                     <% } %>
-                                    <asp:Label ID="lblEliminar" runat="server"
-                                        Text="Eliminar"
-                                        Visible="false"
-                                        CssClass="fw-bold text-danger me-2" />
-                                    <asp:Button ID="btnConfirmar" runat="server"
-                                        Text="✔️"
-                                        CommandName="Confirmar"
-                                        CommandArgument="<%# Container.DataItemIndex %>"
-                                        CssClass="btn btn-sm border-0 bg-transparent"
-                                        Visible="false" />
-                                    <asp:Button ID="btnCancelar" runat="server"
-                                        Text="❌"
-                                        CommandName="Cancelar"
-                                        CommandArgument="<%# Container.DataItemIndex %>"
-                                        CssClass="btn btn-sm border-0 bg-transparent"
-                                        Visible="false" />
+                                    <asp:Label ID="lblEliminar" runat="server" Text="Eliminar" Visible="false" CssClass="fw-bold text-danger me-2" />
+                                    <asp:Button ID="btnConfirmar" runat="server" Text="✔️" CommandName="Confirmar" CommandArgument="<%# Container.DataItemIndex %>" CssClass="btn btn-sm border-0 bg-transparent" Visible="false" ToolTip="Confirmar anulación"/>
+                                    <asp:Button ID="btnCancelar" runat="server" Text="❌" CommandName="Cancelar" CommandArgument="<%# Container.DataItemIndex %>" CssClass="btn btn-sm border-0 bg-transparent" Visible="false" ToolTip="Cancelar acción" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
