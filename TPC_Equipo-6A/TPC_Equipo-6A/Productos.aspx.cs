@@ -70,13 +70,26 @@ namespace TPC_Equipo_6A
             }
             if (e.CommandName == "ActivarProducto")
             {
-                int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
-
-                ProductoNegocio negocio = new ProductoNegocio();
-                negocio.eliminarProductoLogico(idProducto, true);
-
-                Response.Redirect("Productos.aspx");
+                row.FindControl("btnDetalles").Visible = false;
+                row.FindControl("btnBorrar").Visible = false;
+                row.FindControl("lblEliminar").Visible = false;
+                row.FindControl("btnConfirmar").Visible = false;
+                row.FindControl("btnConfirmarActivo").Visible = true;
+                row.FindControl("lblActivar").Visible = true;
+                row.FindControl("btnCancelar").Visible = true;
+                row.FindControl("btnActivar").Visible = false;
             }
+            if (e.CommandName == "ConfirmarActivo")
+            {
+
+            int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
+
+            ProductoNegocio negocio = new ProductoNegocio();
+            negocio.eliminarProductoLogico(idProducto, true);
+
+            Response.Redirect("Productos.aspx");
+            }
+
         }
 
         protected void chbMostrarTodos_CheckedChanged(object sender, EventArgs e)

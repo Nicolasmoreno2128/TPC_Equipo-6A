@@ -6,7 +6,10 @@
             <div class="col-md-10">
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Productos</h2>
-                    <asp:CheckBox Text="Mostrar Todos" ID="chbMostrarTodos" OnCheckedChanged="chbMostrarTodos_CheckedChanged" runat="server" AutoPostBack="true" />
+                    <div>
+                        <asp:CheckBox ID="chbMostrarTodos" OnCheckedChanged="chbMostrarTodos_CheckedChanged" runat="server" AutoPostBack="true" />
+                        <asp:Label ID="lblCheckBox" runat="server" Text="Mostrar Todos" CssClass="form-check-label" />
+                    </div>
                     <asp:GridView ID="DgvProductos" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
                         DataKeyNames="IdProducto,IdMarcaFk,IdCategoriaFk"
@@ -44,9 +47,19 @@
                                         Text="Eliminar"
                                         Visible="false"
                                         CssClass="fw-bold text-danger me-2" />
+                                    <asp:Label ID="lblActivar" runat="server"
+                                        Text="Activar"
+                                        Visible="false"
+                                        CssClass="fw-bold text-success me-2" />
                                     <asp:Button ID="btnConfirmar" runat="server"
                                         Text="✔️"
                                         CommandName="Confirmar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent"
+                                        Visible="false" />
+                                    <asp:Button ID="btnConfirmarActivo" runat="server"
+                                        Text="✔️"
+                                        CommandName="ConfirmarActivo"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent"
                                         Visible="false" />
@@ -58,11 +71,11 @@
                                         Visible="false" />
                                     <asp:Button ID="btnActivar"
                                         runat="server"
-                                        Text="Dar de alta"
-                                        CssClass="btn btn-success btn-sm"
+                                        Text="🔄"
                                         CommandName="ActivarProducto"
                                         CommandArgument='<%# Container.DataItemIndex %>'
-                                        Visible='<%# !(bool)Eval("Estado") %>' />
+                                        Visible='<%# !(bool)Eval("Estado") %>'
+                                        CssClass="btn btn-sm border-0 bg-transparent"/>
 
                                 </ItemTemplate>
                             </asp:TemplateField>
