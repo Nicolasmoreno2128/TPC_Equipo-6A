@@ -55,7 +55,7 @@ namespace TPC_Equipo_6A
             switch (e.CommandName)
             {               
                 case "Detalle":
-                    Response.Redirect("DetalleCompra.aspx?id=" + id);
+                    Response.Redirect("DetalleCompraPage.aspx?IdCompra=" + id);
                     break;
                 
                 case "Recepcionar":
