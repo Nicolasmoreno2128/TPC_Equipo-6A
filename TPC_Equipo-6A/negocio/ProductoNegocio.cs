@@ -11,7 +11,7 @@ namespace negocio
 {
     public class ProductoNegocio
     {
-        public List<Producto> ListarProductos()
+        public List<Producto> ListarProductos(bool mostrarInactivos = false)
         {
             List<Producto> lista = new List<Producto>();
             AccesoDatos datos = new AccesoDatos();
@@ -19,7 +19,8 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta(@"
+
+                string consulta = @"
                                 SELECT 
                                     P.IdProducto,
                                     P.NombreProducto,
@@ -34,8 +35,15 @@ namespace negocio
                                     C.NombreCategoria
                                 FROM Producto P
                                 INNER JOIN Marcas     M ON M.IdMarca = P.IdMarca
-                                INNER JOIN Categorias C ON C.IdCategoria = P.IdCategoria
-                                WHERE P.Estado = 1;");
+                                INNER JOIN Categorias C ON C.IdCategoria = P.IdCategoria 
+                                ";
+                
+                if (!mostrarInactivos)
+                {
+                    consulta += "WHERE P.Estado = 1";
+                }
+
+                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -67,6 +75,8 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+
         public void AgregarProducto(Producto p)
         {
             AccesoDatos datos = new AccesoDatos();

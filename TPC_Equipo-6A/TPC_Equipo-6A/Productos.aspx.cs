@@ -1,4 +1,5 @@
 ﻿using negocio;
+using dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace TPC_Equipo_6A
             if (!IsPostBack)
             {
                ProductoNegocio negocio = new ProductoNegocio();
-                DgvProductos.DataSource = negocio.ListarProductos();
-                DgvProductos.DataBind();
+               DgvProductos.DataSource = negocio.ListarProductos();
+               DgvProductos.DataBind();
             }
             //Valida que haya un usuario logueado
             if (Session["usuario"] == null)
@@ -45,6 +46,7 @@ namespace TPC_Equipo_6A
                 row.FindControl("lblEliminar").Visible = true;
                 row.FindControl("btnConfirmar").Visible = true;
                 row.FindControl("btnCancelar").Visible = true;
+                row.FindControl("btnActivar").Visible = false;
             }
 
             if (e.CommandName == "Confirmar")
@@ -66,6 +68,28 @@ namespace TPC_Equipo_6A
                 int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
                 Response.Redirect("FormularioProducto.aspx?IdProducto=" + idProducto);
             }
+            if (e.CommandName == "ActivarProducto")
+            {
+                int idProducto = Convert.ToInt32(DgvProductos.DataKeys[index].Value);
+
+                ProductoNegocio negocio = new ProductoNegocio();
+                negocio.eliminarProductoLogico(idProducto, true);
+
+                Response.Redirect("Productos.aspx");
+            }
+        }
+
+        protected void chbMostrarTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+
+            bool MostrarInactivos = chbMostrarTodos.Checked;
+
+            List<Producto> productos = negocio.ListarProductos(MostrarInactivos);
+
+            DgvProductos.DataSource = productos;
+            DgvProductos.DataBind();
+
         }
     }
 }

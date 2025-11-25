@@ -75,7 +75,6 @@ namespace TPC_Equipo_6A
             }
             catch (Exception ex)
             {
-
                 lblMensajeCliente.Text = "Error al modificar el cliente: " + ex.Message;
             }
         }

@@ -6,6 +6,7 @@
             <div class="col-md-10">
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Productos</h2>
+                    <asp:CheckBox Text="Mostrar Todos" ID="chbMostrarTodos" OnCheckedChanged="chbMostrarTodos_CheckedChanged" runat="server" AutoPostBack="true" />
                     <asp:GridView ID="DgvProductos" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
                         DataKeyNames="IdProducto,IdMarcaFk,IdCategoriaFk"
@@ -55,6 +56,14 @@
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent"
                                         Visible="false" />
+                                    <asp:Button ID="btnActivar"
+                                        runat="server"
+                                        Text="Dar de alta"
+                                        CssClass="btn btn-success btn-sm"
+                                        CommandName="ActivarProducto"
+                                        CommandArgument='<%# Container.DataItemIndex %>'
+                                        Visible='<%# !(bool)Eval("Estado") %>' />
+
                                 </ItemTemplate>
                             </asp:TemplateField>
 
