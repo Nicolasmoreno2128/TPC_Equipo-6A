@@ -6,6 +6,12 @@
             <div class="col-md-10">
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Compras</h2>
+                    <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="txtBuscarCompra" class="form-label">Buscar compra</label>
+                        <asp:TextBox ID="txtBuscarCompra" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscarCompra_TextChanged" placeholder="Proveedor, Nº compra o fecha (dd/mm/aaaa)" />
+                    </div>
+                    </div>
 
                     <asp:GridView ID="DgvCompras" runat="server" CssClass="table table-striped" AutoGenerateColumns="False" DataKeyNames="idCompra" OnRowCommand="DgvCompras_RowCommand"  OnRowDataBound="DgvCompras_RowDataBound">
 

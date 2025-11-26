@@ -27,7 +27,11 @@ namespace TPC_Equipo_6A
         private void CargarCompras()
         {
             CompraNegocio negocio = new CompraNegocio();
-            DgvCompras.DataSource = negocio.ListarCompras();
+            List<Compra> lista = negocio.ListarCompras();  
+
+            Session["listaCompras"] = lista;                
+
+            DgvCompras.DataSource = lista;                 
             DgvCompras.DataBind();
         }
         protected void btnVolver_Click(object sender, EventArgs e)
@@ -129,6 +133,35 @@ namespace TPC_Equipo_6A
                     btnRecepcionar.Visible = false;
                 }
             }
+        }
+        protected void txtBuscarCompra_TextChanged(object sender, EventArgs e)
+        {
+            List<Compra> lista = Session["listaCompras"] as List<Compra>;
+
+            if (lista == null)
+            {
+                CargarCompras();
+                lista = Session["listaCompras"] as List<Compra>;
+            }
+
+            string filtro = txtBuscarCompra.Text.Trim().ToUpper();
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                DgvCompras.DataSource = lista;
+            }
+            else
+            {
+                var listaFiltrada = lista.Where(c =>
+                    c.idCompra.ToString().Contains(filtro) ||               // por id de compra
+                    c.IdProveedor.ToString().Contains(filtro) ||            // por id de proveedor
+                    c.FechaCompra.ToString("dd/MM/yyyy").Contains(filtro)   // por fecha
+                ).ToList();
+
+                DgvCompras.DataSource = listaFiltrada;
+            }
+
+            DgvCompras.DataBind();
         }
 
 
