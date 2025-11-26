@@ -35,7 +35,11 @@ namespace TPC_Equipo_6A
         private void CargarVentas()
         {
             VentaNegocio negocio = new VentaNegocio();
-            dgvVentas.DataSource = negocio.ListarVentas();
+            List<Venta> lista = negocio.ListarVentas();
+
+            Session["listaVentas"] = lista;
+
+            dgvVentas.DataSource = lista;
             dgvVentas.DataBind();
         }
 
@@ -97,7 +101,38 @@ namespace TPC_Equipo_6A
             {
                 int idVentas = Convert.ToInt32(dgvVentas.DataKeys[index].Value);
                 Response.Redirect("DetalleVentaPage.aspx?IdVenta=" + idVentas);
-            }            
+            }
+        }
+
+            protected void txtBuscarVenta_TextChanged(object sender, EventArgs e)
+        {
+            List<Venta> lista = Session["listaVentas"] as List<Venta>;
+
+            if (lista == null)
+            {
+                CargarVentas();
+                lista = Session["listaVentas"] as List<Venta>;
+            }
+
+            string filtro = txtBuscarVenta.Text.Trim().ToUpper();
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                dgvVentas.DataSource = lista;
+            }
+            else
+            {
+                var listaFiltrada = lista.Where(v =>
+                    v.IdVenta.ToString().Contains(filtro) ||
+                    (v.Cliente != null && v.Cliente.Nombre != null &&
+                        v.Cliente.Nombre.ToUpper().Contains(filtro)) ||
+                    v.FechaVenta.ToString("dd/MM/yyyy").Contains(filtro)
+                ).ToList();
+
+                dgvVentas.DataSource = listaFiltrada;
+            }
+
+            dgvVentas.DataBind();
         }
     }
 }

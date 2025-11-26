@@ -7,6 +7,13 @@
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Ventas</h2>
 
+                    <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="txtBuscarVenta" class="form-label">Buscar venta</label>
+                        <asp:TextBox ID="txtBuscarVenta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscarVenta_TextChanged" placeholder="Cliente, ID o fecha (dd/mm/aaaa)" />
+                    </div>
+                    </div>
+
                     <asp:Label ID="lblMensaje" runat="server" CssClass="d-block mb-2"></asp:Label>
                     <asp:GridView ID="dgvVentas" runat="server" AutoGenerateColumns="false" DataKeyNames="IdVenta" OnRowCommand="dgvVentas_RowCommand" CssClass="table table-striped mt-3">
                         <Columns>

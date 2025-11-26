@@ -15,6 +15,15 @@ namespace TPC_Equipo_6A
     {
 
         /// <summary>
+        /// txtBuscarVenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarVenta;
+
+        /// <summary>
         /// lblMensaje control.
         /// </summary>
         /// <remarks>
