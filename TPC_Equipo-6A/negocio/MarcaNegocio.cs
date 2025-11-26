@@ -10,15 +10,20 @@ namespace negocio
 {
     public class MarcaNegocio
     {
-        public List<Marca> ListarMarcas()
+        public List<Marca> ListarMarcas(bool mostrarInactivos = false)
         {
             List<Marca> lista = new List<Marca>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select IdMarca, NombreMarca, DescripcionMarca, Estado from MARCAS where Estado = 1");
+                string consulta = mostrarInactivos
+                    ? "SELECT IdMarca, NombreMarca, DescripcionMarca, Estado FROM MARCAS"
+                    : "SELECT IdMarca, NombreMarca, DescripcionMarca, Estado FROM MARCAS WHERE Estado = 1";
+
+                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     Marca aux = new Marca();
@@ -28,11 +33,11 @@ namespace negocio
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
+
                 return lista;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -40,6 +45,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
 
         public void agregarMarca(Marca marca)
         {

@@ -7,7 +7,13 @@
             <div class="col-md-10">
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Marcas</h2>
-
+                    <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                        { %>
+                    <div class="mb-3">
+                        <asp:CheckBox ID="chbMostrarTodos" OnCheckedChanged="chbMostrarTodos_CheckedChanged" runat="server" AutoPostBack="true" />
+                        <asp:Label ID="lblCheckBox" runat="server" Text="Mostrar Inactivos" CssClass="form-check-label" />
+                    </div>
+                    <% } %>
 
                     <asp:GridView ID="DgvMarca" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
@@ -31,14 +37,30 @@
                                         CommandName="Borrar"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent" />
-                                    <% } %>
+                                    <asp:Button ID="btnActivar"
+                                        runat="server"
+                                        Text="🔄"
+                                        CommandName="ActivarMarca"
+                                        CommandArgument='<%# Container.DataItemIndex %>'
+                                        Visible='<%# !(bool)Eval("Estado") %>'
+                                        CssClass="btn btn-sm border-0 bg-transparent" />
                                     <asp:Label ID="lblEliminar" runat="server"
                                         Text="Eliminar"
                                         Visible="false"
                                         CssClass="fw-bold text-danger me-2" />
+                                    <asp:Label ID="lblActivar" runat="server"
+                                        Text="Activar"
+                                        Visible="false"
+                                        CssClass="fw-bold text-success me-2" />
                                     <asp:Button ID="btnConfirmar" runat="server"
                                         Text="✔️"
                                         CommandName="Confirmar"
+                                        CommandArgument="<%# Container.DataItemIndex %>"
+                                        CssClass="btn btn-sm border-0 bg-transparent"
+                                        Visible="false" />
+                                    <asp:Button ID="btnConfirmarActivo" runat="server"
+                                        Text="✔️"
+                                        CommandName="ConfirmarActivo"
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent"
                                         Visible="false" />
@@ -48,6 +70,7 @@
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent"
                                         Visible="false" />
+                                    <% } %>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
