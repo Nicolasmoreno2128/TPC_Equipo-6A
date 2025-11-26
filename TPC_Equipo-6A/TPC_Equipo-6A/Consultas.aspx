@@ -54,6 +54,10 @@
                 </asp:GridView>
             </div>
         </div>
+        <div class="d-flex gap-3 mt-3">
+            <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-secondary" Text="Volver" CausesValidation="false" OnClick="btnVolver_Click" />
+
+        </div>
     </div>
 
 

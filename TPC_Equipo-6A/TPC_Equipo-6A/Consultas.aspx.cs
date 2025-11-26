@@ -105,6 +105,10 @@ namespace TPC_Equipo_6A
             gvMovimientos.DataBind();
         }
 
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default");
+        }
 
     }
 }
