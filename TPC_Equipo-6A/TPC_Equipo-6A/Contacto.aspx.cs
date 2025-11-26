@@ -23,7 +23,7 @@ namespace TPC_Equipo_6A
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
             EmailService email = new EmailService();
-            email.armarCorreo(txtEmail.Text);
+            email.armarCorreo(txtEmail.Text, txtMensaje.Text);
             email.enviarEmail();
 
             txtNombre.Text = "";
