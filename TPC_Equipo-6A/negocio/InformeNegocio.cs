@@ -1,10 +1,11 @@
-﻿using System;
+﻿using dominio;
+using dominio.dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dominio;
-using negocio;
 
 namespace negocio
 {
@@ -74,6 +75,60 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public List<MovimientoProducto> ObtenerMovimientosProducto(int idProducto)
+        {
+            List<MovimientoProducto> lista = new List<MovimientoProducto>();
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT 
+                C.FechaCompra AS Fecha,
+                'COMPRA' AS Movimiento,
+                DC.Cantidad AS Cantidad
+            FROM DETALLE_COMPRA DC
+            INNER JOIN COMPRA C ON C.IdCompra = DC.IdCompra
+            WHERE DC.IdProducto = @idProducto
+
+            UNION ALL
+
+            SELECT
+                V.FechaVenta AS Fecha,
+                'VENTA' AS Movimiento,
+                -DV.Cantidad AS Cantidad
+            FROM DETALLE_VENTA DV
+            INNER JOIN VENTA V ON V.IdVenta = DV.IdVenta
+            WHERE DV.IdProducto = @idProducto
+
+            ORDER BY Fecha ASC;
+        ");
+
+                datos.setearParametro("@idProducto", idProducto);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    MovimientoProducto mov = new MovimientoProducto
+                    {
+                        Fecha = (DateTime)datos.Lector["Fecha"],
+                        Movimiento = datos.Lector["Movimiento"].ToString(),
+                        Cantidad = Convert.ToInt32(datos.Lector["Cantidad"])
+                    };
+
+                    lista.Add(mov);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

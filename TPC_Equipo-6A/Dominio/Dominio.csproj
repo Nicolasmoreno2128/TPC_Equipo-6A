@@ -48,6 +48,7 @@
     <Compile Include="DetalleVenta.cs" />
     <Compile Include="Informe.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="MovimientoProducto.cs" />
     <Compile Include="Pago.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

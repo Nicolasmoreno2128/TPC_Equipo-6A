@@ -40,6 +40,18 @@ namespace TPC_Equipo_6A
                 ddlPeriodos.Items.Add(new ListItem("Diciembre", "12"));
 
                 ddlPeriodos.Items.Add(new ListItem("Anual", "Anual"));
+
+                CargarProductos();
+
+                int idProducto = 0;
+
+                if (int.TryParse(Request.QueryString["id"], out int idProd) && idProd > 0)
+                    ddlProducto.SelectedValue = idProd.ToString();
+
+                var movimientos = new InformeNegocio().ObtenerMovimientosProducto(idProducto);
+
+                gvMovimientos.DataSource = movimientos;
+                gvMovimientos.DataBind();
             }
         }
 
@@ -61,6 +73,38 @@ namespace TPC_Equipo_6A
                 lblResultado.Text = "Total recaudado en " + ddlPeriodos.SelectedItem.Text + ": $" + totalMes.ToString("N2");
             }
         }
+        private void CargarProductos()
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            var productos = negocio.ListarProductos(); // trae solo activos
+
+            ddlProducto.DataSource = productos;
+            ddlProducto.DataTextField = "NombreProducto";
+            ddlProducto.DataValueField = "IdProducto";
+            ddlProducto.DataBind();
+
+            ddlProducto.Items.Insert(0, new ListItem("-- Seleccione un producto --", "0"));
+        }
+
+
+        protected void ddlProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idProducto = int.Parse(ddlProducto.SelectedValue);
+
+            if (idProducto == 0)
+            {
+                gvMovimientos.DataSource = null;
+                gvMovimientos.DataBind();
+                return;
+            }
+
+            InformeNegocio negocio = new InformeNegocio();
+            var movimientos = negocio.ObtenerMovimientosProducto(idProducto);
+
+            gvMovimientos.DataSource = movimientos;
+            gvMovimientos.DataBind();
+        }
+
 
     }
 }

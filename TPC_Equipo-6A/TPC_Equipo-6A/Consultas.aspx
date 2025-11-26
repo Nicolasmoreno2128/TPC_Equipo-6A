@@ -34,7 +34,24 @@
 
             </div>
             <div class="col">
-                Column
+                <h2>Movimientos por productos</h2>
+                <asp:DropDownList ID="ddlProducto" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProducto_SelectedIndexChanged" CssClass="form-select w-50 mx-auto my-3 shadow-sm">
+                </asp:DropDownList>
+                <asp:GridView ID="gvMovimientos" runat="server" CssClass="table table-striped" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                        <asp:BoundField DataField="Movimiento" HeaderText="Movimiento" />
+                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                    </Columns>
+                </asp:GridView>
+
+
+                <columns>
+                    <asp:BoundField DataField="Producto" HeaderText="Cantidad" ReadOnly="True" />
+                    <asp:BoundField DataField="Movimientos" HeaderText="Movimientos producto" ReadOnly="True" />
+
+                </columns>
+                </asp:GridView>
             </div>
         </div>
     </div>
