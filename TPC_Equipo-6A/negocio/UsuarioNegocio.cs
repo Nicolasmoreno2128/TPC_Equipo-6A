@@ -97,26 +97,37 @@ namespace negocio
         public bool Loguear(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.setearConsulta("select IdUsuario,Rol, NombreUsuario from USUARIO WHERE NombreUsuario = @nombreUsuario and Contrasena = @contrasena");
-                datos.setearParametro("@nombreUsuario", usuario.NombreUsuario);
-                datos.setearParametro("@contrasena", usuario.Contrasena);
-
+                datos.setearConsulta("SELECT IdUsuario, NombreUsuario, Contrasena, Nombre, Apellido, Rol, Email, Telefono, Estado " +
+                                     "FROM USUARIO " +
+                                     "WHERE NombreUsuario = @user AND Estado = 1");
+                datos.setearParametro("@user", usuario.NombreUsuario);
                 datos.ejecutarLectura();
-                while (datos.Lector.Read())
+
+                if (datos.Lector.Read())
                 {
-                    usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    usuario.Rol = (int)(datos.Lector["Rol"]) == 0 ? Rol.Administrador : Rol.Vendedor;
-                    usuario.NombreUsuario = (string)datos.Lector["NombreUsuario"];
-                    return true;
+                    string passDb = datos.Lector["Contrasena"].ToString();
+
+                    if (passDb.Equals(usuario.Contrasena, StringComparison.Ordinal))
+                    {
+                        usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                        usuario.NombreUsuario = datos.Lector["NombreUsuario"].ToString();
+                        usuario.Nombre = datos.Lector["Nombre"].ToString();
+                        usuario.Apellido = datos.Lector["Apellido"].ToString();
+                        usuario.Rol = (Rol)datos.Lector["Rol"];
+                        usuario.Email = datos.Lector["Email"].ToString();
+                        usuario.Telefono = datos.Lector["Telefono"].ToString();
+                        usuario.Estado = (bool)datos.Lector["Estado"];
+
+                        return true;
+                    }
                 }
                 return false;
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
