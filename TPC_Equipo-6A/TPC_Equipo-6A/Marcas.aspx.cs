@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using dominio;  
+using dominio;
 
 using negocio;
 
@@ -61,7 +61,7 @@ namespace TPC_Equipo_6A
             }
 
             if (e.CommandName == "Confirmar")
-            {                
+            {
                 int idMarca = Convert.ToInt32(DgvMarca.DataKeys[index].Value);
 
                 MarcaNegocio negocio = new MarcaNegocio();
@@ -71,7 +71,7 @@ namespace TPC_Equipo_6A
             }
 
             if (e.CommandName == "Cancelar")
-            {                
+            {
                 Response.Redirect("Marcas");
             }
 
