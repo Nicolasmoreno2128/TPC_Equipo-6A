@@ -7,15 +7,18 @@
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Productos</h2>
                     <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="txtBuscar" class="form-label">Buscar producto</label>
-                        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" placeholder="Nombre, marca o categoría" />
-                    </div>
-                    </div>
-                    <div>
+                        <div class="col-md-6">
+                            <label for="txtBuscar" class="form-label">Buscar producto</label>
+                            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" placeholder="Nombre, marca o categoría" />
+                        </div>
+                    </div >
+                    <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                        { %>
+                    <div class="mb-3">
                         <asp:CheckBox ID="chbMostrarTodos" OnCheckedChanged="chbMostrarTodos_CheckedChanged" runat="server" AutoPostBack="true" />
-                        <asp:Label ID="lblCheckBox" runat="server" Text="Mostrar Todos" CssClass="form-check-label" />
+                        <asp:Label ID="lblCheckBox" runat="server" Text="Mostrar Inactivos" CssClass="form-check-label" />
                     </div>
+                    <% } %>
                     <asp:GridView ID="DgvProductos" runat="server" CssClass="table table-striped"
                         AutoGenerateColumns="False"
                         DataKeyNames="IdProducto,IdMarcaFk,IdCategoriaFk"
@@ -75,14 +78,16 @@
                                         CommandArgument="<%# Container.DataItemIndex %>"
                                         CssClass="btn btn-sm border-0 bg-transparent"
                                         Visible="false" />
+                                    <% if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Rol == dominio.Rol.Administrador)
+                                        { %>
                                     <asp:Button ID="btnActivar"
                                         runat="server"
                                         Text="🔄"
                                         CommandName="ActivarProducto"
                                         CommandArgument='<%# Container.DataItemIndex %>'
                                         Visible='<%# !(bool)Eval("Estado") %>'
-                                        CssClass="btn btn-sm border-0 bg-transparent"/>
-
+                                        CssClass="btn btn-sm border-0 bg-transparent" />
+                                    <% } %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
