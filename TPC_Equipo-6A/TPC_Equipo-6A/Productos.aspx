@@ -6,6 +6,12 @@
             <div class="col-md-10">
                 <div class="card shadow p-4">
                     <h2 class="text-center mb-4">Productos</h2>
+                    <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="txtBuscar" class="form-label">Buscar producto</label>
+                        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" placeholder="Nombre, marca o categoría" />
+                    </div>
+                    </div>
                     <div>
                         <asp:CheckBox ID="chbMostrarTodos" OnCheckedChanged="chbMostrarTodos_CheckedChanged" runat="server" AutoPostBack="true" />
                         <asp:Label ID="lblCheckBox" runat="server" Text="Mostrar Todos" CssClass="form-check-label" />

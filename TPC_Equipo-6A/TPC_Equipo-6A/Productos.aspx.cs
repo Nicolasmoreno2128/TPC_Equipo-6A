@@ -15,9 +15,14 @@ namespace TPC_Equipo_6A
         {
             if (!IsPostBack)
             {
-               ProductoNegocio negocio = new ProductoNegocio();
-               DgvProductos.DataSource = negocio.ListarProductos();
-               DgvProductos.DataBind();
+                ProductoNegocio negocio = new ProductoNegocio();
+                bool mostrarInactivos = chbMostrarTodos.Checked;
+
+                List<Producto> productos = negocio.ListarProductos(mostrarInactivos);
+                Session["listaProductos"] = productos;
+
+                DgvProductos.DataSource = productos;
+                DgvProductos.DataBind();
             }
             //Valida que haya un usuario logueado
             if (Session["usuario"] == null)
@@ -96,13 +101,48 @@ namespace TPC_Equipo_6A
         {
             ProductoNegocio negocio = new ProductoNegocio();
 
-            bool MostrarInactivos = chbMostrarTodos.Checked;
+            bool mostrarInactivos = chbMostrarTodos.Checked;
+            List<Producto> productos = negocio.ListarProductos(mostrarInactivos);
 
-            List<Producto> productos = negocio.ListarProductos(MostrarInactivos);
+            Session["listaProductos"] = productos;
+            txtBuscar.Text = string.Empty;
 
             DgvProductos.DataSource = productos;
             DgvProductos.DataBind();
+        }
 
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> lista = Session["listaProductos"] as List<Producto>;
+
+            if (lista == null)
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                bool mostrarInactivos = chbMostrarTodos.Checked;
+                lista = negocio.ListarProductos(mostrarInactivos);
+                Session["listaProductos"] = lista;
+            }
+
+            string filtro = txtBuscar.Text.Trim().ToUpper();
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                DgvProductos.DataSource = lista;
+            }
+            else
+            {
+                var listaFiltrada = lista.Where(p =>
+                    (p.NombreProducto != null && p.NombreProducto.ToUpper().Contains(filtro)) ||
+                    (p.IdMarca != null && p.IdMarca.NombreMarca != null &&
+                        p.IdMarca.NombreMarca.ToUpper().Contains(filtro)) ||
+                    (p.IdCategoria != null && p.IdCategoria.NombreCategoria != null &&
+                        p.IdCategoria.NombreCategoria.ToUpper().Contains(filtro))
+                ).ToList();
+
+                DgvProductos.DataSource = listaFiltrada;
+            }
+
+            DgvProductos.DataBind();
         }
     }
 }
