@@ -11,15 +11,21 @@ namespace negocio
 {
     public class CategoriaNegocio
     {
-        public List<Categoria> ListarCategoria()
+        public List<Categoria> ListarCategoria(bool mostrarInactivos = false)
         {
             List<Categoria> lista = new List<Categoria>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select IdCategoria, NombreCategoria, DescripcionCategoria, Estado from CATEGORIAS where Estado = 1");
+                string consulta = "SELECT IdCategoria, NombreCategoria, DescripcionCategoria, Estado FROM Categorias";
+
+                if (!mostrarInactivos)
+                    consulta += " WHERE Estado = 1";
+
+                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     Categoria aux = new Categoria();
@@ -31,16 +37,12 @@ namespace negocio
                 }
                 return lista;
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
             finally
             {
                 datos.cerrarConexion();
             }
         }
+
         public void agregarCategoria(Categoria nueva)
         {
             AccesoDatos datos = new AccesoDatos();
