@@ -16,5 +16,9 @@ namespace TPC_Equipo_6A
                 lblError.Text = Session["error"].ToString();
             }
         }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login");
+        }
     }
 }
