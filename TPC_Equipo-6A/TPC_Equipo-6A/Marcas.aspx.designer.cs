@@ -15,6 +15,24 @@ namespace TPC_Equipo_6A
     {
 
         /// <summary>
+        /// Control chbMostrarTodos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbMostrarTodos;
+
+        /// <summary>
+        /// Control lblCheckBox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCheckBox;
+
+        /// <summary>
         /// Control DgvMarca.
         /// </summary>
         /// <remarks>
