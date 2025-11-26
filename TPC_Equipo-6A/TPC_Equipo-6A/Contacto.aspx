@@ -31,11 +31,16 @@
 
                     <div class="row justify-content-center mt-3">
                         <div class="col-4 col-md-3">
-                            <asp:Button ID="btnEnviar" runat="server" CssClass="btn btn-dark w-100" Text="Enviar mensaje" OnClick="btnEnviar_Click"/>
+                            <asp:Button ID="btnEnviar" runat="server" CssClass="btn btn-dark w-100" Text="Enviar mensaje" OnClick="btnEnviar_Click" />
                         </div>
                         <div class="col-4 col-md-3">
                             <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark w-100" Text="Volver" CausesValidation="false" OnClick="btnVolver_Click" />
                         </div>
+                        <asp:Label ID="lblExito" runat="server"
+                            Text="Gracias por el comentario, revisa tu email para el seguimiento."
+                            Visible="false"
+                            CssClass="fw-bold text-bold me-2 mt-3 text-center" />
+
                     </div>
                 </div>
             </div>

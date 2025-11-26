@@ -25,11 +25,18 @@ namespace TPC_Equipo_6A
             EmailService email = new EmailService();
             email.armarCorreo(txtEmail.Text);
             email.enviarEmail();
+
+            txtNombre.Text = "";
+            txtEmail.Text = "";
+            txtAsunto.Text = "";
+            txtMensaje.Text = "";
+
+            lblExito.Visible = true;
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login");
+            Response.Redirect("Default");
         }
     }
 }
