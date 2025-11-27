@@ -35,7 +35,7 @@ namespace negocio
             email.Subject = Asunto;
             email.IsBodyHtml = true;
             email.Body = "<h1> Gracias por contactar al equipo de soporte!</h1> " +
-                "<br> Vamos a informar ayudarte a solucionar los problemas ocasionados en la app... " +
+                "<br> Vamos a ayudarte a solucionar los problemas ocasionados en la app... " +
                 "<br>" + mensaje;
            
                 
